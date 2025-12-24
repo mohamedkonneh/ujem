@@ -21,6 +21,15 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+// Verify connection configuration on startup
+transporter.verify(function (error, success) {
+  if (error) {
+    console.error('SMTP Connection Error:', error);
+  } else {
+    console.log("Server is ready to take our messages");
+  }
+});
+
 app.post('/api/send-email', async (req, res) => {
   const { fullName, phone, email, serviceName, date, message, subject, attachments } = req.body;
 

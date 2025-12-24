@@ -659,6 +659,9 @@ const App = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [manualMailto, setManualMailto] = useState('');
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currencyAmount, setCurrencyAmount] = useState(1);
@@ -790,6 +793,7 @@ const App = () => {
     setIsModalOpen(false);
     setSelectedService(null);
     setIsSuccess(false);
+    setIsError(false);
   };
 
   const handleBookSubmit = async (e) => {
@@ -863,12 +867,14 @@ const App = () => {
       }
     } catch (error) {
       console.warn('Backend error:', error);
-      alert(`Request failed: ${error.message}. Opening email client (Please attach documents manually).`);
       
-      // Fallback to mailto so the user can still send the form
+      // Generate mailto link for manual fallback
       const body = `Name: ${fullName}\nPhone: ${phone}\nEmail: ${email}\nService: ${serviceName}\n${date ? `Preferred Date: ${date}\n` : ''}${message ? `Message: ${message}\n` : ''}\nNote: Please attach any required documents manually to this email.`;
-      window.location.href = `mailto:konnehmohamed354@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      setIsSuccess(true);
+      const mailtoLink = `mailto:konnehmohamed354@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      
+      setManualMailto(mailtoLink);
+      setErrorMessage(error.message || "Connection failed");
+      setIsError(true);
     }
   };
 
@@ -2802,6 +2808,29 @@ const App = () => {
                 </p>
                 <button onClick={closeModal} className="w-full bg-brand-600 text-white font-bold py-3 rounded-xl hover:bg-brand-700 transition-colors shadow-lg shadow-brand-600/20">
                   {lang === 'en' ? 'Close' : 'إغلاق'}
+                </button>
+              </div>
+            ) : isError ? (
+              <div className="text-center py-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-red-100 dark:bg-red-900/30 mb-6 animate-in zoom-in duration-300">
+                  <AlertTriangle size={40} className="text-red-600 dark:text-red-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                  {lang === 'en' ? 'Submission Failed' : 'فشل الإرسال'}
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400 mb-6">
+                  {lang === 'en' ? "We couldn't send your request automatically. Please send it via your email app." : "لم نتمكن من إرسال طلبك تلقائيًا. يرجى إرساله عبر تطبيق البريد الإلكتروني الخاص بك."}
+                  <br/>
+                  <span className="text-xs text-red-500 opacity-80">Error: {errorMessage}</span>
+                </p>
+                <a 
+                  href={manualMailto}
+                  className="block w-full bg-brand-600 text-white font-bold py-3 rounded-xl hover:bg-brand-700 transition-colors shadow-lg shadow-brand-600/20 text-center mb-3"
+                >
+                  {lang === 'en' ? 'Open Email App' : 'فتح تطبيق البريد'}
+                </a>
+                <button onClick={() => setIsError(false)} className="text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 text-sm font-medium">
+                  {lang === 'en' ? 'Try Again' : 'حاول مرة أخرى'}
                 </button>
               </div>
             ) : bookingStep === 'selection' ? (

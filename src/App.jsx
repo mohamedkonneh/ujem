@@ -1600,6 +1600,16 @@ const App = () => {
           </div>
         ))}
 
+        {/* Hero Content */}
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full flex flex-col justify-center items-center text-center pt-20 pb-20 md:pb-12">
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight drop-shadow-lg mb-4 md:mb-6 animate-in slide-in-from-bottom duration-1000">
+            {heroSlides[currentSlide].title[lang]}
+          </h1>
+          <p className="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto leading-relaxed font-light animate-in slide-in-from-bottom duration-1000 delay-200 px-4">
+            {heroSlides[currentSlide].subtitle[lang]}
+          </p>
+        </div>
+
         {/* Slider Indicators (Bottom Center) */}
         <div className="absolute bottom-8 md:bottom-60 left-1/2 -translate-x-1/2 z-30 flex gap-3">
           {heroSlides.map((_, index) => (

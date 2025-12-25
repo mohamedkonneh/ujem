@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ArrowRight, BarChart3, Globe, ShieldCheck, FileCheck, Hotel, Building2, Plane, Map, Mail, Phone, Briefcase, ChevronDown, Facebook, Twitter, Instagram, Linkedin, Youtube, ArrowUp, Moon, Sun, Languages, Check, MessageCircle, CloudSun, Search, CheckCircle, Play, ChevronLeft, ChevronRight, Download, Share2, Quote, ArrowRightLeft, Coins, MessageSquare, Send, Cookie, Megaphone, Calendar, Users, MapPin, Headphones, Clock, Award, Wallet, CheckSquare, Thermometer, Bus, CreditCard, PlaneTakeoff, PlaneLanding, Plus, AlertTriangle, Printer, ShoppingBag, Tag, Star, ShoppingCart, Trash2, Minus, Palette, QrCode, Smartphone, Banknote } from 'lucide-react';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements, ElementsConsumer, CardElement } from '@stripe/react-stripe-js';
 import logo from './assets/Logo2.png';
 
 const serviceTypes = {
@@ -589,8 +587,6 @@ const translations = {
   }
 };
 
-const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx'); // Replace with your Stripe Publishable Key
-
 const DraggableCard = ({ children, className, onClick }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
@@ -828,7 +824,7 @@ const App = () => {
     setBookingFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleBookSubmit = async (e, stripe, elements) => {
+  const handleBookSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     
@@ -3123,9 +3119,6 @@ const App = () => {
       {/* --- BOOKING PAGE --- */}
       {activePage === 'book' && (
       <section id="book" className="pt-32 pb-24 bg-slate-50 dark:bg-slate-900 transition-colors min-h-screen animate-in fade-in slide-in-from-bottom-4 duration-500">
-        <Elements stripe={stripePromise}>
-        <ElementsConsumer>
-        {({ stripe, elements }) => (
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-6 md:p-10 relative">
             <button 
@@ -3243,7 +3236,7 @@ const App = () => {
               )}
             </p>
 
-            <form id="bookingForm" onSubmit={(e) => handleBookSubmit(e, stripe, elements)} className="space-y-5">
+            <form id="bookingForm" onSubmit={handleBookSubmit} className="space-y-5">
               <div className={bookingStep === 'payment' ? 'hidden' : 'space-y-5'}>
               {!selectedService && (
                 <div>
@@ -3288,12 +3281,12 @@ const App = () => {
                     <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{lang === 'en' ? 'Date From' : 'من تاريخ'}</label>
-                        <input name="dateFrom" value={bookingFormData.dateFrom} onChange={handleBookingInputChange} type="date" required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all text-slate-600 dark:text-slate-300" />
+                        <input name="dateFrom" value={bookingFormData.dateFrom} onChange={handleBookingInputChange} type="date" min={new Date().toISOString().split('T')[0]} required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all text-slate-600 dark:text-slate-300" />
                       </div>
                       {(selectedService === 'Hotel Booking' || selectedService === 'Holiday Packages' || selectedService === 'حجز فنادق' || selectedService === 'باقات عطلات') && (
                         <div>
                           <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{lang === 'en' ? 'Date To' : 'إلى تاريخ'}</label>
-                          <input name="dateTo" value={bookingFormData.dateTo} onChange={handleBookingInputChange} type="date" required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all text-slate-600 dark:text-slate-300" />
+                          <input name="dateTo" value={bookingFormData.dateTo} onChange={handleBookingInputChange} type="date" min={bookingFormData.dateFrom || new Date().toISOString().split('T')[0]} required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all text-slate-600 dark:text-slate-300" />
                         </div>
                       )}
                     </div>
@@ -3398,21 +3391,57 @@ const App = () => {
 
                 <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{lang === 'en' ? 'Select Payment Method' : 'اختر طريقة الدفع'}</h4>
                 
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {[
-                    { id: 'Credit Card', icon: CreditCard, label: 'Credit Card', color: 'text-blue-600' },
-                    { id: 'PayPal', icon: Wallet, label: 'PayPal', color: 'text-blue-500' },
-                    { id: 'Bank Transfer', icon: Building2, label: 'Bank Transfer', color: 'text-slate-600' },
-                    { id: 'Cryptocurrency', icon: Coins, label: 'Crypto', color: 'text-amber-500' },
-                    { id: 'Cash on Delivery', icon: Banknote, label: 'Cash', color: 'text-green-600' }
+                    { 
+                      id: 'Credit Card', 
+                      label: 'Credit / Debit Card', 
+                      logos: ['https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg', 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg'],
+                      caption: lang === 'en' ? 'Secure payment via Gateway' : 'دفع آمن عبر البوابة'
+                    },
+                    { 
+                      id: 'PayPal', 
+                      label: 'PayPal', 
+                      logos: ['https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg'],
+                      caption: lang === 'en' ? 'Fast & safe checkout' : 'دفع سريع وآمن'
+                    },
+                    { 
+                      id: 'Bank Transfer', 
+                      label: 'Bank Transfer', 
+                      icon: Building2, 
+                      caption: lang === 'en' ? 'Direct to our account' : 'مباشرة إلى حسابنا'
+                    },
+                    { 
+                      id: 'Cryptocurrency', 
+                      label: 'Cryptocurrency', 
+                      icon: Coins, 
+                      caption: lang === 'en' ? 'USDT (TRC-20) accepted' : 'نقبل USDT (TRC-20)'
+                    },
+                    { 
+                      id: 'Cash on Delivery', 
+                      label: 'Cash on Delivery', 
+                      icon: Banknote, 
+                      caption: lang === 'en' ? 'Pay when you meet us' : 'ادفع عند مقابلتنا'
+                    }
                   ].map((method) => (
                     <div 
                       key={method.id} 
                       onClick={() => setPaymentMethod(method.id)}
-                      className={`cursor-pointer p-4 rounded-xl border-2 flex flex-col items-center justify-center gap-2 transition-all hover:shadow-md ${paymentMethod === method.id ? 'border-brand-600 bg-brand-50 dark:bg-brand-900/20' : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800'}`}
+                      className={`cursor-pointer p-4 rounded-xl border-2 flex flex-col items-start justify-center gap-2 transition-all hover:shadow-md ${paymentMethod === method.id ? 'border-brand-600 bg-brand-50 dark:bg-brand-900/20' : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800'}`}
                     >
-                      <method.icon size={32} className={method.color} />
-                      <span className="text-xs font-bold text-slate-700 dark:text-slate-300 text-center">{method.label}</span>
+                      <div className="flex items-center gap-2 h-8">
+                        {method.logos ? (
+                          method.logos.map((logo, i) => (
+                            <img key={i} src={logo} alt="Logo" className="h-6 w-auto object-contain" />
+                          ))
+                        ) : (
+                          <method.icon size={28} className="text-slate-600 dark:text-slate-300" />
+                        )}
+                      </div>
+                      <div>
+                        <span className="block text-sm font-bold text-slate-900 dark:text-white">{method.label}</span>
+                        <span className="block text-xs text-slate-500 dark:text-slate-400">{method.caption}</span>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -3483,12 +3512,12 @@ const App = () => {
               
               <div className="flex gap-3 pt-2">
                 {bookingStep === 'payment' && (
-                  <button type="button" onClick={() => setBookingStep('form')} className="px-4 py-2 rounded-lg font-bold border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-sm">
+                  <button type="button" onClick={() => setBookingStep('form')} className="px-4 py-2 rounded-lg font-bold border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-xs uppercase tracking-wider">
                     {lang === 'en' ? 'Back' : 'رجوع'}
                   </button>
                 )}
                 {bookingStep === 'payment' ? (
-                  <button type="submit" key="submit-btn" disabled={isSubmitting} className="flex-1 bg-brand-600 text-white font-bold py-2 rounded-lg hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/20 hover:shadow-brand-600/40 transform hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm">
+                  <button type="submit" key="submit-btn" disabled={isSubmitting} className="flex-1 bg-brand-600 text-white font-bold py-2 rounded-lg hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/20 hover:shadow-brand-600/40 transform hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-xs uppercase tracking-wider">
                     {isSubmitting ? (
                       <>
                         <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -3499,7 +3528,7 @@ const App = () => {
                     )}
                   </button>
                 ) : (
-                  <button type="button" key="next-btn" onClick={() => { const form = document.getElementById('bookingForm'); if(form.checkValidity()) setBookingStep('payment'); else form.reportValidity(); }} className="flex-1 bg-brand-600 text-white font-bold py-2 rounded-lg hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/20 hover:shadow-brand-600/40 transform hover:-translate-y-0.5 text-sm">
+                  <button type="button" key="next-btn" onClick={() => { const form = document.getElementById('bookingForm'); if(form.checkValidity()) setBookingStep('payment'); else form.reportValidity(); }} className="flex-1 bg-brand-600 text-white font-bold py-2 rounded-lg hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/20 hover:shadow-brand-600/40 transform hover:-translate-y-0.5 text-xs uppercase tracking-wider">
                     {lang === 'en' ? 'Next' : 'التالي'}
                   </button>
                 )}
@@ -3509,9 +3538,6 @@ const App = () => {
             )}
           </div>
         </div>
-        )}
-        </ElementsConsumer>
-        </Elements>
       </section>
       )}
 

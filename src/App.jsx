@@ -828,6 +828,14 @@ const App = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
+    // Validate Date Range
+    if (bookingFormData.dateFrom && bookingFormData.dateTo && new Date(bookingFormData.dateTo) < new Date(bookingFormData.dateFrom)) {
+      setErrorMessage(lang === 'en' ? "Return date cannot be before departure date." : "تاريخ العودة لا يمكن أن يكون قبل تاريخ المغادرة.");
+      setIsError(true);
+      setIsSubmitting(false);
+      return;
+    }
+
     const formData = new FormData(e.target);
     const fullName = formData.get('fullName');
     const phone = formData.get('phone');
@@ -3286,7 +3294,14 @@ const App = () => {
                       {(selectedService === 'Hotel Booking' || selectedService === 'Holiday Packages' || selectedService === 'حجز فنادق' || selectedService === 'باقات عطلات') && (
                         <div>
                           <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{lang === 'en' ? 'Date To' : 'إلى تاريخ'}</label>
-                          <input name="dateTo" value={bookingFormData.dateTo} onChange={handleBookingInputChange} type="date" min={bookingFormData.dateFrom || new Date().toISOString().split('T')[0]} required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all text-slate-600" />
+                          <input 
+                            name="dateTo" 
+                            value={bookingFormData.dateTo} 
+                            onChange={handleBookingInputChange} 
+                            type="date" 
+                            min={bookingFormData.dateFrom || new Date().toISOString().split('T')[0]} 
+                            required 
+                            className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all text-slate-600" />
                         </div>
                       )}
                     </div>

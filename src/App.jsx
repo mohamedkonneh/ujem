@@ -1290,7 +1290,7 @@ const App = () => {
             </div>
 
             {/* Expanding Menu Items (Hidden by default, reveal on hover) */}
-            <div className="max-w-0 overflow-hidden group-hover/pill:max-w-screen-xl group-hover/pill:overflow-visible opacity-0 group-hover/pill:opacity-100 flex items-center gap-4 transition-all duration-500 ease-in-out">
+            <div className="max-w-0 overflow-hidden group-hover/pill:max-w-screen-xl group-hover/pill:overflow-visible opacity-0 group-hover/pill:opacity-100 hidden md:flex items-center gap-4 transition-all duration-500 ease-in-out">
               <div className="flex items-center gap-4 pl-2 border-l border-white/10">
               
               {/* Home */}
@@ -1429,7 +1429,7 @@ const App = () => {
             {/* Always Visible Buttons (Explore & Book Now) */}
             <div className="flex items-center gap-2 pl-2 border-l border-white/10">
                {/* Explore Services */}
-               <div className="relative group/item">
+               <div className="relative group/item hidden md:block">
                   <button onClick={() => navigateTo('services')} className="flex items-center bg-white/5 hover:bg-brand-600 text-white px-4 py-2 rounded-full transition-all font-medium text-sm border border-white/10 whitespace-nowrap">
                     {t.explore} <ChevronDown size={14} className="ml-1 rtl:mr-1 group-hover/item:rotate-180 transition-transform duration-200" />
                   </button>
@@ -1539,7 +1539,7 @@ const App = () => {
 
         {/* Mobile Menu Dropdown */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+          <div className="absolute top-24 left-0 w-full md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-xl pointer-events-auto animate-in slide-in-from-top-2 z-40">
             <div className="px-4 pt-2 pb-6 space-y-2">
               <button onClick={() => navigateTo('home')} className="block w-full text-start px-3 py-2 text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-md">{t.home}</button>
               <button onClick={() => navigateTo('services')} className="block w-full text-start px-3 py-2 text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-md">{t.services}</button>

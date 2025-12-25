@@ -723,7 +723,10 @@ const App = () => {
     fullName: '',
     phone: '',
     email: '',
-    date: '',
+    dateFrom: '',
+    dateTo: '',
+    travelers: '1',
+    serviceClass: 'Standard',
     message: ''
   });
   
@@ -811,7 +814,10 @@ const App = () => {
       fullName: '',
       phone: '',
       email: '',
-      date: '',
+      dateFrom: '',
+      dateTo: '',
+      travelers: '1',
+      serviceClass: 'Standard',
       message: ''
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -830,7 +836,10 @@ const App = () => {
     const fullName = formData.get('fullName');
     const phone = formData.get('phone');
     const email = formData.get('email');
-    const date = formData.get('date');
+    const dateFrom = formData.get('dateFrom');
+    const dateTo = formData.get('dateTo');
+    const travelers = formData.get('travelers');
+    const serviceClass = formData.get('serviceClass');
     const message = formData.get('message');
     
     let transactionId = 'TXN-' + Math.random().toString(36).substr(2, 9).toUpperCase();
@@ -848,23 +857,6 @@ const App = () => {
       if (txHash) transactionId = txHash;
     } else if (paymentMethod === 'Cash on Delivery') {
       paymentDetails = 'Payment to be collected upon delivery/service.';
-    }
-
-    if (paymentMethod === 'Credit Card' && stripe && elements) {
-      const cardElement = elements.getElement(CardElement);
-      const { error, paymentMethod: stripePaymentMethod } = await stripe.createPaymentMethod({
-        type: 'card',
-        card: cardElement,
-      });
-
-      if (error) {
-        setErrorMessage(error.message);
-        setIsError(true);
-        setIsSubmitting(false);
-        return;
-      }
-      
-      transactionId = stripePaymentMethod.id; // Use Stripe PaymentMethod ID
     }
 
     const serviceName = selectedService || formData.get('serviceType');
@@ -913,7 +905,7 @@ const App = () => {
           phone,
           email,
           serviceName,
-          date,
+          date: dateTo ? `${dateFrom} to ${dateTo}` : dateFrom,
           message,
           subject,
           attachments,
@@ -933,7 +925,7 @@ const App = () => {
       console.warn('Backend error:', error);
       
       // Generate mailto link for manual fallback
-      const body = `Name: ${fullName}\nPhone: ${phone}\nEmail: ${email}\nService: ${serviceName}\n${date ? `Preferred Date: ${date}\n` : ''}Payment Method: ${paymentMethod}\nTransaction ID: ${transactionId}\nDetails: ${paymentDetails}\n${message ? `Message: ${message}\n` : ''}\nNote: Please attach any required documents manually to this email.`;
+      const body = `Name: ${fullName}\nPhone: ${phone}\nEmail: ${email}\nService: ${serviceName}\nDates: ${dateFrom} ${dateTo ? 'to ' + dateTo : ''}\nTravelers: ${travelers}\nClass: ${serviceClass}\nPayment Method: ${paymentMethod}\nTransaction ID: ${transactionId}\nDetails: ${paymentDetails}\n${message ? `Message: ${message}\n` : ''}\nNote: Please attach any required documents manually to this email.`;
       const mailtoLink = `mailto:konnehmohamed354@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       
       setManualMailto(mailtoLink);
@@ -3291,10 +3283,46 @@ const App = () => {
                   <input name="email" value={bookingFormData.email} onChange={handleBookingInputChange} required type="email" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all" placeholder="john@example.com" />
                 </div>
                 {(!selectedService || !selectedService.startsWith('Job Application')) && (
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Preferred Date</label>
-                    <input name="date" value={bookingFormData.date} onChange={handleBookingInputChange} type="date" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all text-slate-600 dark:text-slate-300" />
-                  </div>
+                  <>
+                    {/* Dynamic Fields based on Service Type */}
+                    <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{lang === 'en' ? 'Date From' : 'من تاريخ'}</label>
+                        <input name="dateFrom" value={bookingFormData.dateFrom} onChange={handleBookingInputChange} type="date" required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all text-slate-600 dark:text-slate-300" />
+                      </div>
+                      {(selectedService === 'Hotel Booking' || selectedService === 'Holiday Packages' || selectedService === 'حجز فنادق' || selectedService === 'باقات عطلات') && (
+                        <div>
+                          <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{lang === 'en' ? 'Date To' : 'إلى تاريخ'}</label>
+                          <input name="dateTo" value={bookingFormData.dateTo} onChange={handleBookingInputChange} type="date" required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all text-slate-600 dark:text-slate-300" />
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{lang === 'en' ? 'No. of Persons' : 'عدد الأشخاص'}</label>
+                        <input name="travelers" value={bookingFormData.travelers} onChange={handleBookingInputChange} type="number" min="1" required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{lang === 'en' ? 'Class / Status' : 'الدرجة / الحالة'}</label>
+                        <select name="serviceClass" value={bookingFormData.serviceClass} onChange={handleBookingInputChange} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all appearance-none">
+                          {lang === 'en' ? (
+                            <>
+                              <option value="Economy">Economy / Standard</option>
+                              <option value="Business">Business / Premium</option>
+                              <option value="First Class">First Class / Luxury</option>
+                            </>
+                          ) : (
+                            <>
+                              <option value="Economy">اقتصادي / قياسي</option>
+                              <option value="Business">أعمال / متميز</option>
+                              <option value="First Class">درجة أولى / فاخر</option>
+                            </>
+                          )}
+                        </select>
+                      </div>
+                    </div>
+                  </>
                 )}
               </div>
 
@@ -3355,64 +3383,45 @@ const App = () => {
                         <span className="text-slate-500 dark:text-slate-400 block text-xs uppercase tracking-wider">{lang === 'en' ? 'Phone' : 'رقم الهاتف'}</span>
                         <span className="font-medium text-slate-900 dark:text-white">{bookingFormData.phone}</span>
                       </div>
-                      {bookingFormData.date && (
+                      {bookingFormData.dateFrom && (
                         <div>
                           <span className="text-slate-500 dark:text-slate-400 block text-xs uppercase tracking-wider">{lang === 'en' ? 'Date' : 'التاريخ'}</span>
-                          <span className="font-medium text-slate-900 dark:text-white">{bookingFormData.date}</span>
+                          <span className="font-medium text-slate-900 dark:text-white">{bookingFormData.dateFrom} {bookingFormData.dateTo ? ` - ${bookingFormData.dateTo}` : ''}</span>
                         </div>
                       )}
+                      <div>
+                          <span className="text-slate-500 dark:text-slate-400 block text-xs uppercase tracking-wider">{lang === 'en' ? 'Details' : 'التفاصيل'}</span>
+                          <span className="font-medium text-slate-900 dark:text-white">{bookingFormData.travelers} Person(s), {bookingFormData.serviceClass}</span>
+                        </div>
                   </div>
                 </div>
 
                 <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{lang === 'en' ? 'Select Payment Method' : 'اختر طريقة الدفع'}</h4>
                 
-                <div className="grid grid-cols-1 gap-4">
-                  {['Credit Card', 'PayPal', 'Bank Transfer', 'Cryptocurrency', 'Cash on Delivery'].map((method) => (
-                    <label key={method} className={`relative flex items-center p-4 border rounded-xl cursor-pointer transition-all ${paymentMethod === method ? 'border-brand-600 bg-brand-50 dark:bg-brand-900/20' : 'border-slate-200 dark:border-slate-700 hover:border-brand-300'}`}>
-                      <input type="radio" name="paymentMethod" value={method} checked={paymentMethod === method} onChange={() => setPaymentMethod(method)} className="sr-only" />
-                      <div className={`w-5 h-5 rounded-full border flex items-center justify-center mr-4 ${paymentMethod === method ? 'border-brand-600' : 'border-slate-400'}`}>
-                        {paymentMethod === method && <div className="w-3 h-3 rounded-full bg-brand-600"></div>}
-                      </div>
-                      <div className="flex-1 flex items-center gap-3">
-                        {method === 'Credit Card' && <CreditCard size={24} className="text-slate-600 dark:text-slate-300" />}
-                        {method === 'PayPal' && <Wallet size={24} className="text-blue-600" />}
-                        {method === 'Bank Transfer' && <Building2 size={24} className="text-slate-600 dark:text-slate-300" />}
-                        {method === 'Cryptocurrency' && <Coins size={24} className="text-amber-500" />}
-                        {method === 'Cash on Delivery' && <Banknote size={24} className="text-green-600" />}
-                        <span className="font-medium text-slate-900 dark:text-white">{method}</span>
-                      </div>
-                    </label>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {[
+                    { id: 'Credit Card', icon: CreditCard, label: 'Credit Card', color: 'text-blue-600' },
+                    { id: 'PayPal', icon: Wallet, label: 'PayPal', color: 'text-blue-500' },
+                    { id: 'Bank Transfer', icon: Building2, label: 'Bank Transfer', color: 'text-slate-600' },
+                    { id: 'Cryptocurrency', icon: Coins, label: 'Crypto', color: 'text-amber-500' },
+                    { id: 'Cash on Delivery', icon: Banknote, label: 'Cash', color: 'text-green-600' }
+                  ].map((method) => (
+                    <div 
+                      key={method.id} 
+                      onClick={() => setPaymentMethod(method.id)}
+                      className={`cursor-pointer p-4 rounded-xl border-2 flex flex-col items-center justify-center gap-2 transition-all hover:shadow-md ${paymentMethod === method.id ? 'border-brand-600 bg-brand-50 dark:bg-brand-900/20' : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800'}`}
+                    >
+                      <method.icon size={32} className={method.color} />
+                      <span className="text-xs font-bold text-slate-700 dark:text-slate-300 text-center">{method.label}</span>
+                    </div>
                   ))}
                 </div>
 
                 {paymentMethod === 'Credit Card' && (
                   <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 space-y-4 animate-in fade-in">
-                    <div>
-                      <label className="block text-xs font-bold text-slate-500 uppercase mb-1">{lang === 'en' ? 'Cardholder Name' : 'اسم حامل البطاقة'}</label>
-                      <input type="text" name="cardholderName" required disabled={bookingStep !== 'payment' || paymentMethod !== 'Credit Card'} className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white disabled:bg-slate-100 dark:disabled:bg-slate-800" placeholder="Name as on card" />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold text-slate-500 uppercase mb-1">{lang === 'en' ? 'Billing Address' : 'عنوان الفواتير'}</label>
-                      <input type="text" name="billingAddress" required disabled={bookingStep !== 'payment' || paymentMethod !== 'Credit Card'} className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white disabled:bg-slate-100 dark:disabled:bg-slate-800" placeholder="Street, City, Country" />
-                    </div>
-                    <div className="p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg">
-                      <CardElement 
-                        options={{
-                          style: {
-                            base: {
-                              fontSize: '16px',
-                              color: isDarkMode ? '#ffffff' : '#424770',
-                              '::placeholder': {
-                                color: '#aab7c4',
-                              },
-                            },
-                            invalid: {
-                              color: '#9e2146',
-                            },
-                          },
-                        }}
-                      />
-                  </div>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 text-center">
+                      {lang === 'en' ? 'You will be redirected to a secure payment gateway to complete your purchase.' : 'سيتم إعادة توجيهك إلى بوابة دفع آمنة لإكمال عملية الشراء.'}
+                    </p>
                   </div>
                 )}
 
@@ -3474,12 +3483,12 @@ const App = () => {
               
               <div className="flex gap-3 pt-2">
                 {bookingStep === 'payment' && (
-                  <button type="button" onClick={() => setBookingStep('form')} className="px-6 py-4 rounded-xl font-bold border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                  <button type="button" onClick={() => setBookingStep('form')} className="px-4 py-2 rounded-lg font-bold border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-sm">
                     {lang === 'en' ? 'Back' : 'رجوع'}
                   </button>
                 )}
                 {bookingStep === 'payment' ? (
-                  <button type="submit" key="submit-btn" disabled={isSubmitting} className="flex-1 bg-brand-600 text-white font-bold py-4 rounded-xl hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/20 hover:shadow-brand-600/40 transform hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                  <button type="submit" key="submit-btn" disabled={isSubmitting} className="flex-1 bg-brand-600 text-white font-bold py-2 rounded-lg hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/20 hover:shadow-brand-600/40 transform hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm">
                     {isSubmitting ? (
                       <>
                         <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -3490,7 +3499,7 @@ const App = () => {
                     )}
                   </button>
                 ) : (
-                  <button type="button" key="next-btn" onClick={() => { const form = document.getElementById('bookingForm'); if(form.checkValidity()) setBookingStep('payment'); else form.reportValidity(); }} className="flex-1 bg-brand-600 text-white font-bold py-4 rounded-xl hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/20 hover:shadow-brand-600/40 transform hover:-translate-y-0.5">
+                  <button type="button" key="next-btn" onClick={() => { const form = document.getElementById('bookingForm'); if(form.checkValidity()) setBookingStep('payment'); else form.reportValidity(); }} className="flex-1 bg-brand-600 text-white font-bold py-2 rounded-lg hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/20 hover:shadow-brand-600/40 transform hover:-translate-y-0.5 text-sm">
                     {lang === 'en' ? 'Next' : 'التالي'}
                   </button>
                 )}

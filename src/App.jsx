@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, ArrowRight, BarChart3, Globe, ShieldCheck, FileCheck, Hotel, Building2, Plane, Map, Mail, Phone, Briefcase, ChevronDown, Facebook, Twitter, Instagram, Linkedin, Youtube, ArrowUp, Moon, Sun, Languages, Check, MessageCircle, CloudSun, Search, CheckCircle, Play, ChevronLeft, ChevronRight, Download, Share2, Quote, ArrowRightLeft, Coins, MessageSquare, Send, Cookie, Megaphone, Calendar, Users, MapPin, Headphones, Clock, Award, Wallet, CheckSquare, Thermometer, Bus, CreditCard, PlaneTakeoff, PlaneLanding, Plus, AlertTriangle, Printer, ShoppingBag, Tag, Star, ShoppingCart, Trash2, Minus, Palette } from 'lucide-react';
+import { Menu, X, ArrowRight, BarChart3, Globe, ShieldCheck, FileCheck, Hotel, Building2, Plane, Map, Mail, Phone, Briefcase, ChevronDown, Facebook, Twitter, Instagram, Linkedin, Youtube, ArrowUp, Moon, Sun, Languages, Check, MessageCircle, CloudSun, Search, CheckCircle, Play, ChevronLeft, ChevronRight, Download, Share2, Quote, ArrowRightLeft, Coins, MessageSquare, Send, Cookie, Megaphone, Calendar, Users, MapPin, Headphones, Clock, Award, Wallet, CheckSquare, Thermometer, Bus, CreditCard, PlaneTakeoff, PlaneLanding, Plus, AlertTriangle, Printer, ShoppingBag, Tag, Star, ShoppingCart, Trash2, Minus, Palette, QrCode, Smartphone } from 'lucide-react';
 import logo from './assets/Logo2.png';
 
 const serviceTypes = {
@@ -718,6 +718,7 @@ const App = () => {
   });
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [shopFilter, setShopFilter] = useState('All');
+  const [contactStatus, setContactStatus] = useState('idle');
   
   // Testimonial Feature State
   const [testimonialsList, setTestimonialsList] = useState(testimonials);
@@ -875,6 +876,56 @@ const App = () => {
       setManualMailto(mailtoLink);
       setErrorMessage(error.message || "Connection failed");
       setIsError(true);
+    }
+  };
+
+  const handleContactSubmit = async (e) => {
+    e.preventDefault();
+    setContactStatus('submitting');
+    
+    const formData = new FormData(e.target);
+    const fullName = formData.get('name');
+    const email = formData.get('email');
+    const phone = formData.get('phone');
+    const subjectSelection = formData.get('subject');
+    const message = formData.get('message');
+    
+    const subject = `Contact Inquiry: ${subjectSelection}`;
+    
+    try {
+      let apiBase;
+      const hostname = window.location.hostname;
+      if (hostname === 'localhost' || hostname.startsWith('192.168.') || hostname.startsWith('10.') || hostname.startsWith('172.')) {
+        apiBase = `http://${hostname}:5000`;
+      } else {
+        apiBase = 'https://ujem.onrender.com'; 
+      }
+
+      const response = await fetch(`${apiBase}/api/send-email`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fullName,
+          phone,
+          email,
+          serviceName: 'General Contact',
+          message,
+          subject
+        }),
+      });
+
+      if (response.ok) {
+        setContactStatus('success');
+        e.target.reset();
+      } else {
+        throw new Error('Server error');
+      }
+    } catch (error) {
+      console.warn('Contact form error:', error);
+      // Fallback to mailto
+      const body = `Name: ${fullName}\nPhone: ${phone}\nEmail: ${email}\nSubject: ${subjectSelection}\nMessage: ${message}`;
+      window.location.href = `mailto:konnehmohamed354@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      setContactStatus('success');
     }
   };
 
@@ -1500,7 +1551,7 @@ const App = () => {
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full flex flex-col justify-center md:flex-row md:items-center pt-20">
           
           {/* Left Content: Text & CTAs */}
-          <div className="w-full md:w-3/5 space-y-8 animate-in slide-in-from-left duration-1000">
+          <div className="w-full max-w-4xl mx-auto text-center space-y-8 animate-in slide-in-from-bottom duration-1000">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-600/20 border border-brand-500/30 backdrop-blur-sm text-brand-300 text-sm font-medium mb-6">
                 <span className="relative flex h-2 w-2">
@@ -1518,11 +1569,11 @@ const App = () => {
               </h1>
             </div>
             
-            <p className="text-lg md:text-xl text-slate-200 max-w-2xl leading-relaxed font-light border-l-4 border-brand-600 pl-6">
+            <p className="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto leading-relaxed font-light">
               {heroSlides[currentSlide].subtitle[lang]}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
               <button onClick={() => navigateTo('services')} className="group relative px-8 py-4 bg-brand-600 text-white rounded-full font-bold text-lg shadow-xl shadow-brand-600/20 overflow-hidden transition-all hover:scale-105">
                 <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
                 <span className="flex items-center gap-2">
@@ -1533,67 +1584,6 @@ const App = () => {
                 <Calendar size={20} /> {t.bookNow}
               </button>
             </div>
-          </div>
-
-          {/* Right Content: Widgets (Hidden on mobile for cleaner look, or stacked) */}
-          <div className="hidden md:flex w-full md:w-2/5 flex-col items-end justify-center gap-6 pl-10 animate-in slide-in-from-right duration-1000 delay-200">
-            
-            {/* Weather/Time Widget */}
-            <div className="bg-slate-900/40 backdrop-blur-xl border border-white/10 p-6 rounded-3xl shadow-2xl text-white w-72 hover:bg-slate-900/50 transition-colors group">
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <p className="text-4xl font-bold font-mono tracking-wider text-brand-100">{time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
-                  <p className="text-sm text-slate-300 mt-1">{time.toLocaleDateString(lang === 'ar' ? 'ar-AE' : 'en-US', { weekday: 'long', month: 'short', day: 'numeric' })}</p>
-                </div>
-                <div className="bg-white/10 p-2 rounded-full">
-                  <CloudSun size={24} className="text-yellow-400" />
-                </div>
-              </div>
-              
-              <div className="space-y-3">
-                <div className="flex items-center justify-between text-sm border-t border-white/10 pt-3">
-                  <span className="text-slate-300">{lang === 'ar' ? 'دبي' : 'Dubai'}</span>
-                  <span className="font-bold text-xl">{weather ? Math.round(weather.temperature) : '--'}°C</span>
-                </div>
-                
-                {/* Mini Currency Converter */}
-                <div className="bg-black/20 rounded-xl p-3 border border-white/5">
-                  <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
-                    <span className="flex items-center gap-1"><Coins size={10} /> Exchange</span>
-                  </div>
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-1 bg-white/5 rounded px-2 py-1">
-                      <span className="font-bold text-sm">1 USD</span>
-                    </div>
-                    <ArrowRight size={12} className="text-slate-500" />
-                    <div className="flex items-center gap-1 bg-brand-600/20 text-brand-300 rounded px-2 py-1 border border-brand-500/30">
-                      <span className="font-bold text-sm">3.67 AED</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Promo Card */}
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 p-2 rounded-2xl shadow-2xl w-72 cursor-pointer group hover:scale-105 transition-transform duration-300" onClick={() => openModal('Special Promotion')}>
-              <div className="relative overflow-hidden rounded-xl">
-                <img 
-                  src="https://scontent.fkwi5-2.fna.fbcdn.net/v/t51.82787-15/524445898_18009722036788899_4329301018623873677_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=109&_nc_cb=99be929b-f3b7c874&ccb=1-7&_nc_sid=127cfc&_nc_ohc=DHwkhaRk9lsQ7kNvwGIGIIL&_nc_oc=AdkEGpiPdF-3Tvfb-CT8th8hZwk2up5NbYqo4VOSvpauFMGAiudtk-WfpxwVLSBDiVdJm1uXclELwaqNZclo2Ukz&_nc_zt=23&_nc_ht=scontent.fkwi5-2.fna&_nc_gid=RK5j-XnTM0xme_fYS-fbBA&oh=00_AfnfLg91UxiOIMQVjKnf5WDjKhru8T4Z0sUOExhspjaNng&oe=694CA0AB" 
-                  alt="Promo" 
-                  className="w-full h-32 object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="text-white font-bold text-sm border border-white px-3 py-1 rounded-full">View Offer</span>
-                </div>
-              </div>
-              <div className="p-3">
-                <div className="flex items-center gap-2 text-brand-300 text-xs font-bold uppercase mb-1">
-                  <Megaphone size={12} /> Limited Time
-                </div>
-                <p className="text-white text-sm font-medium leading-tight">Exclusive Winter Packages Available Now</p>
-              </div>
-            </div>
-
           </div>
         </div>
 
@@ -2502,7 +2492,7 @@ const App = () => {
                 Established 2023
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                Ujem Travel & <br/>
+                Ujem Travel & Tourism<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-brand-200">Tourism</span>
               </h2>
               <p className="text-lg text-slate-400 mb-8 leading-relaxed">
@@ -2673,7 +2663,7 @@ const App = () => {
                   <Map className="text-brand-600 mt-1 mr-4" size={24} />
                   <div>
                     <p className="font-semibold text-slate-900 dark:text-white">Address</p>
-                    <p className="text-slate-600 dark:text-slate-400">Business Bay, Dubai, UAE</p>
+                    <p className="text-slate-600 dark:text-slate-400">Deira Twin Tower office No.215, Behind Day to Day, Baniyas Metro Station. Dubai UAE.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -2695,7 +2685,7 @@ const App = () => {
               {/* Map */}
               <div className="mt-8 h-64 w-full rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-inner">
                 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.1786539269224!2d55.27218771500953!3d25.18606388390137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f682829c85c07%3A0xa5eda9fb3c7110d7!2sBusiness%20Bay%20-%20Dubai!5e0!3m2!1sen!2sae!4v1623456789012!5m2!1sen!2sae" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.497742467776!2d55.30747031501066!3d25.26645998386396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43348a67e24b%3A0xff45e511e2186401!2sDeira%20Twin%20Towers!5e0!3m2!1sen!2sae!4v1623456789012!5m2!1sen!2sae" 
                   width="100%" 
                   height="100%" 
                   style={{ border: 0 }} 
@@ -2705,15 +2695,84 @@ const App = () => {
                   title="Office Location"
                 ></iframe>
               </div>
+
+              {/* Map Actions */}
+              <div className="mt-4 flex flex-col sm:flex-row gap-3">
+                <button 
+                  onClick={() => window.open('https://www.google.com/maps/dir/?api=1&destination=Deira+Twin+Towers+Dubai', '_blank')}
+                  className="flex-1 bg-brand-600 text-white py-3 px-4 rounded-xl font-bold hover:bg-brand-700 transition-colors flex items-center justify-center gap-2 text-sm shadow-md"
+                >
+                  <MapPin size={18} /> {lang === 'en' ? "Get Directions" : "احصل على الاتجاهات"}
+                </button>
+                <button 
+                  onClick={() => {
+                    const text = "Ujem Group Location:\nDeira Twin Tower office No.215, Behind Day to Day, Baniyas Metro Station, Dubai UAE.\nhttps://www.google.com/maps/search/?api=1&query=Deira+Twin+Towers+Dubai";
+                    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+                  }}
+                  className="flex-1 bg-[#25D366] text-white py-3 px-4 rounded-xl font-bold hover:bg-[#128C7E] transition-colors flex items-center justify-center gap-2 text-sm shadow-md"
+                >
+                  <Share2 size={18} /> {lang === 'en' ? "Share Location" : "مشاركة الموقع"}
+                </button>
+                <button 
+                  onClick={() => window.location.href = 'tel:+971556554093'}
+                  className="flex-1 bg-blue-600 text-white py-3 px-4 rounded-xl font-bold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 text-sm shadow-md"
+                >
+                  <Phone size={18} /> {lang === 'en' ? "Call Now" : "اتصل الآن"}
+                </button>
+              </div>
+
+              {/* QR Code */}
+              <div className="mt-6 flex items-center gap-4 p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <div className="bg-white p-2 rounded-lg shadow-inner shrink-0">
+                  <img 
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent("https://ujem-travel-and-tourism.web.app")}`} 
+                    alt="Website QR Code" 
+                    className="w-20 h-20"
+                  />
+                </div>
+                <div>
+                  <p className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
+                    <QrCode size={16} className="text-brand-600" />
+                    {lang === 'en' ? "Scan to Visit" : "امسح للزيارة"}
+                  </p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    {lang === 'en' ? "Open our website on your mobile device instantly." : "افتح موقعنا على جهازك المحمول فوراً."}
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* General Inquiry Form */}
             <div className="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-lg">
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Send us a Message</h3>
-              <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); alert('Message sent!'); }}>
+              {contactStatus === 'success' ? (
+                <div className="text-center py-12 animate-in fade-in zoom-in duration-300">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 mb-4 text-green-600">
+                    <CheckCircle size={32} />
+                  </div>
+                  <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{lang === 'en' ? "Message Sent!" : "تم إرسال الرسالة!"}</h4>
+                  <p className="text-slate-600 dark:text-slate-400 mb-6">{lang === 'en' ? "Thank you for contacting us. We will get back to you shortly." : "شكراً لتواصلك معنا. سنرد عليك قريباً."}</p>
+                  <button onClick={() => setContactStatus('idle')} className="text-brand-600 font-bold hover:underline">{lang === 'en' ? "Send another message" : "إرسال رسالة أخرى"}</button>
+                </div>
+              ) : (
+              <form className="space-y-4" onSubmit={handleContactSubmit}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{lang === 'en' ? "Your Name" : "اسمك"}</label>
+                    <input name="name" required type="text" className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all" placeholder="John Doe" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{lang === 'en' ? "Phone Number" : "رقم الهاتف"}</label>
+                    <input name="phone" required type="tel" className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all" placeholder="+971..." />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{lang === 'en' ? "Email Address" : "البريد الإلكتروني"}</label>
+                  <input name="email" required type="email" className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all" placeholder="john@example.com" />
+                </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{t.subject || "Subject"}</label>
-                  <select className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all">
+                  <select name="subject" className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all">
                     <option>General Inquiry</option>
                     <option>Company Info</option>
                     <option>Concerns/Feedback</option>
@@ -2722,12 +2781,26 @@ const App = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{t.message || "Message"}</label>
-                  <textarea required className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all h-32 resize-none" placeholder="How can we help you?"></textarea>
+                  <textarea name="message" required className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded-lg focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all h-32 resize-none" placeholder="How can we help you?"></textarea>
                 </div>
-                <button type="submit" className="w-full bg-brand-900 text-white font-bold py-3 rounded-lg hover:bg-brand-800 transition-colors shadow-lg shadow-brand-900/20">
-                  Send Message
+                <button type="submit" disabled={contactStatus === 'submitting'} className="w-full bg-brand-900 text-white font-bold py-3 rounded-lg hover:bg-brand-800 transition-colors shadow-lg shadow-brand-900/20 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                  {contactStatus === 'submitting' ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      {lang === 'en' ? "Sending..." : "جاري الإرسال..."}
+                    </>
+                  ) : (
+                    lang === 'en' ? "Send Message" : "إرسال الرسالة"
+                  )}
                 </button>
+                <div className="mt-4 text-center border-t border-slate-100 dark:border-slate-800 pt-4">
+                  <p className="text-xs text-slate-500 mb-2">{lang === 'en' ? "Need a faster reply?" : "هل تحتاج إلى رد أسرع؟"}</p>
+                  <button type="button" onClick={handleWhatsAppClick} className="text-[#25D366] font-bold hover:underline flex items-center justify-center gap-1 mx-auto">
+                    <MessageCircle size={16} /> {lang === 'en' ? "Chat on WhatsApp" : "دردش عبر واتساب"}
+                  </button>
+                </div>
               </form>
+              )}
             </div>
           </div>
         </div>

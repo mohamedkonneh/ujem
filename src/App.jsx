@@ -5,7 +5,6 @@ import logo from './assets/Logo2.png';
 const serviceTypes = {
   en: [
     "UAE Visit Visa",
-    "Air Tickets",
     "Hotel Booking",
     "Real Estate",
     "Guided Tours",
@@ -14,7 +13,6 @@ const serviceTypes = {
   ],
   ar: [
     "تأشيرة زيارة الإمارات",
-    "تذاكر طيران",
     "حجز فنادق",
     "عقارات",
     "جولات سياحية",
@@ -74,7 +72,7 @@ const navDropdowns = {
 
 const heroSlides = [
   {
-    image: "https://ujem-travel-and-tourism.web.app/assets/Logo2-5hxZkaTp.png",
+    image: logo,
     video: "https://assets.mixkit.co/videos/preview/mixkit-dubai-skyline-at-night-4537-large.mp4",
     title: { en: "Discover Dubai's Wonders", ar: "اكتشف عجائب دبي" },
     subtitle: { en: "Experience world-class tourism in the heart of the UAE with Ujem Group", ar: "استمتع بسياحة عالمية المستوى في قلب الإمارات مع مجموعة عجم" }
@@ -155,17 +153,7 @@ const faqs = [
 
 const highlightImages = [
   {
-    title: { en: "Airport Services", ar: "خدمات المطار" },
-    image: "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA1NjYWu.img?w=1152&h=648&m=4&q=100",
-    desc: { en: "Seamless airport transfers and assistance.", ar: "تنقلات ومساعدة سلسة في المطار." }
-  },
-  {
-    title: { en: "Luxury Real Estate", ar: "عقارات فاخرة" },
-    image: "https://media.licdn.com/dms/image/D4E22AQERtuQpKZHGCA/feedshare-shrink_2048_1536/0/1704213817129?e=2147483647&v=beta&t=rSz4rSEBExL1OHtwb4mT04FJkOl5tKEsno0F0dR9Qqw",
-    desc: { en: "Prime properties in Dubai's most sought-after locations.", ar: "عقارات مميزة في أكثر المواقع طلباً في دبي." }
-  },
-  {
-    title: { en: "Desert Tourism", ar: "سياحة صحراوية" },
+    title: { en: "Safari Packages", ar: "باقات السفاري" },
     image: "https://tse2.mm.bing.net/th/id/OIP.FLstR3XpEJpEo9B3_bn-MQHaLS?cb=ucfimg2&pid=ImgDet&ucfimg=1&w=203&h=309&c=7&o=7&rm=3",
     desc: { en: "Unforgettable desert safaris and adventures.", ar: "رحلات سفاري ومغامرات صحراوية لا تُنسى." }
   },
@@ -175,14 +163,9 @@ const highlightImages = [
     desc: { en: "Fast and reliable visa application services.", ar: "خدمات تقديم تأشيرات سريعة وموثوقة." }
   },
   {
-    title: { en: "Hotel Reservations", ar: "حجوزات الفنادق" },
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=800",
-    desc: { en: "Stay in world-class hotels and resorts.", ar: "إقامة في فنادق ومنتجعات عالمية المستوى." }
-  },
-  {
-    title: { en: "Business Consulting", ar: "استشارات أعمال" },
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800",
-    desc: { en: "Strategic guidance for your business growth.", ar: "توجيه استراتيجي لنمو أعمالك." }
+    title: { en: "Luxury Real Estate", ar: "عقارات فاخرة" },
+    image: "https://media.licdn.com/dms/image/D4E22AQERtuQpKZHGCA/feedshare-shrink_2048_1536/0/1704213817129?e=2147483647&v=beta&t=rSz4rSEBExL1OHtwb4mT04FJkOl5tKEsno0F0dR9Qqw",
+    desc: { en: "Prime properties in Dubai's most sought-after locations.", ar: "عقارات مميزة في أكثر المواقع طلباً في دبي." }
   }
 ];
 
@@ -1282,8 +1265,10 @@ const App = () => {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
-              <button onClick={() => navigateTo('home')}>
-                <img src={logo} alt="Ujem Group" className="h-14 w-auto" />
+              <button onClick={() => navigateTo('home')} className="group hover:scale-105 transition-transform duration-300">
+                <span className="text-3xl md:text-4xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-500 to-amber-600 drop-shadow-sm">
+                  UJEM
+                </span>
               </button>
             </div>
 
@@ -1688,6 +1673,85 @@ const App = () => {
         </section>
       )}
 
+      {/* --- HIGHLIGHTS SECTION (Moved Up) --- */}
+      {activePage === 'home' && (
+        <section className="py-12 md:py-16 bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-slate-900 dark:text-white">{t.ourExpertise}</h2>
+              <p className="text-slate-500 mt-4">{t.whyChoose}</p>
+            </div>
+
+            <div className="relative px-4 md:px-12">
+              <button 
+                onClick={() => scrollServices('left')} 
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 text-slate-800 dark:text-white p-3 rounded-full shadow-lg backdrop-blur-md transition-all md:hidden"
+              >
+                <ChevronLeft size={24} />
+              </button>
+
+              <div 
+                ref={servicesScrollRef} 
+                className="flex md:grid md:grid-cols-4 gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar pb-8 md:pb-0 px-2"
+                onMouseEnter={() => setIsServicesHovered(true)}
+                onMouseLeave={() => setIsServicesHovered(false)}
+                onTouchStart={() => setIsServicesHovered(true)}
+                onTouchEnd={() => setIsServicesHovered(false)}
+              >
+                {highlightImages.map((item, index) => (
+                  <div key={index} onClick={() => openModal(item.title[lang])} className="min-w-[85vw] md:min-w-0 snap-center group relative h-96 rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 flex-shrink-0">
+                    <img 
+                      src={item.image} 
+                      alt={item.title[lang]} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-90 transition-opacity duration-300">
+                      <div className="absolute bottom-0 start-0 p-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 className="text-2xl font-bold text-white mb-2">{item.title[lang]}</h3>
+                        <p className="text-slate-200 text-base opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 leading-relaxed">{item.desc[lang]}</p>
+                        <div className="mt-4 flex items-center gap-2 text-brand-400 font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-200">
+                          <span>{t.readMore}</span> <ArrowRight size={16} className="rtl:rotate-180" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
+                {/* See All Card */}
+                <div onClick={() => navigateTo('services')} className="min-w-[85vw] md:min-w-0 snap-center group relative h-96 rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 flex-shrink-0 bg-slate-900 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center">
+                    {/* Default View */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center transition-all duration-300 group-hover:opacity-0 group-hover:scale-90">
+                        <div className="bg-brand-600 p-4 rounded-full mb-4 shadow-lg shadow-brand-600/30">
+                          <ArrowRight size={32} className="text-white rtl:rotate-180" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">{t.explore}</h3>
+                        <p className="text-slate-500 dark:text-slate-400 text-sm">{lang === 'en' ? "View all services" : "عرض جميع الخدمات"}</p>
+                    </div>
+
+                    {/* Hover View (Preview) */}
+                    <div className="absolute inset-0 bg-brand-600 p-6 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-110 group-hover:scale-100">
+                        <h3 className="text-white font-bold text-xl mb-4 border-b-2 border-white/20 pb-2">{t.services}</h3>
+                        <ul className="space-y-3 text-center w-full">
+                            {serviceTypes[lang].slice(0, 4).map((service, i) => (
+                                <li key={i} className="text-white/90 text-sm font-medium truncate w-full">{service}</li>
+                            ))}
+                            <li className="text-white/60 text-xs italic pt-1">{lang === 'en' ? '+ More' : '+ المزيد'}</li>
+                        </ul>
+                    </div>
+                </div>
+              </div>
+
+              <button 
+                onClick={() => scrollServices('right')} 
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 text-slate-800 dark:text-white p-3 rounded-full shadow-lg backdrop-blur-md transition-all md:hidden"
+              >
+                <ChevronRight size={24} />
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* --- WINTER OFFER SECTION --- */}
       {activePage === 'home' && (
         <section className="py-8 bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
@@ -1720,62 +1784,6 @@ const App = () => {
                    </div>
                  </div>
               </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* --- HIGHLIGHTS SECTION --- */}
-      {activePage === 'home' && (
-        <section className="py-12 md:py-16 bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-slate-900 dark:text-white">{t.ourExpertise}</h2>
-              <p className="text-slate-500 mt-4">{t.whyChoose}</p>
-            </div>
-
-            <div className="relative px-4 md:px-12">
-              <button 
-                onClick={() => scrollServices('left')} 
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 text-slate-800 dark:text-white p-3 rounded-full shadow-lg backdrop-blur-md transition-all hidden md:block"
-              >
-                <ChevronLeft size={24} />
-              </button>
-
-              <div 
-                ref={servicesScrollRef} 
-                className="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-8 px-2"
-                onMouseEnter={() => setIsServicesHovered(true)}
-                onMouseLeave={() => setIsServicesHovered(false)}
-                onTouchStart={() => setIsServicesHovered(true)}
-                onTouchEnd={() => setIsServicesHovered(false)}
-              >
-                {highlightImages.map((item, index) => (
-                  <div key={index} onClick={() => openModal(item.title[lang])} className="min-w-[85vw] md:min-w-[350px] snap-center group relative h-96 rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 flex-shrink-0">
-                    <img 
-                      src={item.image} 
-                      alt={item.title[lang]} 
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-90 transition-opacity duration-300">
-                      <div className="absolute bottom-0 start-0 p-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                        <h3 className="text-2xl font-bold text-white mb-2">{item.title[lang]}</h3>
-                        <p className="text-slate-200 text-base opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 leading-relaxed">{item.desc[lang]}</p>
-                        <div className="mt-4 flex items-center gap-2 text-brand-400 font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-200">
-                          <span>{t.readMore}</span> <ArrowRight size={16} className="rtl:rotate-180" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <button 
-                onClick={() => scrollServices('right')} 
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 text-slate-800 dark:text-white p-3 rounded-full shadow-lg backdrop-blur-md transition-all hidden md:block"
-              >
-                <ChevronRight size={24} />
-              </button>
             </div>
           </div>
         </section>
@@ -2646,10 +2654,6 @@ const App = () => {
                 </button>
               </div>
               <div className="space-y-4">
-                <button onClick={() => openModal('Air Tickets')} className="w-full text-start bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:bg-white/20 transition-all duration-300 group">
-                  <Plane className="text-brand-400 mb-3 group-hover:scale-110 transition-transform" size={32} />
-                  <h3 className="text-white font-semibold">Air Tickets</h3>
-                </button>
                 <button onClick={() => openModal('Guided Tours')} className="w-full text-start bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:bg-white/20 transition-all duration-300 group">
                   <Map className="text-brand-400 mb-3 group-hover:scale-110 transition-transform" size={32} />
                   <h3 className="text-white font-semibold">Guided Tours</h3>

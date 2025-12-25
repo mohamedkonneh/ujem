@@ -1260,24 +1260,23 @@ const App = () => {
       <div className="fixed top-0 left-0 h-1 bg-brand-600 z-[110] transition-all duration-150 ease-out" style={{ width: `${scrollProgress * 100}%` }}></div>
       
       {/* --- NAVIGATION --- */}
-      <nav className="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+      <nav className="fixed top-0 left-0 w-full z-50 flex justify-center pt-6 pointer-events-none">
+        <div className="pointer-events-auto bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl rounded-full p-2 flex items-center gap-0 hover:gap-6 transition-all duration-500 hover:bg-slate-900/95 hover:px-8 group max-w-fit mx-auto">
             {/* Logo */}
-            <div className="flex-shrink-0 flex items-center">
-              <button onClick={() => navigateTo('home')} className="group hover:scale-105 transition-transform duration-300">
-                <span className="text-3xl md:text-4xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-500 to-amber-600 drop-shadow-sm">
+            <div className="flex-shrink-0 flex items-center px-2">
+              <button onClick={() => navigateTo('home')} className="hover:scale-105 transition-transform duration-300">
+                <span className="text-3xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-500 to-amber-600 drop-shadow-sm">
                   UJEM
                 </span>
               </button>
             </div>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex space-x-8 items-center">
-              <button onClick={() => navigateTo('home')} className={`text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-medium ${activePage === 'home' ? 'text-brand-600 dark:text-brand-400' : ''}`}>{t.home}</button>
+            <div className="hidden w-0 overflow-hidden group-hover:w-auto opacity-0 group-hover:opacity-100 md:flex space-x-6 items-center transition-all duration-500 delay-75">
+              <button onClick={() => navigateTo('home')} className={`text-slate-300 hover:text-brand-400 transition-colors font-medium text-sm ${activePage === 'home' ? 'text-brand-400' : ''}`}>{t.home}</button>
               
               <div className="relative group">
-                <button onClick={() => navigateTo('services')} className={`flex items-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-medium ${activePage === 'services' ? 'text-brand-600 dark:text-brand-400' : ''}`}>
+                <button onClick={() => navigateTo('services')} className={`flex items-center text-slate-300 hover:text-brand-400 transition-colors font-medium text-sm ${activePage === 'services' ? 'text-brand-400' : ''}`}>
                   {t.services} <ChevronDown size={16} className="mx-1 group-hover:rotate-180 transition-transform duration-200" />
                 </button>
                 <div className="absolute start-0 top-full pt-4 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 ">
@@ -1294,7 +1293,7 @@ const App = () => {
               <button onClick={() => navigateTo('plan')} className={`text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-medium ${activePage === 'plan' ? 'text-brand-600 dark:text-brand-400' : ''}`}>{t.planTrip}</button>
 
               <div className="relative group">
-                <button onClick={() => navigateTo('shop')} className={`flex items-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-medium ${activePage === 'shop' ? 'text-brand-600 dark:text-brand-400' : ''}`}>
+                <button onClick={() => navigateTo('shop')} className={`flex items-center text-slate-300 hover:text-brand-400 transition-colors font-medium text-sm ${activePage === 'shop' ? 'text-brand-400' : ''}`}>
                   {t.shop} <ChevronDown size={16} className="mx-1 group-hover:rotate-180 transition-transform duration-200" />
                 </button>
                 <div className="absolute start-0 top-full pt-4 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
@@ -1311,10 +1310,10 @@ const App = () => {
                 </div>
               </div>
 
-              <button onClick={() => navigateTo('gallery')} className={`text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-medium ${activePage === 'gallery' ? 'text-brand-600 dark:text-brand-400' : ''}`}>{t.gallery}</button>
+              <button onClick={() => navigateTo('gallery')} className={`text-slate-300 hover:text-brand-400 transition-colors font-medium text-sm ${activePage === 'gallery' ? 'text-brand-400' : ''}`}>{t.gallery}</button>
 
               <div className="relative group">
-                <button onClick={() => navigateTo('about')} className={`flex items-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-medium ${activePage === 'about' ? 'text-brand-600 dark:text-brand-400' : ''}`}>
+                <button onClick={() => navigateTo('about')} className={`flex items-center text-slate-300 hover:text-brand-400 transition-colors font-medium text-sm ${activePage === 'about' ? 'text-brand-400' : ''}`}>
                   {t.about} <ChevronDown size={16} className="mx-1 group-hover:rotate-180 transition-transform duration-200" />
                 </button>
                 <div className="absolute start-0 top-full pt-4 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
@@ -1329,7 +1328,7 @@ const App = () => {
               </div>
 
               <div className="relative group">
-                <button onClick={() => navigateTo('careers')} className={`flex items-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-medium ${activePage === 'careers' ? 'text-brand-600 dark:text-brand-400' : ''}`}>
+                <button onClick={() => navigateTo('careers')} className={`flex items-center text-slate-300 hover:text-brand-400 transition-colors font-medium text-sm ${activePage === 'careers' ? 'text-brand-400' : ''}`}>
                   {t.careers} <ChevronDown size={16} className="mx-1 group-hover:rotate-180 transition-transform duration-200" />
                 </button>
                 <div className="absolute start-0 top-full pt-4 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
@@ -1344,7 +1343,7 @@ const App = () => {
               </div>
 
               <div className="relative group">
-                <button onClick={() => navigateTo('contact')} className={`flex items-center bg-brand-900 text-white px-5 py-2 rounded-full font-medium hover:bg-brand-600 transition-all shadow-lg shadow-brand-900/20 ${activePage === 'contact' ? 'bg-brand-600' : ''}`}>
+                <button onClick={() => navigateTo('contact')} className={`flex items-center bg-brand-600 text-white px-4 py-1.5 rounded-full font-medium text-sm hover:bg-brand-500 transition-all shadow-lg shadow-brand-900/20 ${activePage === 'contact' ? 'bg-brand-500' : ''}`}>
                   {t.contact} <ChevronDown size={16} className="mx-1 group-hover:rotate-180 transition-transform duration-200" />
                 </button>
                 <div className="absolute start-0 top-full pt-4 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
@@ -1359,43 +1358,42 @@ const App = () => {
               </div>
 
               {/* Search Toggle */}
-              <button onClick={() => setIsSearchOpen(!isSearchOpen)} className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300">
-                <Search size={20} />
+              <button onClick={() => setIsSearchOpen(!isSearchOpen)} className="p-1.5 rounded-full hover:bg-white/10 transition-colors text-slate-300">
+                <Search size={18} />
               </button>
 
               {/* Dark Mode Toggle */}
-              <button onClick={() => setIsDarkMode(!isDarkMode)} className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300">
-                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+              <button onClick={() => setIsDarkMode(!isDarkMode)} className="p-1.5 rounded-full hover:bg-white/10 transition-colors text-slate-300">
+                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
               </button>
 
               {/* Language Switcher */}
-              <button onClick={() => setLang(lang === 'en' ? 'ar' : 'en')} className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300 flex items-center gap-1 font-bold text-sm">
-                <Languages size={20} /> {lang.toUpperCase()}
+              <button onClick={() => setLang(lang === 'en' ? 'ar' : 'en')} className="p-1.5 rounded-full hover:bg-white/10 transition-colors text-slate-300 flex items-center gap-1 font-bold text-xs">
+                <Languages size={18} /> {lang.toUpperCase()}
               </button>
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center gap-4">
-              <button onClick={() => setIsCartOpen(true)} className="relative p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300">
-                <ShoppingCart size={20} />
+            <div className="md:hidden w-0 overflow-hidden group-hover:w-auto opacity-0 group-hover:opacity-100 flex items-center gap-3 transition-all duration-500 delay-75">
+              <button onClick={() => setIsCartOpen(true)} className="relative p-1.5 rounded-full hover:bg-white/10 transition-colors text-slate-300">
+                <ShoppingCart size={18} />
                 {cartItems.length > 0 && (
                   <span className="absolute top-0 right-0 bg-brand-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">{cartItems.reduce((acc, item) => acc + item.quantity, 0)}</span>
                 )}
               </button>
-              <button onClick={() => setIsSearchOpen(!isSearchOpen)} className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300">
-                <Search size={20} />
+              <button onClick={() => setIsSearchOpen(!isSearchOpen)} className="p-1.5 rounded-full hover:bg-white/10 transition-colors text-slate-300">
+                <Search size={18} />
               </button>
-              <button onClick={() => setLang(lang === 'en' ? 'ar' : 'en')} className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300 font-bold text-sm">
+              <button onClick={() => setLang(lang === 'en' ? 'ar' : 'en')} className="p-1.5 rounded-full hover:bg-white/10 transition-colors text-slate-300 font-bold text-xs">
                 {lang.toUpperCase()}
               </button>
-              <button onClick={() => setIsDarkMode(!isDarkMode)} className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300">
-                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+              <button onClick={() => setIsDarkMode(!isDarkMode)} className="p-1.5 rounded-full hover:bg-white/10 transition-colors text-slate-300">
+                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
               </button>
-              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-slate-600 dark:text-slate-300 hover:text-brand-900">
-                {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-slate-300 hover:text-white">
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
             </div>
-          </div>
         </div>
 
         {/* Search Bar Overlay */}
@@ -1533,6 +1531,18 @@ const App = () => {
           </div>
         ))}
 
+        {/* Top Buttons (Moved from Center) */}
+        <div className="absolute top-28 left-0 w-full z-30 flex justify-center gap-4 animate-in slide-in-from-top duration-1000">
+          <button onClick={() => navigateTo('services')} className="group relative px-5 py-2 bg-brand-600 text-white rounded-full font-bold text-sm shadow-xl shadow-brand-600/20 overflow-hidden transition-all hover:scale-105">
+            <span className="flex items-center gap-2">
+              {t.explore} <ArrowRight size={16} className="rtl:rotate-180 transition-transform group-hover:translate-x-1" />
+            </span>
+          </button>
+          <button onClick={() => openModal(null)} className="px-5 py-2 rounded-full font-bold text-sm text-white bg-white/5 backdrop-blur-md border border-white/20 hover:bg-white/10 transition-all hover:scale-105 flex items-center justify-center gap-2">
+            <Calendar size={16} /> {t.bookNow}
+          </button>
+        </div>
+
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full flex flex-col xl:justify-center items-center pt-24 pb-12 gap-8 xl:gap-0">
           
           {/* Center Content: Title Card (First on Mobile) */}
@@ -1557,18 +1567,6 @@ const App = () => {
             <p className="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto leading-relaxed font-light">
               {heroSlides[currentSlide].subtitle[lang]}
             </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-              <button onClick={() => navigateTo('services')} className="group relative px-8 py-4 bg-brand-600 text-white rounded-full font-bold text-lg shadow-xl shadow-brand-600/20 overflow-hidden transition-all hover:scale-105">
-                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
-                <span className="flex items-center gap-2">
-                  {t.explore} <ArrowRight size={20} className="rtl:rotate-180 transition-transform group-hover:translate-x-1" />
-                </span>
-              </button>
-              <button onClick={() => openModal(null)} className="px-8 py-4 rounded-full font-bold text-lg text-white bg-white/5 backdrop-blur-md border border-white/20 hover:bg-white/10 transition-all hover:scale-105 flex items-center justify-center gap-2">
-                <Calendar size={20} /> {t.bookNow}
-              </button>
-            </div>
           </div>
 
           {/* Weather, Date & Currency Card (Second on Mobile) */}
@@ -1605,28 +1603,6 @@ const App = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Promotion Card (Third on Mobile) */}
-          <div className="order-3 xl:order-none relative xl:absolute xl:top-28 xl:left-8 z-30 animate-in slide-in-from-bottom xl:slide-in-from-left duration-1000 w-full max-w-sm xl:w-72">
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 p-2 rounded-2xl shadow-2xl w-full cursor-pointer group hover:scale-105 transition-transform duration-300" onClick={() => openModal('Special Promotion')}>
-              <div className="relative overflow-hidden rounded-xl">
-                <img 
-                  src="https://scontent.fkwi6-2.fna.fbcdn.net/v/t51.82787-15/588715964_18024788687788899_1694142760459703412_n.jpg?_nc_cat=108&_nc_cb=99be929b-f3b7c874&ccb=1-7&_nc_sid=127cfc&_nc_ohc=sVoZK4rVWBoQ7kNvwHwCtV2&_nc_oc=Adn7bSKchbRvXGjT1ApG62pOCa17O5-IIsl_0InlC74pxhHDgaGQ4czQGwfoPFLuI58uWUOUaLI3OtUenzOyQkW0&_nc_zt=23&_nc_ht=scontent.fkwi6-2.fna&_nc_gid=LNDH3w4TKSvWOWNRrLO7ng&oh=00_AfmA_-SDi10cBBAav-1qCRJQmflIlRKu6UIQqcufNv1W7w&oe=6952752C" 
-                  alt="Promo" 
-                  className="w-full h-32 object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="text-white font-bold text-sm border border-white px-3 py-1 rounded-full">View Offer</span>
-                </div>
-              </div>
-              <div className="p-3">
-                <div className="flex items-center gap-2 text-brand-300 text-xs font-bold uppercase mb-1">
-                  <Megaphone size={12} /> Limited Time
-                </div>
-                <p className="text-white text-sm font-medium leading-tight">Exclusive Winter Packages Available Now</p>
               </div>
             </div>
           </div>

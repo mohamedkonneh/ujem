@@ -1629,7 +1629,7 @@ const App = () => {
             <div className="bg-white/10 backdrop-blur-md border border-white/20 p-2 rounded-2xl shadow-2xl w-full cursor-pointer group hover:scale-105 transition-transform duration-300" onClick={() => openModal('Special Promotion')}>
               <div className="relative overflow-hidden rounded-xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&q=80&w=800" 
+                  src="https://scontent.fkwi6-2.fna.fbcdn.net/v/t51.82787-15/588715964_18024788687788899_1694142760459703412_n.jpg?_nc_cat=108&_nc_cb=99be929b-f3b7c874&ccb=1-7&_nc_sid=127cfc&_nc_ohc=sVoZK4rVWBoQ7kNvwHwCtV2&_nc_oc=Adn7bSKchbRvXGjT1ApG62pOCa17O5-IIsl_0InlC74pxhHDgaGQ4czQGwfoPFLuI58uWUOUaLI3OtUenzOyQkW0&_nc_zt=23&_nc_ht=scontent.fkwi6-2.fna&_nc_gid=LNDH3w4TKSvWOWNRrLO7ng&oh=00_AfmA_-SDi10cBBAav-1qCRJQmflIlRKu6UIQqcufNv1W7w&oe=6952752C" 
                   alt="Promo" 
                   className="w-full h-32 object-cover transition-transform duration-700 group-hover:scale-110"
                 />
@@ -1952,6 +1952,64 @@ const App = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* --- PROMOTIONAL SHOWCASE SECTION --- */}
+      {activePage === 'home' && (
+        <section className="py-12 bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Promo Image 1 */}
+              <div 
+                className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-lg group cursor-pointer"
+                onClick={() => openModal(lang === 'en' ? "Luxury Marina Cruises" : "رحلات مارينا الفاخرة")}
+              >
+                <img 
+                  src="https://scontent.fkwi6-2.fna.fbcdn.net/v/t51.82787-15/603967789_18026690051788899_5349947420261549349_n.jpg?_nc_cat=103&_nc_cb=99be929b-f3b7c874&ccb=1-7&_nc_sid=127cfc&_nc_ohc=0Af5vsDZPJ0Q7kNvwHWWQoA&_nc_oc=Admjy7I29_UklA8TilOPMSnSi_zW-0-AgP1ixVYmdi_NnudSEDxKvqj6y_Ff-wLh-e6F327PcoiR1gSJ6-Y67gUT&_nc_zt=23&_nc_ht=scontent.fkwi6-2.fna&_nc_gid=KulR_9JPJHalXtM7Da_cMg&oh=00_AflGvUS-5U4dThW2n4j3bz16Dfw9mz-H9kas4BpyRjF6Fg&oe=69528F9E" 
+                  alt="Luxury Marina" 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                  <h3 className="text-white text-xl font-bold">{lang === 'en' ? "Luxury Marina Cruises" : "رحلات مارينا الفاخرة"}</h3>
+                </div>
+              </div>
+
+              {/* Promo Image 2 */}
+              <div 
+                className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-lg group cursor-pointer"
+                onClick={() => openModal(lang === 'en' ? "Exclusive Desert Camps" : "مخيمات صحراوية حصرية")}
+              >
+                <img 
+                  src="https://images.unsplash.com/photo-1473186578172-c141e6798cf4?auto=format&fit=crop&q=80&w=800" 
+                  alt="Desert Safari" 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                  <h3 className="text-white text-xl font-bold">{lang === 'en' ? "Exclusive Desert Camps" : "مخيمات صحراوية حصرية"}</h3>
+                </div>
+              </div>
+
+              {/* Tour Video Card */}
+              <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-lg cursor-default">
+                <video 
+                  src="https://youtu.be/1vv4yPZnRic" 
+                  autoPlay 
+                  muted 
+                  loop 
+                  playsInline 
+                  className="w-full h-full object-cover pointer-events-none"
+                />
+                <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
+                <div className="absolute bottom-6 left-6 pointer-events-none">
+                   <span className="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-md uppercase tracking-wider mb-2 inline-block">
+                     {lang === 'en' ? "Live Tour" : "جولة حية"}
+                   </span>
+                   <h3 className="text-white text-xl font-bold">{lang === 'en' ? "City Walk Experience" : "تجربة سيتي ووك"}</h3>
+                </div>
+              </div>
             </div>
           </div>
         </section>

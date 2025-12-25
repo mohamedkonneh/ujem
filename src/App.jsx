@@ -1271,7 +1271,7 @@ const App = () => {
   const t = translations[lang];
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100 transition-colors duration-300">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100 transition-colors duration-300 overflow-x-hidden">
       
       {/* --- SCROLL PROGRESS BAR --- */}
       <div className="fixed top-0 left-0 h-1 bg-brand-600 z-[110] transition-all duration-150 ease-out" style={{ width: `${scrollProgress * 100}%` }}></div>
@@ -1515,7 +1515,7 @@ const App = () => {
 
       {/* --- HERO SECTION --- */}
       {activePage === 'home' && (
-      <section id="home" className="relative h-screen flex items-center overflow-hidden animate-in fade-in duration-500">
+      <section id="home" className="relative min-h-screen flex items-center overflow-hidden animate-in fade-in duration-500">
 
         {/* Background Slideshow */}
         {heroSlides.map((slide, index) => (
@@ -1548,10 +1548,48 @@ const App = () => {
           </div>
         ))}
 
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full flex flex-col justify-center md:flex-row md:items-center pt-20">
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full flex flex-col justify-center items-center pt-28 pb-12">
           
-          {/* Left Content: Text & CTAs */}
-          <div className="w-full max-w-4xl mx-auto text-center space-y-8 animate-in slide-in-from-bottom duration-1000">
+          {/* Weather, Date & Currency Card (Top on Mobile, Top-Right on Desktop) */}
+          <div className="relative xl:absolute xl:top-28 xl:right-8 z-30 mb-8 xl:mb-0 animate-in slide-in-from-top xl:slide-in-from-right duration-1000">
+            <div className="bg-slate-900/40 backdrop-blur-xl border border-white/10 p-6 rounded-3xl shadow-2xl text-white w-72 hover:bg-slate-900/50 transition-colors group">
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <p className="text-4xl font-bold font-mono tracking-wider text-brand-100">{time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                  <p className="text-sm text-slate-300 mt-1">{time.toLocaleDateString(lang === 'ar' ? 'ar-AE' : 'en-US', { weekday: 'long', month: 'short', day: 'numeric' })}</p>
+                </div>
+                <div className="bg-white/10 p-2 rounded-full">
+                  <CloudSun size={24} className="text-yellow-400" />
+                </div>
+              </div>
+              
+              <div className="space-y-3">
+                <div className="flex items-center justify-between text-sm border-t border-white/10 pt-3">
+                  <span className="text-slate-300">{lang === 'ar' ? 'دبي' : 'Dubai'}</span>
+                  <span className="font-bold text-xl">{weather ? Math.round(weather.temperature) : '--'}°C</span>
+                </div>
+                
+                {/* Mini Currency Converter */}
+                <div className="bg-black/20 rounded-xl p-3 border border-white/5">
+                  <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
+                    <span className="flex items-center gap-1"><Coins size={10} /> Exchange</span>
+                  </div>
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-1 bg-white/5 rounded px-2 py-1">
+                      <span className="font-bold text-sm">1 USD</span>
+                    </div>
+                    <ArrowRight size={12} className="text-slate-500" />
+                    <div className="flex items-center gap-1 bg-brand-600/20 text-brand-300 rounded px-2 py-1 border border-brand-500/30">
+                      <span className="font-bold text-sm">3.67 AED</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Center Content: Title Card */}
+          <div className="w-full max-w-4xl mx-auto text-center space-y-6 md:space-y-8 animate-in slide-in-from-bottom duration-1000 bg-slate-900/20 backdrop-blur-sm p-6 md:p-12 rounded-3xl border border-white/10 shadow-2xl z-20">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-600/20 border border-brand-500/30 backdrop-blur-sm text-brand-300 text-sm font-medium mb-6">
                 <span className="relative flex h-2 w-2">
@@ -1583,6 +1621,28 @@ const App = () => {
               <button onClick={() => openModal(null)} className="px-8 py-4 rounded-full font-bold text-lg text-white bg-white/5 backdrop-blur-md border border-white/20 hover:bg-white/10 transition-all hover:scale-105 flex items-center justify-center gap-2">
                 <Calendar size={20} /> {t.bookNow}
               </button>
+            </div>
+          </div>
+
+          {/* Promotion Card (Bottom on Mobile, Top-Left on Desktop) */}
+          <div className="relative xl:absolute xl:top-28 xl:left-8 z-30 mt-8 xl:mt-0 animate-in slide-in-from-bottom xl:slide-in-from-left duration-1000">
+            <div className="bg-white/10 backdrop-blur-md border border-white/20 p-2 rounded-2xl shadow-2xl w-72 cursor-pointer group hover:scale-105 transition-transform duration-300" onClick={() => openModal('Special Promotion')}>
+              <div className="relative overflow-hidden rounded-xl">
+                <img 
+                  src="https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&q=80&w=800" 
+                  alt="Promo" 
+                  className="w-full h-32 object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="text-white font-bold text-sm border border-white px-3 py-1 rounded-full">View Offer</span>
+                </div>
+              </div>
+              <div className="p-3">
+                <div className="flex items-center gap-2 text-brand-300 text-xs font-bold uppercase mb-1">
+                  <Megaphone size={12} /> Limited Time
+                </div>
+                <p className="text-white text-sm font-medium leading-tight">Exclusive Winter Packages Available Now</p>
+              </div>
             </div>
           </div>
         </div>

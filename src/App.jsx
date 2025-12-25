@@ -1741,6 +1741,62 @@ const App = () => {
       </section>
       )}
 
+      {/* --- SHOP PREVIEW SECTION --- */}
+      {activePage === 'home' && (
+        <section className="py-12 md:py-16 bg-white dark:bg-slate-950 transition-colors duration-300">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-slate-900 dark:text-white">{t.ourShop}</h2>
+              <p className="text-slate-500 mt-4">{t.shopSubtitle}</p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+              {shopProducts.slice(0, 4).map((product) => (
+                <div key={product.id} onClick={() => {
+                  setSelectedProduct(product);
+                  const isFootwear = product.category.en === 'FootWears';
+                  const sizes = isFootwear ? (product.sizes || ["40", "41", "42", "43", "44", "45"]) : ["XL", "XXL", "Medium", "Small"];
+                  setSelectedSize(sizes[0]);
+                  const colors = product.colors || defaultColors;
+                  setSelectedColor(colors[0]);
+                  setCustomColor('');
+                }} className="cursor-pointer group">
+                  {/* Using Classic Card Style for Preview */}
+                  <div className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 dark:border-slate-700 h-full flex flex-col">
+                    <div className="relative h-48 sm:h-64 overflow-hidden bg-slate-100 dark:bg-slate-700">
+                      <img src={product.image} alt={product.name[lang]} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                      <div className="absolute top-3 right-3 bg-white dark:bg-slate-900 p-2 rounded-full shadow-md text-brand-600 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <ShoppingBag size={18} />
+                      </div>
+                      {product.onSale && (
+                        <div className="absolute top-3 left-3 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-md shadow-md z-10">{lang === 'en' ? 'SALE' : 'خصم'}</div>
+                      )}
+                    </div>
+                    <div className="p-4 sm:p-5 flex-1 flex flex-col">
+                      <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">{product.category[lang]}</div>
+                      <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white mb-2 group-hover:text-brand-600 transition-colors line-clamp-2">{product.name[lang]}</h3>
+                      <div className="mt-auto flex items-center justify-between">
+                        <span className="text-base sm:text-lg font-bold text-brand-600">{product.price[lang]}</span>
+                        <div className="flex items-center gap-1 text-amber-400 text-xs sm:text-sm font-bold"><Star size={14} fill="currentColor" /> {product.rating}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="text-center mt-12">
+              <button 
+                onClick={() => navigateTo('shop')} 
+                className="group relative inline-flex items-center gap-3 px-8 py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full font-bold overflow-hidden transition-all hover:shadow-2xl hover:shadow-brand-500/30"
+              >
+                <span className="relative z-10">{lang === 'en' ? "View All Products" : "عرض كل المنتجات"}</span>
+                <ArrowRight size={20} className="relative z-10 rtl:rotate-180 group-hover:translate-x-1 transition-transform" />
+                <div className="absolute inset-0 bg-brand-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* --- HIGHLIGHTS SECTION (Moved Up) --- */}
       {activePage === 'home' && (
         <section className="py-12 md:hidden bg-slate-50 dark:bg-slate-900 transition-colors duration-300">

@@ -1633,7 +1633,7 @@ const App = () => {
         </div>
 
         {/* Slider Indicators (Bottom Center) */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-3">
+        <div className="absolute bottom-8 md:bottom-60 left-1/2 -translate-x-1/2 z-30 flex gap-3">
           {heroSlides.map((_, index) => (
             <button
               key={index}
@@ -1647,16 +1647,57 @@ const App = () => {
         </div>
 
         {/* Scroll Down Indicator */}
-        <div className="absolute bottom-8 right-8 z-30 hidden md:flex items-center gap-2 text-white/50 animate-bounce">
+        <div className="absolute bottom-8 right-8 z-30 hidden items-center gap-2 text-white/50 animate-bounce">
           <span className="text-xs uppercase tracking-widest">Scroll</span>
           <ArrowUp size={16} className="rotate-180" />
+        </div>
+
+        {/* Desktop Bottom Highlights Cards (Inside Hero) */}
+        <div className="absolute bottom-6 left-0 w-full z-40 hidden md:block">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-4 gap-4">
+              {highlightImages.map((item, index) => (
+                <div key={index} onClick={() => openModal(item.title[lang])} className="group relative h-48 rounded-xl overflow-hidden cursor-pointer shadow-2xl border border-white/30 hover:-translate-y-2 transition-all duration-300 bg-white/10 backdrop-blur-md hover:bg-white/20">
+                  {index === 0 && (
+                    <div className="absolute top-3 left-3 z-20">
+                      <span className="absolute inset-0 rounded-full bg-brand-500 animate-ping opacity-75"></span>
+                      <span className="relative bg-brand-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-lg flex items-center gap-1">
+                        <Star size={8} className="fill-white" />
+                        {lang === 'en' ? 'FEATURED' : 'متميز'}
+                      </span>
+                    </div>
+                  )}
+                  <img 
+                    src={item.image} 
+                    alt={item.title[lang]} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent">
+                    <div className="absolute bottom-0 start-0 p-4 w-full">
+                      <h3 className="text-lg font-bold text-white mb-1 truncate">{item.title[lang]}</h3>
+                      <p className="text-slate-300 text-xs line-clamp-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">{item.desc[lang]}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              {/* See All Card */}
+              <div onClick={() => navigateTo('services')} className="group relative h-48 rounded-xl overflow-hidden cursor-pointer shadow-2xl border border-white/30 hover:-translate-y-2 transition-all duration-300 bg-white/10 backdrop-blur-md hover:bg-white/20 flex flex-col items-center justify-center">
+                <div className="bg-brand-600 p-3 rounded-full mb-2 shadow-lg shadow-brand-600/30 group-hover:scale-110 transition-transform">
+                  <ArrowRight size={24} className="text-white rtl:rotate-180" />
+                </div>
+                <h3 className="text-lg font-bold text-white">{t.explore}</h3>
+                <p className="text-slate-400 text-xs">{lang === 'en' ? "View all services" : "عرض جميع الخدمات"}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       )}
 
       {/* --- HIGHLIGHTS SECTION (Moved Up) --- */}
       {activePage === 'home' && (
-        <section className="py-12 md:py-16 bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+        <section className="py-12 md:hidden bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-slate-900 dark:text-white">{t.ourExpertise}</h2>

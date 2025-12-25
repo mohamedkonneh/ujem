@@ -56,6 +56,18 @@ const defaultColors = [
 ];
 
 const navDropdowns = {
+  home: {
+    en: ["Highlights", "Latest News", "Testimonials"],
+    ar: ["أبرز المعالم", "أحدث الأخبار", "آراء العملاء"]
+  },
+  plan: {
+    en: ["Flight Search", "Trip Builder", "Travel Info"],
+    ar: ["بحث الرحلات", "مخطط الرحلة", "معلومات السفر"]
+  },
+  gallery: {
+    en: ["All Photos", "Videos", "Destinations"],
+    ar: ["كل الصور", "فيديو", "الوجهات"]
+  },
   about: {
     en: ["Our Story", "Leadership", "Vision"],
     ar: ["قصتنا", "القيادة", "الرؤية"]
@@ -1274,9 +1286,24 @@ const App = () => {
             </div>
 
             {/* Expanding Menu Items (Hidden by default, reveal on hover) */}
-            <div className="w-0 overflow-hidden group-hover/pill:w-auto opacity-0 group-hover/pill:opacity-100 flex items-center gap-4 transition-all duration-500 ease-in-out">
+            <div className="max-w-0 overflow-hidden group-hover/pill:max-w-screen-xl group-hover/pill:overflow-visible opacity-0 group-hover/pill:opacity-100 flex items-center gap-4 transition-all duration-500 ease-in-out">
               <div className="flex items-center gap-4 pl-2 border-l border-white/10">
-              <button onClick={() => navigateTo('home')} className={`text-slate-300 hover:text-brand-400 transition-colors font-medium text-sm whitespace-nowrap ${activePage === 'home' ? 'text-brand-400' : ''}`}>{t.home}</button>
+              
+              {/* Home */}
+              <div className="relative group/item">
+                <button onClick={() => navigateTo('home')} className={`flex items-center text-slate-300 hover:text-brand-400 transition-colors font-medium text-sm whitespace-nowrap ${activePage === 'home' ? 'text-brand-400' : ''}`}>
+                  {t.home} <ChevronDown size={16} className="mx-1 group-hover/item:rotate-180 transition-transform duration-200" />
+                </button>
+                <div className="absolute start-0 top-full pt-4 w-48 opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-200 z-50">
+                  <div className="bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 overflow-hidden p-2">
+                    {navDropdowns.home[lang].map((item) => (
+                      <button key={item} onClick={() => navigateTo('home')} className="block w-full text-start px-4 py-3 text-sm text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-slate-800 hover:text-brand-600 dark:hover:text-brand-400 rounded-lg transition-colors">
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
               
               {/* Services */}
               <div className="relative group/item">
@@ -1294,7 +1321,21 @@ const App = () => {
                 </div>
               </div>
 
-              <button onClick={() => navigateTo('plan')} className={`text-slate-300 hover:text-brand-400 transition-colors font-medium text-sm whitespace-nowrap ${activePage === 'plan' ? 'text-brand-400' : ''}`}>{t.planTrip}</button>
+              {/* Plan */}
+              <div className="relative group/item">
+                <button onClick={() => navigateTo('plan')} className={`flex items-center text-slate-300 hover:text-brand-400 transition-colors font-medium text-sm whitespace-nowrap ${activePage === 'plan' ? 'text-brand-400' : ''}`}>
+                  {t.planTrip} <ChevronDown size={16} className="mx-1 group-hover/item:rotate-180 transition-transform duration-200" />
+                </button>
+                <div className="absolute start-0 top-full pt-4 w-48 opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-200 z-50">
+                  <div className="bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 overflow-hidden p-2">
+                    {navDropdowns.plan[lang].map((item) => (
+                      <button key={item} onClick={() => navigateTo('plan')} className="block w-full text-start px-4 py-3 text-sm text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-slate-800 hover:text-brand-600 dark:hover:text-brand-400 rounded-lg transition-colors">
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
 
               {/* Shop */}
               <div className="relative group/item">
@@ -1315,7 +1356,21 @@ const App = () => {
                 </div>
               </div>
 
-              <button onClick={() => navigateTo('gallery')} className={`text-slate-300 hover:text-brand-400 transition-colors font-medium text-sm whitespace-nowrap ${activePage === 'gallery' ? 'text-brand-400' : ''}`}>{t.gallery}</button>
+              {/* Gallery */}
+              <div className="relative group/item">
+                <button onClick={() => navigateTo('gallery')} className={`flex items-center text-slate-300 hover:text-brand-400 transition-colors font-medium text-sm whitespace-nowrap ${activePage === 'gallery' ? 'text-brand-400' : ''}`}>
+                  {t.gallery} <ChevronDown size={16} className="mx-1 group-hover/item:rotate-180 transition-transform duration-200" />
+                </button>
+                <div className="absolute start-0 top-full pt-4 w-48 opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-200 z-50">
+                  <div className="bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 overflow-hidden p-2">
+                    {navDropdowns.gallery[lang].map((item) => (
+                      <button key={item} onClick={() => navigateTo('gallery')} className="block w-full text-start px-4 py-3 text-sm text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-slate-800 hover:text-brand-600 dark:hover:text-brand-400 rounded-lg transition-colors">
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
 
               {/* About */}
               <div className="relative group/item">

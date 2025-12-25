@@ -3274,6 +3274,7 @@ const App = () => {
                         }}
                       />
                   </div>
+                  </div>
                 )}
               </div>
               
@@ -3283,11 +3284,15 @@ const App = () => {
                     {lang === 'en' ? 'Back' : 'رجوع'}
                   </button>
                 )}
-                <button type={bookingStep === 'payment' ? 'submit' : 'button'} onClick={() => { if(bookingStep !== 'payment') { const form = document.getElementById('bookingForm'); if(form.checkValidity()) setBookingStep('payment'); else form.reportValidity(); } }} className="flex-1 bg-brand-600 text-white font-bold py-4 rounded-xl hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/20 hover:shadow-brand-600/40 transform hover:-translate-y-0.5">
-                  {bookingStep === 'payment' 
-                    ? (lang === 'en' ? 'Submit & Pay' : 'إرسال ودفع') 
-                    : (lang === 'en' ? 'Next' : 'التالي')}
-                </button>
+                {bookingStep === 'payment' ? (
+                  <button type="submit" key="submit-btn" className="flex-1 bg-brand-600 text-white font-bold py-4 rounded-xl hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/20 hover:shadow-brand-600/40 transform hover:-translate-y-0.5">
+                    {lang === 'en' ? 'Submit & Pay' : 'إرسال ودفع'}
+                  </button>
+                ) : (
+                  <button type="button" key="next-btn" onClick={() => { const form = document.getElementById('bookingForm'); if(form.checkValidity()) setBookingStep('payment'); else form.reportValidity(); }} className="flex-1 bg-brand-600 text-white font-bold py-4 rounded-xl hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/20 hover:shadow-brand-600/40 transform hover:-translate-y-0.5">
+                    {lang === 'en' ? 'Next' : 'التالي'}
+                  </button>
+                )}
               </div>
             </form>
             </>

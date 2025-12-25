@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, ArrowRight, BarChart3, Globe, ShieldCheck, FileCheck, Hotel, Building2, Plane, Map, Mail, Phone, Briefcase, ChevronDown, Facebook, Twitter, Instagram, Linkedin, Youtube, ArrowUp, Moon, Sun, Languages, Check, MessageCircle, CloudSun, Search, CheckCircle, Play, ChevronLeft, ChevronRight, Download, Share2, Quote, ArrowRightLeft, Coins, MessageSquare, Send, Cookie, Megaphone, Calendar, Users, MapPin, Headphones, Clock, Award, Wallet, CheckSquare, Thermometer, Bus, CreditCard, PlaneTakeoff, PlaneLanding, Plus, AlertTriangle, Printer, ShoppingBag, Tag, Star, ShoppingCart, Trash2, Minus, Palette, QrCode, Smartphone } from 'lucide-react';
+import { Menu, X, ArrowRight, BarChart3, Globe, ShieldCheck, FileCheck, Hotel, Building2, Plane, Map, Mail, Phone, Briefcase, ChevronDown, Facebook, Twitter, Instagram, Linkedin, Youtube, ArrowUp, Moon, Sun, Languages, Check, MessageCircle, CloudSun, Search, CheckCircle, Play, ChevronLeft, ChevronRight, Download, Share2, Quote, ArrowRightLeft, Coins, MessageSquare, Send, Cookie, Megaphone, Calendar, Users, MapPin, Headphones, Clock, Award, Wallet, CheckSquare, Thermometer, Bus, CreditCard, PlaneTakeoff, PlaneLanding, Plus, AlertTriangle, Printer, ShoppingBag, Tag, Star, ShoppingCart, Trash2, Minus, Palette, QrCode, Smartphone, Banknote } from 'lucide-react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, ElementsConsumer, CardElement } from '@stripe/react-stripe-js';
 import logo from './assets/Logo2.png';
@@ -1830,7 +1830,7 @@ const App = () => {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl group cursor-pointer" onClick={() => openModal('Winter Offer')}>
               <img 
-                src="https://scontent.fkwi6-2.fna.fbcdn.net/v/t39.30808-6/589095013_752330747878707_4310939060390492811_n.jpg?_nc_cat=103&_nc_cb=99be929b-f3b7c874&ccb=1-7&_nc_sid=833d8c&_nc_ohc=NA_B5WRTWeIQ7kNvwGx7YL9&_nc_oc=AdmBSJ0Qh0pz0BWgS6UjbOrvscZ5WTo8MekiE_QxmtIOasVxxwlWSrD7po3rQ2vLA7s6HkWw4XjdVUCjcFSJ2UhK&_nc_zt=23&_nc_ht=scontent.fkwi6-2.fna&_nc_gid=Gs7gLRHPqiIaeRRmFIE8pw&oh=00_AfnZxpxiHEfp5_LG--zhPWxnzZn65b-4u4ZPvGaEqZpnaw&oe=694D119F" 
+                src="https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&q=80&w=800" 
                 alt="Winter Offer" 
                 className="w-full h-64 md:h-[450px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -3276,11 +3276,11 @@ const App = () => {
                   <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 space-y-4 animate-in fade-in">
                     <div>
                       <label className="block text-xs font-bold text-slate-500 uppercase mb-1">{lang === 'en' ? 'Cardholder Name' : 'اسم حامل البطاقة'}</label>
-                      <input type="text" name="cardholderName" required className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white" placeholder="Name as on card" />
+                      <input type="text" name="cardholderName" required disabled={bookingStep !== 'payment' || paymentMethod !== 'Credit Card'} className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white disabled:bg-slate-100 dark:disabled:bg-slate-800" placeholder="Name as on card" />
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-slate-500 uppercase mb-1">{lang === 'en' ? 'Billing Address' : 'عنوان الفواتير'}</label>
-                      <input type="text" name="billingAddress" required className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white" placeholder="Street, City, Country" />
+                      <input type="text" name="billingAddress" required disabled={bookingStep !== 'payment' || paymentMethod !== 'Credit Card'} className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white disabled:bg-slate-100 dark:disabled:bg-slate-800" placeholder="Street, City, Country" />
                     </div>
                     <div className="p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg">
                       <CardElement 
@@ -3313,11 +3313,11 @@ const App = () => {
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-slate-500 uppercase mb-1">{lang === 'en' ? 'Date of Transfer' : 'تاريخ التحويل'}</label>
-                      <input type="date" name="transferDate" required className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white text-slate-600" />
+                      <input type="date" name="transferDate" required disabled={bookingStep !== 'payment' || paymentMethod !== 'Bank Transfer'} className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white text-slate-600 disabled:bg-slate-100 dark:disabled:bg-slate-800" />
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-slate-500 uppercase mb-1">{lang === 'en' ? 'Upload Receipt' : 'تحميل الإيصال'}</label>
-                      <input type="file" name="bankReceipt" accept="image/*,.pdf" className="block w-full text-sm text-slate-500 dark:text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-white dark:file:bg-slate-700 file:text-brand-700 dark:file:text-brand-400 hover:file:bg-brand-50 dark:hover:file:bg-slate-600 transition-all border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900" />
+                      <input type="file" name="bankReceipt" disabled={bookingStep !== 'payment' || paymentMethod !== 'Bank Transfer'} accept="image/*,.pdf" className="block w-full text-sm text-slate-500 dark:text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-white dark:file:bg-slate-700 file:text-brand-700 dark:file:text-brand-400 hover:file:bg-brand-50 dark:hover:file:bg-slate-600 transition-all border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 disabled:opacity-50" />
                     </div>
                   </div>
                 )}
@@ -3329,7 +3329,7 @@ const App = () => {
                     </p>
                     <div>
                       <label className="block text-xs font-bold text-slate-500 uppercase mb-1">{lang === 'en' ? 'PayPal Email' : 'بريد PayPal'}</label>
-                      <input type="email" name="paypalEmail" required className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white" placeholder="you@example.com" />
+                      <input type="email" name="paypalEmail" required disabled={bookingStep !== 'payment' || paymentMethod !== 'PayPal'} className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white disabled:bg-slate-100 dark:disabled:bg-slate-800" placeholder="you@example.com" />
                     </div>
                   </div>
                 )}
@@ -3342,7 +3342,7 @@ const App = () => {
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-slate-500 uppercase mb-1">{lang === 'en' ? 'Transaction Hash (TxID)' : 'رقم المعاملة (TxID)'}</label>
-                      <input type="text" name="cryptoTxHash" required className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white" placeholder="Enter transaction hash" />
+                      <input type="text" name="cryptoTxHash" required disabled={bookingStep !== 'payment' || paymentMethod !== 'Cryptocurrency'} className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white disabled:bg-slate-100 dark:disabled:bg-slate-800" placeholder="Enter transaction hash" />
                     </div>
                   </div>
                 )}

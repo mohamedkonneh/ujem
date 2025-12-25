@@ -1548,11 +1548,47 @@ const App = () => {
           </div>
         ))}
 
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full flex flex-col justify-center items-center pt-28 pb-12">
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full flex flex-col xl:justify-center items-center pt-24 pb-12 gap-8 xl:gap-0">
           
-          {/* Weather, Date & Currency Card (Top on Mobile, Top-Right on Desktop) */}
-          <div className="relative xl:absolute xl:top-28 xl:right-8 z-30 mb-8 xl:mb-0 animate-in slide-in-from-top xl:slide-in-from-right duration-1000">
-            <div className="bg-slate-900/40 backdrop-blur-xl border border-white/10 p-6 rounded-3xl shadow-2xl text-white w-72 hover:bg-slate-900/50 transition-colors group">
+          {/* Center Content: Title Card (First on Mobile) */}
+          <div className="order-1 xl:order-none w-full max-w-4xl mx-auto text-center space-y-6 md:space-y-8 animate-in slide-in-from-bottom duration-1000 bg-slate-900/20 backdrop-blur-sm p-6 md:p-12 rounded-3xl border border-white/10 shadow-2xl z-20">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-600/20 border border-brand-500/30 backdrop-blur-sm text-brand-300 text-sm font-medium mb-6">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+                </span>
+                {lang === 'en' ? 'Premium Travel Experience' : 'تجربة سفر متميزة'}
+              </div>
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight drop-shadow-lg">
+                {heroSlides[currentSlide].title[lang].split(' ').map((word, i) => (
+                  <span key={i} className={i === 1 ? "text-transparent bg-clip-text bg-gradient-to-r from-brand-300 to-white" : ""}>
+                    {word} {' '}
+                  </span>
+                ))}
+              </h1>
+            </div>
+            
+            <p className="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto leading-relaxed font-light">
+              {heroSlides[currentSlide].subtitle[lang]}
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
+              <button onClick={() => navigateTo('services')} className="group relative px-8 py-4 bg-brand-600 text-white rounded-full font-bold text-lg shadow-xl shadow-brand-600/20 overflow-hidden transition-all hover:scale-105">
+                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                <span className="flex items-center gap-2">
+                  {t.explore} <ArrowRight size={20} className="rtl:rotate-180 transition-transform group-hover:translate-x-1" />
+                </span>
+              </button>
+              <button onClick={() => openModal(null)} className="px-8 py-4 rounded-full font-bold text-lg text-white bg-white/5 backdrop-blur-md border border-white/20 hover:bg-white/10 transition-all hover:scale-105 flex items-center justify-center gap-2">
+                <Calendar size={20} /> {t.bookNow}
+              </button>
+            </div>
+          </div>
+
+          {/* Weather, Date & Currency Card (Second on Mobile) */}
+          <div className="order-2 xl:order-none relative xl:absolute xl:top-28 xl:right-8 z-30 animate-in slide-in-from-bottom xl:slide-in-from-right duration-1000 w-full max-w-sm xl:w-72">
+            <div className="bg-slate-900/40 backdrop-blur-xl border border-white/10 p-6 rounded-3xl shadow-2xl text-white w-full hover:bg-slate-900/50 transition-colors group">
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <p className="text-4xl font-bold font-mono tracking-wider text-brand-100">{time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
@@ -1588,45 +1624,9 @@ const App = () => {
             </div>
           </div>
 
-          {/* Center Content: Title Card */}
-          <div className="w-full max-w-4xl mx-auto text-center space-y-6 md:space-y-8 animate-in slide-in-from-bottom duration-1000 bg-slate-900/20 backdrop-blur-sm p-6 md:p-12 rounded-3xl border border-white/10 shadow-2xl z-20">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-600/20 border border-brand-500/30 backdrop-blur-sm text-brand-300 text-sm font-medium mb-6">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
-                </span>
-                {lang === 'en' ? 'Premium Travel Experience' : 'تجربة سفر متميزة'}
-              </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight drop-shadow-lg">
-                {heroSlides[currentSlide].title[lang].split(' ').map((word, i) => (
-                  <span key={i} className={i === 1 ? "text-transparent bg-clip-text bg-gradient-to-r from-brand-300 to-white" : ""}>
-                    {word} {' '}
-                  </span>
-                ))}
-              </h1>
-            </div>
-            
-            <p className="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto leading-relaxed font-light">
-              {heroSlides[currentSlide].subtitle[lang]}
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-              <button onClick={() => navigateTo('services')} className="group relative px-8 py-4 bg-brand-600 text-white rounded-full font-bold text-lg shadow-xl shadow-brand-600/20 overflow-hidden transition-all hover:scale-105">
-                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
-                <span className="flex items-center gap-2">
-                  {t.explore} <ArrowRight size={20} className="rtl:rotate-180 transition-transform group-hover:translate-x-1" />
-                </span>
-              </button>
-              <button onClick={() => openModal(null)} className="px-8 py-4 rounded-full font-bold text-lg text-white bg-white/5 backdrop-blur-md border border-white/20 hover:bg-white/10 transition-all hover:scale-105 flex items-center justify-center gap-2">
-                <Calendar size={20} /> {t.bookNow}
-              </button>
-            </div>
-          </div>
-
-          {/* Promotion Card (Bottom on Mobile, Top-Left on Desktop) */}
-          <div className="relative xl:absolute xl:top-28 xl:left-8 z-30 mt-8 xl:mt-0 animate-in slide-in-from-bottom xl:slide-in-from-left duration-1000">
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 p-2 rounded-2xl shadow-2xl w-72 cursor-pointer group hover:scale-105 transition-transform duration-300" onClick={() => openModal('Special Promotion')}>
+          {/* Promotion Card (Third on Mobile) */}
+          <div className="order-3 xl:order-none relative xl:absolute xl:top-28 xl:left-8 z-30 animate-in slide-in-from-bottom xl:slide-in-from-left duration-1000 w-full max-w-sm xl:w-72">
+            <div className="bg-white/10 backdrop-blur-md border border-white/20 p-2 rounded-2xl shadow-2xl w-full cursor-pointer group hover:scale-105 transition-transform duration-300" onClick={() => openModal('Special Promotion')}>
               <div className="relative overflow-hidden rounded-xl">
                 <img 
                   src="https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&q=80&w=800" 

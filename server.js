@@ -31,7 +31,7 @@ transporter.verify(function (error, success) {
 });
 
 app.post('/api/send-email', async (req, res) => {
-  const { fullName, phone, email, serviceName, date, message, subject, attachments } = req.body;
+  const { fullName, phone, email, serviceName, date, message, subject, attachments, paymentMethod, transactionId } = req.body;
 
   const mailOptions = {
     from: `konnehmohamed354@gmail.com`, // Sender address (must be verified in Brevo)
@@ -48,6 +48,9 @@ app.post('/api/send-email', async (req, res) => {
       Service: ${serviceName}
       Preferred Date: ${date || 'Not specified'}
       
+      Payment Method: ${paymentMethod || 'Not specified'}
+      Transaction ID: ${transactionId || 'N/A'}
+
       Message:
       ${message || 'No message provided'}
     `

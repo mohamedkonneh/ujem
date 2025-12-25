@@ -713,6 +713,7 @@ const App = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [shopFilter, setShopFilter] = useState('All');
   const [contactStatus, setContactStatus] = useState('idle');
+  const [paymentMethod, setPaymentMethod] = useState('Credit Card');
   
   // Testimonial Feature State
   const [testimonialsList, setTestimonialsList] = useState(testimonials);
@@ -807,6 +808,7 @@ const App = () => {
     const date = formData.get('date');
     const message = formData.get('message');
     
+    const transactionId = 'TXN-' + Math.random().toString(36).substr(2, 9).toUpperCase();
     const serviceName = selectedService || formData.get('serviceType');
     
     const subject = serviceName && serviceName.startsWith('Job Application') 
@@ -856,7 +858,9 @@ const App = () => {
           date,
           message,
           subject,
-          attachments
+          attachments,
+          paymentMethod,
+          transactionId
         }),
       });
 
@@ -870,7 +874,7 @@ const App = () => {
       console.warn('Backend error:', error);
       
       // Generate mailto link for manual fallback
-      const body = `Name: ${fullName}\nPhone: ${phone}\nEmail: ${email}\nService: ${serviceName}\n${date ? `Preferred Date: ${date}\n` : ''}${message ? `Message: ${message}\n` : ''}\nNote: Please attach any required documents manually to this email.`;
+      const body = `Name: ${fullName}\nPhone: ${phone}\nEmail: ${email}\nService: ${serviceName}\n${date ? `Preferred Date: ${date}\n` : ''}Payment Method: ${paymentMethod}\nTransaction ID: ${transactionId}\n${message ? `Message: ${message}\n` : ''}\nNote: Please attach any required documents manually to this email.`;
       const mailtoLink = `mailto:konnehmohamed354@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       
       setManualMailto(mailtoLink);
@@ -3109,7 +3113,7 @@ const App = () => {
             ) : (
             <>
             <div className="flex items-center gap-2 mb-2">
-              <button 
+              <button type="button"
                 onClick={() => setBookingStep('selection')}
                 className="p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 transition-colors"
               >
@@ -3202,10 +3206,61 @@ const App = () => {
                 <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Message (Optional)</label>
                 <textarea name="message" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all h-24 resize-none" placeholder="Tell us more about your requirements..."></textarea>
               </div>
+              </div>
+
+              {/* Payment Step UI */}
+              <div className={bookingStep === 'payment' ? 'space-y-6 animate-in fade-in slide-in-from-right-4' : 'hidden'}>
+                <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{lang === 'en' ? 'Select Payment Method' : 'اختر طريقة الدفع'}</h4>
+                
+                <div className="grid grid-cols-1 gap-4">
+                  {['Credit Card', 'PayPal', 'Bank Transfer'].map((method) => (
+                    <label key={method} className={`relative flex items-center p-4 border rounded-xl cursor-pointer transition-all ${paymentMethod === method ? 'border-brand-600 bg-brand-50 dark:bg-brand-900/20' : 'border-slate-200 dark:border-slate-700 hover:border-brand-300'}`}>
+                      <input type="radio" name="paymentMethod" value={method} checked={paymentMethod === method} onChange={() => setPaymentMethod(method)} className="sr-only" />
+                      <div className={`w-5 h-5 rounded-full border flex items-center justify-center mr-4 ${paymentMethod === method ? 'border-brand-600' : 'border-slate-400'}`}>
+                        {paymentMethod === method && <div className="w-3 h-3 rounded-full bg-brand-600"></div>}
+                      </div>
+                      <div className="flex-1 flex items-center gap-3">
+                        {method === 'Credit Card' && <CreditCard size={24} className="text-slate-600 dark:text-slate-300" />}
+                        {method === 'PayPal' && <Wallet size={24} className="text-blue-600" />}
+                        {method === 'Bank Transfer' && <Building2 size={24} className="text-slate-600 dark:text-slate-300" />}
+                        <span className="font-medium text-slate-900 dark:text-white">{method}</span>
+                      </div>
+                    </label>
+                  ))}
+                </div>
+
+                {paymentMethod === 'Credit Card' && (
+                  <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 space-y-4 animate-in fade-in">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Card Number</label>
+                      <input type="text" placeholder="0000 0000 0000 0000" className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white" />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Expiry Date</label>
+                        <input type="text" placeholder="MM/YY" className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white" />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-slate-500 uppercase mb-1">CVV</label>
+                        <input type="text" placeholder="123" className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white" />
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
               
-              <button type="submit" className="w-full bg-brand-600 text-white font-bold py-4 rounded-xl hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/20 hover:shadow-brand-600/40 transform hover:-translate-y-0.5">
-                {selectedService && selectedService.startsWith('Job Application') ? 'Submit Application' : 'Send Inquiry'}
-              </button>
+              <div className="flex gap-3 pt-2">
+                {bookingStep === 'payment' && (
+                  <button type="button" onClick={() => setBookingStep('form')} className="px-6 py-4 rounded-xl font-bold border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                    {lang === 'en' ? 'Back' : 'رجوع'}
+                  </button>
+                )}
+                <button type={bookingStep === 'payment' ? 'submit' : 'button'} onClick={() => { if(bookingStep !== 'payment') { const form = document.getElementById('bookingForm'); if(form.checkValidity()) setBookingStep('payment'); else form.reportValidity(); } }} className="flex-1 bg-brand-600 text-white font-bold py-4 rounded-xl hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/20 hover:shadow-brand-600/40 transform hover:-translate-y-0.5">
+                  {bookingStep === 'payment' 
+                    ? (lang === 'en' ? 'Submit & Pay' : 'إرسال ودفع') 
+                    : (lang === 'en' ? 'Next' : 'التالي')}
+                </button>
+              </div>
             </form>
             </>
             )}

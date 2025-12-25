@@ -1532,7 +1532,7 @@ const App = () => {
         ))}
 
         {/* Top Buttons (Moved from Center) */}
-        <div className="absolute top-28 left-0 w-full z-30 flex justify-center gap-4 animate-in slide-in-from-top duration-1000">
+        <div className="absolute top-8 left-0 w-full z-30 flex justify-center gap-4 animate-in slide-in-from-top duration-1000">
           <button onClick={() => navigateTo('services')} className="group relative px-5 py-2 bg-brand-600 text-white rounded-full font-bold text-sm shadow-xl shadow-brand-600/20 overflow-hidden transition-all hover:scale-105">
             <span className="flex items-center gap-2">
               {t.explore} <ArrowRight size={16} className="rtl:rotate-180 transition-transform group-hover:translate-x-1" />
@@ -1545,30 +1545,6 @@ const App = () => {
 
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full flex flex-col xl:justify-center items-center pt-24 pb-12 gap-8 xl:gap-0">
           
-          {/* Center Content: Title Card (First on Mobile) */}
-          <div className="order-1 xl:order-none w-full max-w-4xl mx-auto text-center space-y-6 md:space-y-8 animate-in slide-in-from-bottom duration-1000 bg-slate-900/20 backdrop-blur-sm p-6 md:p-12 rounded-3xl border border-white/10 shadow-2xl z-20">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-600/20 border border-brand-500/30 backdrop-blur-sm text-brand-300 text-sm font-medium mb-6">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
-                </span>
-                {lang === 'en' ? 'Premium Travel Experience' : 'تجربة سفر متميزة'}
-              </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight drop-shadow-lg">
-                {heroSlides[currentSlide].title[lang].split(' ').map((word, i) => (
-                  <span key={i} className={i === 1 ? "text-transparent bg-clip-text bg-gradient-to-r from-brand-300 to-white" : ""}>
-                    {word} {' '}
-                  </span>
-                ))}
-              </h1>
-            </div>
-            
-            <p className="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto leading-relaxed font-light">
-              {heroSlides[currentSlide].subtitle[lang]}
-            </p>
-          </div>
-
           {/* Weather, Date & Currency Card (Second on Mobile) */}
           <div className="order-2 xl:order-none relative xl:absolute xl:top-28 xl:right-8 z-30 animate-in slide-in-from-bottom xl:slide-in-from-right duration-1000 w-full max-w-sm xl:w-72">
             <div className="bg-slate-900/40 backdrop-blur-xl border border-white/10 p-6 rounded-3xl shadow-2xl text-white w-full hover:bg-slate-900/50 transition-colors group">

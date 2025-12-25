@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ArrowRight, BarChart3, Globe, ShieldCheck, FileCheck, Hotel, Building2, Plane, Map, Mail, Phone, Briefcase, ChevronDown, Facebook, Twitter, Instagram, Linkedin, Youtube, ArrowUp, Moon, Sun, Languages, Check, MessageCircle, CloudSun, Search, CheckCircle, Play, ChevronLeft, ChevronRight, Download, Share2, Quote, ArrowRightLeft, Coins, MessageSquare, Send, Cookie, Megaphone, Calendar, Users, MapPin, Headphones, Clock, Award, Wallet, CheckSquare, Thermometer, Bus, CreditCard, PlaneTakeoff, PlaneLanding, Plus, AlertTriangle, Printer, ShoppingBag, Tag, Star, ShoppingCart, Trash2, Minus, Palette, QrCode, Smartphone } from 'lucide-react';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements, ElementsConsumer, CardElement } from '@stripe/react-stripe-js';
 import logo from './assets/Logo2.png';
 
 const serviceTypes = {
@@ -587,6 +589,8 @@ const translations = {
   }
 };
 
+const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx'); // Replace with your Stripe Publishable Key
+
 const DraggableCard = ({ children, className, onClick }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
@@ -714,7 +718,6 @@ const App = () => {
   const [shopFilter, setShopFilter] = useState('All');
   const [contactStatus, setContactStatus] = useState('idle');
   const [paymentMethod, setPaymentMethod] = useState('Credit Card');
-  const [cardDetails, setCardDetails] = useState({ number: '', expiry: '', cvv: '' });
   
   // Testimonial Feature State
   const [testimonialsList, setTestimonialsList] = useState(testimonials);
@@ -796,11 +799,10 @@ const App = () => {
     setSelectedService(null);
     setIsSuccess(false);
     setIsError(false);
-    setCardDetails({ number: '', expiry: '', cvv: '' });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleBookSubmit = async (e) => {
+  const handleBookSubmit = async (e, stripe, elements) => {
     e.preventDefault();
     
     const formData = new FormData(e.target);
@@ -810,7 +812,24 @@ const App = () => {
     const date = formData.get('date');
     const message = formData.get('message');
     
-    const transactionId = 'TXN-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+    let transactionId = 'TXN-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+
+    if (paymentMethod === 'Credit Card' && stripe && elements) {
+      const cardElement = elements.getElement(CardElement);
+      const { error, paymentMethod: stripePaymentMethod } = await stripe.createPaymentMethod({
+        type: 'card',
+        card: cardElement,
+      });
+
+      if (error) {
+        setErrorMessage(error.message);
+        setIsError(true);
+        return;
+      }
+      
+      transactionId = stripePaymentMethod.id; // Use Stripe PaymentMethod ID
+    }
+
     const serviceName = selectedService || formData.get('serviceType');
     
     const subject = serviceName && serviceName.startsWith('Job Application') 
@@ -3016,6 +3035,9 @@ const App = () => {
       {/* --- BOOKING PAGE --- */}
       {activePage === 'book' && (
       <section id="book" className="pt-32 pb-24 bg-slate-50 dark:bg-slate-900 transition-colors min-h-screen animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <Elements stripe={stripePromise}>
+        <ElementsConsumer>
+        {({ stripe, elements }) => (
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-6 md:p-10 relative">
             <button 
@@ -3133,7 +3155,7 @@ const App = () => {
               )}
             </p>
 
-            <form id="bookingForm" onSubmit={handleBookSubmit} className="space-y-5">
+            <form id="bookingForm" onSubmit={(e) => handleBookSubmit(e, stripe, elements)} className="space-y-5">
               <div className={bookingStep === 'payment' ? 'hidden' : 'space-y-5'}>
               {!selectedService && (
                 <div>
@@ -3234,60 +3256,23 @@ const App = () => {
 
                 {paymentMethod === 'Credit Card' && (
                   <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 space-y-4 animate-in fade-in">
-                    <div>
-                      <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Card Number</label>
-                      <input 
-                        type="text" 
-                        name="cardNumber"
-                        value={cardDetails.number}
-                        onChange={(e) => {
-                          const v = e.target.value.replace(/\D/g, '').slice(0, 16);
-                          setCardDetails({...cardDetails, number: v.replace(/(\d{4})(?=\d)/g, '$1 ')});
+                    <div className="p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg">
+                      <CardElement 
+                        options={{
+                          style: {
+                            base: {
+                              fontSize: '16px',
+                              color: isDarkMode ? '#ffffff' : '#424770',
+                              '::placeholder': {
+                                color: '#aab7c4',
+                              },
+                            },
+                            invalid: {
+                              color: '#9e2146',
+                            },
+                          },
                         }}
-                        placeholder="0000 0000 0000 0000" 
-                        className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white invalid:border-red-500 focus:invalid:border-red-500"
-                        required
-                        pattern="^(\d{4}\s){3}\d{4}$"
-                        title="Card number must be 16 digits"
                       />
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Expiry Date</label>
-                        <input 
-                          type="text" 
-                          name="cardExpiry"
-                          value={cardDetails.expiry}
-                          onChange={(e) => {
-                            let v = e.target.value.replace(/\D/g, '').slice(0, 4);
-                            if (v.length >= 2) v = v.slice(0, 2) + '/' + v.slice(2);
-                            setCardDetails({...cardDetails, expiry: v});
-                          }}
-                          placeholder="MM/YY" 
-                          className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white invalid:border-red-500 focus:invalid:border-red-500"
-                          required
-                          pattern="^(0[1-9]|1[0-2])\/\d{2}$"
-                          title="MM/YY"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-bold text-slate-500 uppercase mb-1">CVV</label>
-                        <input 
-                          type="text" 
-                          name="cardCvv"
-                          value={cardDetails.cvv}
-                          onChange={(e) => {
-                            const v = e.target.value.replace(/\D/g, '').slice(0, 4);
-                            setCardDetails({...cardDetails, cvv: v});
-                          }}
-                          placeholder="123" 
-                          className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white invalid:border-red-500 focus:invalid:border-red-500"
-                          required
-                          pattern="^\d{3,4}$"
-                          title="3 or 4 digits"
-                        />
-                      </div>
-                    </div>
                   </div>
                 )}
               </div>
@@ -3309,6 +3294,9 @@ const App = () => {
             )}
           </div>
         </div>
+        )}
+        </ElementsConsumer>
+        </Elements>
       </section>
       )}
 

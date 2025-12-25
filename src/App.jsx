@@ -1544,7 +1544,7 @@ const App = () => {
             <div className="px-4 pt-2 pb-6 space-y-2">
               <button onClick={() => navigateTo('home')} className="block w-full text-start px-3 py-2 text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-md">{t.home}</button>
               <button onClick={() => window.location.href = "https://visa.ujem.com/"} className="block w-full text-start px-3 py-2 text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-md">{lang === 'en' ? "UAE Visit Visa" : "تأشيرة زيارة الإمارات"}</button>
-              <button onClick={() => window.location.href = "https://visa.ujem.com/"} className="block w-full text-start px-3 py-2 text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-md">{lang === 'en' ? "UAE Visit Visa" : "تأشيرة زيارة الإمارات"}</button>
+           
               <button onClick={() => navigateTo('services')} className="block w-full text-start px-3 py-2 text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-md">{t.services}</button>
               <button onClick={() => navigateTo('plan')} className="block w-full text-start px-3 py-2 text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-md">{t.planTrip}</button>
               <button onClick={() => navigateTo('shop')} className="block w-full text-start px-3 py-2 text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-md">{t.shop}</button>

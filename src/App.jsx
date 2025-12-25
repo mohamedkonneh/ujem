@@ -722,6 +722,10 @@ const App = () => {
   const [moderationError, setModerationError] = useState('');
 
   const openModal = (service) => {
+    if (service === "UAE Visit Visa" || service === "تأشيرة زيارة الإمارات") {
+      window.location.href = "https://visa.ujem.com/";
+      return;
+    }
     setSelectedService(service);
     setIsModalOpen(true);
     setBookingStep('selection');
@@ -3114,7 +3118,13 @@ const App = () => {
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Service Type</label>
                   <div className="relative">
-                    <select name="serviceType" required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all appearance-none" onChange={(e) => setSelectedService(e.target.value)}>
+                    <select name="serviceType" required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all appearance-none" onChange={(e) => {
+                      if (e.target.value === "UAE Visit Visa" || e.target.value === "تأشيرة زيارة الإمارات") {
+                        window.location.href = "https://visa.ujem.com/";
+                      } else {
+                        setSelectedService(e.target.value);
+                      }
+                    }}>
                       <option value="">Select a Service</option>
                       {serviceTypes[lang].map(s => <option key={s} value={s}>{s}</option>)}
                     </select>

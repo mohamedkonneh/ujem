@@ -1260,27 +1260,25 @@ const App = () => {
       <div className="fixed top-0 left-0 h-1 bg-brand-600 z-[110] transition-all duration-150 ease-out" style={{ width: `${scrollProgress * 100}%` }}></div>
       
       {/* --- NAVIGATION --- */}
-      <nav className="fixed top-0 left-0 w-full z-50 flex justify-center pt-6 pointer-events-none">
-        <div className="pointer-events-auto bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl rounded-full p-2 flex items-center gap-0 hover:gap-6 transition-all duration-500 hover:bg-slate-900/95 hover:px-8 group max-w-fit mx-auto">
-            {/* Logo */}
-            <div className="flex-shrink-0 flex items-center px-2">
-              <button onClick={() => navigateTo('home')} className="hover:scale-105 transition-transform duration-300">
+      <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-start px-4 pt-6 pointer-events-none">
+        
+        {/* Left Side: Logo & Primary Actions */}
+        <div className="pointer-events-auto flex flex-col md:flex-row items-start md:items-center gap-3">
+            {/* 1. Logo Button */}
+            <div className="bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl rounded-full p-2 px-4 hover:bg-slate-900/95 transition-all duration-300">
+              <button onClick={() => navigateTo('home')} className="hover:scale-105 transition-transform duration-300 block">
                 <span className="text-3xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-500 to-amber-600 drop-shadow-sm">
                   UJEM
                 </span>
               </button>
             </div>
 
-            {/* Desktop Menu */}
-            <div className="hidden w-0 overflow-hidden group-hover:w-auto opacity-0 group-hover:opacity-100 md:flex space-x-6 items-center transition-all duration-500 delay-75">
-              <button onClick={() => navigateTo('home')} className={`text-slate-300 hover:text-brand-400 transition-colors font-medium text-sm ${activePage === 'home' ? 'text-brand-400' : ''}`}>{t.home}</button>
-              
-              {/* Explore (Services) with Dropdown */}
-              <div className="relative group">
-                <button onClick={() => navigateTo('services')} className={`flex items-center bg-brand-600/20 text-brand-300 px-3 py-1 rounded-full hover:bg-brand-600 hover:text-white transition-colors font-medium text-sm ${activePage === 'services' ? 'bg-brand-600 text-white' : ''}`}>
-                  {t.explore} <ChevronDown size={16} className="mx-1 group-hover:rotate-180 transition-transform duration-200" />
+            {/* 2. Explore Services Button */}
+             <div className="relative group">
+                <button onClick={() => navigateTo('services')} className="bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl rounded-full px-5 py-3 text-white font-bold text-sm hover:bg-brand-600 hover:border-brand-500 transition-all flex items-center gap-2">
+                  {t.explore} <ChevronDown size={16} className="group-hover:rotate-180 transition-transform duration-200" />
                 </button>
-                <div className="absolute start-0 top-full pt-4 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 ">
+                <div className="absolute start-0 top-full pt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                   <div className="bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 overflow-hidden p-2">
                     {serviceTypes[lang].map((service) => (
                       <button key={service} onClick={() => openModal(service)} className="block w-full text-start px-4 py-3 text-sm text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-slate-800 hover:text-brand-600 dark:hover:text-brand-400 rounded-lg transition-colors">
@@ -1289,117 +1287,28 @@ const App = () => {
                     ))}
                   </div>
                 </div>
-              </div>
+             </div>
 
-              {/* Book Now Button */}
-              <button onClick={() => openModal(null)} className="flex items-center bg-white/10 text-white px-3 py-1 rounded-full hover:bg-white/20 transition-colors font-medium text-sm border border-white/10">
-                <Calendar size={14} className="mr-2 rtl:ml-2" /> {t.bookNow}
+            {/* 3. Book Now Button */}
+            <button onClick={() => openModal(null)} className="bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl rounded-full px-5 py-3 text-white font-bold text-sm hover:bg-white/20 transition-all flex items-center gap-2">
+               <Calendar size={16} /> {t.bookNow}
+            </button>
+        </div>
+
+        {/* Right Side: Menu Toggle & Utilities */}
+        <div className="pointer-events-auto flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl rounded-full p-2">
+             {/* Search */}
+              <button onClick={() => setIsSearchOpen(!isSearchOpen)} className="p-2 rounded-full hover:bg-white/10 transition-colors text-slate-300">
+                <Search size={20} />
               </button>
-
-              <button onClick={() => navigateTo('plan')} className={`text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-medium ${activePage === 'plan' ? 'text-brand-600 dark:text-brand-400' : ''}`}>{t.planTrip}</button>
-
-              <div className="relative group">
-                <button onClick={() => navigateTo('shop')} className={`flex items-center text-slate-300 hover:text-brand-400 transition-colors font-medium text-sm ${activePage === 'shop' ? 'text-brand-400' : ''}`}>
-                  {t.shop} <ChevronDown size={16} className="mx-1 group-hover:rotate-180 transition-transform duration-200" />
-                </button>
-                <div className="absolute start-0 top-full pt-4 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <div className="bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 overflow-hidden p-2">
-                    {shopCategories[lang].map((item) => (
-                      <button key={item.name} onClick={() => { navigateTo('shop'); setShopFilter(item.name); }} className="w-full text-start px-4 py-3 text-sm text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-slate-800 hover:text-brand-600 dark:hover:text-brand-400 rounded-lg transition-colors flex justify-between items-center">
-                        <span>{item.name}</span>
-                        {item.isNew && (
-                          <span className="bg-brand-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm animate-pulse">{lang === 'en' ? 'NEW' : 'جديد'}</span>
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <button onClick={() => navigateTo('gallery')} className={`text-slate-300 hover:text-brand-400 transition-colors font-medium text-sm ${activePage === 'gallery' ? 'text-brand-400' : ''}`}>{t.gallery}</button>
-
-              <div className="relative group">
-                <button onClick={() => navigateTo('about')} className={`flex items-center text-slate-300 hover:text-brand-400 transition-colors font-medium text-sm ${activePage === 'about' ? 'text-brand-400' : ''}`}>
-                  {t.about} <ChevronDown size={16} className="mx-1 group-hover:rotate-180 transition-transform duration-200" />
-                </button>
-                <div className="absolute start-0 top-full pt-4 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <div className="bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 overflow-hidden p-2">
-                    {navDropdowns.about[lang].map((item) => (
-                      <button key={item} onClick={() => navigateTo('about')} className="block w-full text-start px-4 py-3 text-sm text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-slate-800 hover:text-brand-600 dark:hover:text-brand-400 rounded-lg transition-colors">
-                        {item}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative group">
-                <button onClick={() => navigateTo('careers')} className={`flex items-center text-slate-300 hover:text-brand-400 transition-colors font-medium text-sm ${activePage === 'careers' ? 'text-brand-400' : ''}`}>
-                  {t.careers} <ChevronDown size={16} className="mx-1 group-hover:rotate-180 transition-transform duration-200" />
-                </button>
-                <div className="absolute start-0 top-full pt-4 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <div className="bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 overflow-hidden p-2">
-                    {navDropdowns.careers[lang].map((item) => (
-                      <button key={item} onClick={() => navigateTo('careers')} className="block w-full text-start px-4 py-3 text-sm text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-slate-800 hover:text-brand-600 dark:hover:text-brand-400 rounded-lg transition-colors">
-                        {item}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative group">
-                <button onClick={() => navigateTo('contact')} className={`flex items-center bg-brand-600 text-white px-4 py-1.5 rounded-full font-medium text-sm hover:bg-brand-500 transition-all shadow-lg shadow-brand-900/20 ${activePage === 'contact' ? 'bg-brand-500' : ''}`}>
-                  {t.contact} <ChevronDown size={16} className="mx-1 group-hover:rotate-180 transition-transform duration-200" />
-                </button>
-                <div className="absolute start-0 top-full pt-4 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <div className="bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 overflow-hidden p-2">
-                    {navDropdowns.contact[lang].map((item) => (
-                      <button key={item} onClick={() => navigateTo('contact')} className="block w-full text-start px-4 py-3 text-sm text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-slate-800 hover:text-brand-600 dark:hover:text-brand-400 rounded-lg transition-colors">
-                        {item}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Search Toggle */}
-              <button onClick={() => setIsSearchOpen(!isSearchOpen)} className="p-1.5 rounded-full hover:bg-white/10 transition-colors text-slate-300">
-                <Search size={18} />
-              </button>
-
-              {/* Dark Mode Toggle */}
-              <button onClick={() => setIsDarkMode(!isDarkMode)} className="p-1.5 rounded-full hover:bg-white/10 transition-colors text-slate-300">
-                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-              </button>
-
-              {/* Language Switcher */}
-              <button onClick={() => setLang(lang === 'en' ? 'ar' : 'en')} className="p-1.5 rounded-full hover:bg-white/10 transition-colors text-slate-300 flex items-center gap-1 font-bold text-xs">
-                <Languages size={18} /> {lang.toUpperCase()}
-              </button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <div className="md:hidden w-0 overflow-hidden group-hover:w-auto opacity-0 group-hover:opacity-100 flex items-center gap-3 transition-all duration-500 delay-75">
-              <button onClick={() => setIsCartOpen(true)} className="relative p-1.5 rounded-full hover:bg-white/10 transition-colors text-slate-300">
-                <ShoppingCart size={18} />
-                {cartItems.length > 0 && (
-                  <span className="absolute top-0 right-0 bg-brand-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">{cartItems.reduce((acc, item) => acc + item.quantity, 0)}</span>
-                )}
-              </button>
-              <button onClick={() => setIsSearchOpen(!isSearchOpen)} className="p-1.5 rounded-full hover:bg-white/10 transition-colors text-slate-300">
-                <Search size={18} />
-              </button>
-              <button onClick={() => setLang(lang === 'en' ? 'ar' : 'en')} className="p-1.5 rounded-full hover:bg-white/10 transition-colors text-slate-300 font-bold text-xs">
+              {/* Lang */}
+              <button onClick={() => setLang(lang === 'en' ? 'ar' : 'en')} className="p-2 rounded-full hover:bg-white/10 transition-colors text-slate-300 font-bold text-xs">
                 {lang.toUpperCase()}
               </button>
-              <button onClick={() => setIsDarkMode(!isDarkMode)} className="p-1.5 rounded-full hover:bg-white/10 transition-colors text-slate-300">
-                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-              </button>
-              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-slate-300 hover:text-white">
+              {/* Menu Toggle */}
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 rounded-full hover:bg-white/10 text-slate-300 hover:text-white transition-colors">
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
-            </div>
         </div>
 
         {/* Search Bar Overlay */}
@@ -1536,11 +1445,6 @@ const App = () => {
             )}
           </div>
         ))}
-
-
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full flex flex-col xl:justify-center items-center pt-24 pb-12 gap-8 xl:gap-0">
-          
-        </div>
 
         {/* Slider Indicators (Bottom Center) */}
         <div className="absolute bottom-8 md:bottom-60 left-1/2 -translate-x-1/2 z-30 flex gap-3">

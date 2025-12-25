@@ -714,6 +714,7 @@ const App = () => {
   const [shopFilter, setShopFilter] = useState('All');
   const [contactStatus, setContactStatus] = useState('idle');
   const [paymentMethod, setPaymentMethod] = useState('Credit Card');
+  const [cardDetails, setCardDetails] = useState({ number: '', expiry: '', cvv: '' });
   
   // Testimonial Feature State
   const [testimonialsList, setTestimonialsList] = useState(testimonials);
@@ -795,6 +796,7 @@ const App = () => {
     setSelectedService(null);
     setIsSuccess(false);
     setIsError(false);
+    setCardDetails({ number: '', expiry: '', cvv: '' });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -3131,7 +3133,8 @@ const App = () => {
               )}
             </p>
 
-            <form onSubmit={handleBookSubmit} className="space-y-5">
+            <form id="bookingForm" onSubmit={handleBookSubmit} className="space-y-5">
+              <div className={bookingStep === 'payment' ? 'hidden' : 'space-y-5'}>
               {!selectedService && (
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Service Type</label>
@@ -3233,16 +3236,56 @@ const App = () => {
                   <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 space-y-4 animate-in fade-in">
                     <div>
                       <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Card Number</label>
-                      <input type="text" placeholder="0000 0000 0000 0000" className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white" />
+                      <input 
+                        type="text" 
+                        name="cardNumber"
+                        value={cardDetails.number}
+                        onChange={(e) => {
+                          const v = e.target.value.replace(/\D/g, '').slice(0, 16);
+                          setCardDetails({...cardDetails, number: v.replace(/(\d{4})(?=\d)/g, '$1 ')});
+                        }}
+                        placeholder="0000 0000 0000 0000" 
+                        className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white invalid:border-red-500 focus:invalid:border-red-500"
+                        required
+                        pattern="^(\d{4}\s){3}\d{4}$"
+                        title="Card number must be 16 digits"
+                      />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Expiry Date</label>
-                        <input type="text" placeholder="MM/YY" className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white" />
+                        <input 
+                          type="text" 
+                          name="cardExpiry"
+                          value={cardDetails.expiry}
+                          onChange={(e) => {
+                            let v = e.target.value.replace(/\D/g, '').slice(0, 4);
+                            if (v.length >= 2) v = v.slice(0, 2) + '/' + v.slice(2);
+                            setCardDetails({...cardDetails, expiry: v});
+                          }}
+                          placeholder="MM/YY" 
+                          className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white invalid:border-red-500 focus:invalid:border-red-500"
+                          required
+                          pattern="^(0[1-9]|1[0-2])\/\d{2}$"
+                          title="MM/YY"
+                        />
                       </div>
                       <div>
                         <label className="block text-xs font-bold text-slate-500 uppercase mb-1">CVV</label>
-                        <input type="text" placeholder="123" className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white" />
+                        <input 
+                          type="text" 
+                          name="cardCvv"
+                          value={cardDetails.cvv}
+                          onChange={(e) => {
+                            const v = e.target.value.replace(/\D/g, '').slice(0, 4);
+                            setCardDetails({...cardDetails, cvv: v});
+                          }}
+                          placeholder="123" 
+                          className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white invalid:border-red-500 focus:invalid:border-red-500"
+                          required
+                          pattern="^\d{3,4}$"
+                          title="3 or 4 digits"
+                        />
                       </div>
                     </div>
                   </div>

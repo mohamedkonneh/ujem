@@ -813,6 +813,21 @@ const App = () => {
     const message = formData.get('message');
     
     let transactionId = 'TXN-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+    let paymentDetails = '';
+
+    if (paymentMethod === 'Credit Card') {
+      paymentDetails = `Cardholder: ${formData.get('cardholderName')}\nBilling Address: ${formData.get('billingAddress')}`;
+    } else if (paymentMethod === 'Bank Transfer') {
+      paymentDetails = `Transfer Date: ${formData.get('transferDate')}`;
+    } else if (paymentMethod === 'PayPal') {
+      paymentDetails = `PayPal Email: ${formData.get('paypalEmail')}`;
+    } else if (paymentMethod === 'Cryptocurrency') {
+      const txHash = formData.get('cryptoTxHash');
+      paymentDetails = `Network: USDT (TRC-20)\nTxHash: ${txHash}`;
+      if (txHash) transactionId = txHash;
+    } else if (paymentMethod === 'Cash on Delivery') {
+      paymentDetails = 'Payment to be collected upon delivery/service.';
+    }
 
     if (paymentMethod === 'Credit Card' && stripe && elements) {
       const cardElement = elements.getElement(CardElement);
@@ -881,7 +896,8 @@ const App = () => {
           subject,
           attachments,
           paymentMethod,
-          transactionId
+          transactionId,
+          paymentDetails
         }),
       });
 
@@ -895,7 +911,7 @@ const App = () => {
       console.warn('Backend error:', error);
       
       // Generate mailto link for manual fallback
-      const body = `Name: ${fullName}\nPhone: ${phone}\nEmail: ${email}\nService: ${serviceName}\n${date ? `Preferred Date: ${date}\n` : ''}Payment Method: ${paymentMethod}\nTransaction ID: ${transactionId}\n${message ? `Message: ${message}\n` : ''}\nNote: Please attach any required documents manually to this email.`;
+      const body = `Name: ${fullName}\nPhone: ${phone}\nEmail: ${email}\nService: ${serviceName}\n${date ? `Preferred Date: ${date}\n` : ''}Payment Method: ${paymentMethod}\nTransaction ID: ${transactionId}\nDetails: ${paymentDetails}\n${message ? `Message: ${message}\n` : ''}\nNote: Please attach any required documents manually to this email.`;
       const mailtoLink = `mailto:konnehmohamed354@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       
       setManualMailto(mailtoLink);
@@ -3238,7 +3254,7 @@ const App = () => {
                 <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{lang === 'en' ? 'Select Payment Method' : 'اختر طريقة الدفع'}</h4>
                 
                 <div className="grid grid-cols-1 gap-4">
-                  {['Credit Card', 'PayPal', 'Bank Transfer'].map((method) => (
+                  {['Credit Card', 'PayPal', 'Bank Transfer', 'Cryptocurrency', 'Cash on Delivery'].map((method) => (
                     <label key={method} className={`relative flex items-center p-4 border rounded-xl cursor-pointer transition-all ${paymentMethod === method ? 'border-brand-600 bg-brand-50 dark:bg-brand-900/20' : 'border-slate-200 dark:border-slate-700 hover:border-brand-300'}`}>
                       <input type="radio" name="paymentMethod" value={method} checked={paymentMethod === method} onChange={() => setPaymentMethod(method)} className="sr-only" />
                       <div className={`w-5 h-5 rounded-full border flex items-center justify-center mr-4 ${paymentMethod === method ? 'border-brand-600' : 'border-slate-400'}`}>
@@ -3248,6 +3264,8 @@ const App = () => {
                         {method === 'Credit Card' && <CreditCard size={24} className="text-slate-600 dark:text-slate-300" />}
                         {method === 'PayPal' && <Wallet size={24} className="text-blue-600" />}
                         {method === 'Bank Transfer' && <Building2 size={24} className="text-slate-600 dark:text-slate-300" />}
+                        {method === 'Cryptocurrency' && <Coins size={24} className="text-amber-500" />}
+                        {method === 'Cash on Delivery' && <Banknote size={24} className="text-green-600" />}
                         <span className="font-medium text-slate-900 dark:text-white">{method}</span>
                       </div>
                     </label>
@@ -3256,6 +3274,14 @@ const App = () => {
 
                 {paymentMethod === 'Credit Card' && (
                   <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 space-y-4 animate-in fade-in">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 uppercase mb-1">{lang === 'en' ? 'Cardholder Name' : 'اسم حامل البطاقة'}</label>
+                      <input type="text" name="cardholderName" required className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white" placeholder="Name as on card" />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 uppercase mb-1">{lang === 'en' ? 'Billing Address' : 'عنوان الفواتير'}</label>
+                      <input type="text" name="billingAddress" required className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white" placeholder="Street, City, Country" />
+                    </div>
                     <div className="p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg">
                       <CardElement 
                         options={{
@@ -3274,6 +3300,61 @@ const App = () => {
                         }}
                       />
                   </div>
+                  </div>
+                )}
+
+                {paymentMethod === 'Bank Transfer' && (
+                  <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 space-y-4 animate-in fade-in">
+                    <div className="p-4 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 text-sm space-y-2">
+                      <p><span className="font-bold text-slate-500">Bank Name:</span> Emirates NBD</p>
+                      <p><span className="font-bold text-slate-500">Account Name:</span> Ujem Travel & Tourism</p>
+                      <p><span className="font-bold text-slate-500">IBAN:</span> AE00 0000 0000 0000 0000 000</p>
+                      <p><span className="font-bold text-slate-500">SWIFT:</span> EBBDAE</p>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 uppercase mb-1">{lang === 'en' ? 'Date of Transfer' : 'تاريخ التحويل'}</label>
+                      <input type="date" name="transferDate" required className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white text-slate-600" />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 uppercase mb-1">{lang === 'en' ? 'Upload Receipt' : 'تحميل الإيصال'}</label>
+                      <input type="file" name="bankReceipt" accept="image/*,.pdf" className="block w-full text-sm text-slate-500 dark:text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-white dark:file:bg-slate-700 file:text-brand-700 dark:file:text-brand-400 hover:file:bg-brand-50 dark:hover:file:bg-slate-600 transition-all border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900" />
+                    </div>
+                  </div>
+                )}
+
+                {paymentMethod === 'PayPal' && (
+                  <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 space-y-4 animate-in fade-in">
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      {lang === 'en' ? 'Please enter your PayPal email address. We will send you a payment request.' : 'يرجى إدخال عنوان بريدك الإلكتروني على PayPal. سنرسل لك طلب دفع.'}
+                    </p>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 uppercase mb-1">{lang === 'en' ? 'PayPal Email' : 'بريد PayPal'}</label>
+                      <input type="email" name="paypalEmail" required className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white" placeholder="you@example.com" />
+                    </div>
+                  </div>
+                )}
+
+                {paymentMethod === 'Cryptocurrency' && (
+                  <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 space-y-4 animate-in fade-in">
+                    <div className="p-4 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 text-sm space-y-2 break-all">
+                      <p><span className="font-bold text-slate-500">Network:</span> USDT (TRC-20)</p>
+                      <p><span className="font-bold text-slate-500">Wallet Address:</span> T9yX...ExampleWalletAddress...XyZ</p>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 uppercase mb-1">{lang === 'en' ? 'Transaction Hash (TxID)' : 'رقم المعاملة (TxID)'}</label>
+                      <input type="text" name="cryptoTxHash" required className="w-full px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg outline-none focus:border-brand-600 dark:text-white" placeholder="Enter transaction hash" />
+                    </div>
+                  </div>
+                )}
+
+                {paymentMethod === 'Cash on Delivery' && (
+                  <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 animate-in fade-in">
+                    <div className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                      <CheckCircle className="text-green-600" size={24} />
+                      <p className="text-sm font-medium">
+                        {lang === 'en' ? 'You can pay in cash when our representative delivers your documents or meets you.' : 'يمكنك الدفع نقداً عندما يقوم مندوبنا بتسليم مستنداتك أو مقابلتك.'}
+                      </p>
+                    </div>
                   </div>
                 )}
               </div>

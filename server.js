@@ -13,8 +13,8 @@ app.use(express.json({ limit: '25mb' })); // Increase limit to allow file upload
 // This avoids Google's 2-Step Verification and rate limits.
 const transporter = nodemailer.createTransport({
   host: 'smtp-relay.brevo.com', // TODO: Change this to your provider's SMTP host (e.g., smtp.sendgrid.net)
-  port: 587, // Standard secure SMTP port
-  secure: false, // true for 465, false for other ports
+  port: 465, // Using port 465 (SSL) is often more reliable on cloud servers than 587
+  secure: true, // true for 465, false for other ports
   auth: {
     user: process.env.SMTP_USER, // Set this in Render Environment Variables
     pass: process.env.SMTP_PASS  // Set this in Render Environment Variables

@@ -1654,25 +1654,6 @@ const App = () => {
       </section>
       )}
 
-      {/* --- STATISTICS SECTION --- */}
-      {activePage === 'home' && (
-        <section className="relative z-20 -mt-16 mx-4 mb-16">
-          <div className="max-w-7xl mx-auto">
-            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 p-8 grid grid-cols-2 md:grid-cols-4 gap-8">
-              {stats.map((stat, index) => (
-                <div key={index} className="flex flex-col items-center text-center group hover:-translate-y-1 transition-transform duration-300">
-                  <div className="bg-brand-50 dark:bg-brand-900/30 p-4 rounded-full mb-4 text-brand-600 dark:text-brand-400 group-hover:scale-110 transition-transform">
-                    <stat.icon size={32} />
-                  </div>
-                  <span className="text-3xl font-extrabold text-slate-900 dark:text-white mb-1">{stat.value}</span>
-                  <span className="text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">{stat.label[lang]}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* --- HIGHLIGHTS SECTION (Moved Up) --- */}
       {activePage === 'home' && (
         <section className="py-12 md:py-16 bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
@@ -1700,6 +1681,15 @@ const App = () => {
               >
                 {highlightImages.map((item, index) => (
                   <div key={index} onClick={() => openModal(item.title[lang])} className="min-w-[85vw] md:min-w-0 snap-center group relative h-96 rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 flex-shrink-0">
+                    {index === 0 && (
+                      <div className="absolute top-4 left-4 z-20">
+                        <span className="absolute inset-0 rounded-full bg-brand-500 animate-ping opacity-75"></span>
+                        <span className="relative bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg flex items-center gap-1">
+                          <Star size={10} className="fill-white" />
+                          {lang === 'en' ? 'FEATURED' : 'متميز'}
+                        </span>
+                      </div>
+                    )}
                     <img 
                       src={item.image} 
                       alt={item.title[lang]} 
@@ -1747,6 +1737,25 @@ const App = () => {
               >
                 <ChevronRight size={24} />
               </button>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* --- STATISTICS SECTION --- */}
+      {activePage === 'home' && (
+        <section className="py-12 bg-white dark:bg-slate-950 transition-colors duration-300">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-slate-50 dark:bg-slate-900 rounded-2xl shadow-lg border border-slate-100 dark:border-slate-800 p-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+              {stats.map((stat, index) => (
+                <div key={index} className="flex flex-col items-center text-center group hover:-translate-y-1 transition-transform duration-300">
+                  <div className="bg-brand-50 dark:bg-brand-900/30 p-4 rounded-full mb-4 text-brand-600 dark:text-brand-400 group-hover:scale-110 transition-transform">
+                    <stat.icon size={32} />
+                  </div>
+                  <span className="text-3xl font-extrabold text-slate-900 dark:text-white mb-1">{stat.value}</span>
+                  <span className="text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">{stat.label[lang]}</span>
+                </div>
+              ))}
             </div>
           </div>
         </section>

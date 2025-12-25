@@ -644,7 +644,6 @@ const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activePage, setActivePage] = useState('home');
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -727,8 +726,9 @@ const App = () => {
       return;
     }
     setSelectedService(service);
-    setIsModalOpen(true);
+    setActivePage('book');
     setBookingStep('selection');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   useEffect(() => {
@@ -790,10 +790,11 @@ const App = () => {
   };
 
   const closeModal = () => {
-    setIsModalOpen(false);
+    setActivePage('home');
     setSelectedService(null);
     setIsSuccess(false);
     setIsError(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleBookSubmit = async (e) => {
@@ -3004,13 +3005,14 @@ const App = () => {
         </div>
       </footer>
 
-      {/* --- BOOKING MODAL --- */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl max-w-lg w-full p-6 md:p-8 relative animate-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto">
+      {/* --- BOOKING PAGE --- */}
+      {activePage === 'book' && (
+      <section id="book" className="pt-32 pb-24 bg-slate-50 dark:bg-slate-900 transition-colors min-h-screen animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-6 md:p-10 relative">
             <button 
               onClick={closeModal}
-              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
+              className="absolute top-6 right-6 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
             >
               <X size={24} />
             </button>
@@ -3207,6 +3209,7 @@ const App = () => {
             )}
           </div>
         </div>
+      </section>
       )}
 
       {/* --- BACK TO TOP BUTTON --- */}

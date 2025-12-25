@@ -659,6 +659,7 @@ const App = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [manualMailto, setManualMailto] = useState('');
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -718,6 +719,13 @@ const App = () => {
   const [shopFilter, setShopFilter] = useState('All');
   const [contactStatus, setContactStatus] = useState('idle');
   const [paymentMethod, setPaymentMethod] = useState('Credit Card');
+  const [bookingFormData, setBookingFormData] = useState({
+    fullName: '',
+    phone: '',
+    email: '',
+    date: '',
+    message: ''
+  });
   
   // Testimonial Feature State
   const [testimonialsList, setTestimonialsList] = useState(testimonials);
@@ -799,11 +807,24 @@ const App = () => {
     setSelectedService(null);
     setIsSuccess(false);
     setIsError(false);
+    setBookingFormData({
+      fullName: '',
+      phone: '',
+      email: '',
+      date: '',
+      message: ''
+    });
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBookingInputChange = (e) => {
+    const { name, value } = e.target;
+    setBookingFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleBookSubmit = async (e, stripe, elements) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
     const formData = new FormData(e.target);
     const fullName = formData.get('fullName');
@@ -839,6 +860,7 @@ const App = () => {
       if (error) {
         setErrorMessage(error.message);
         setIsError(true);
+        setIsSubmitting(false);
         return;
       }
       
@@ -917,6 +939,8 @@ const App = () => {
       setManualMailto(mailtoLink);
       setErrorMessage(error.message || "Connection failed");
       setIsError(true);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -3197,23 +3221,23 @@ const App = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Full Name</label>
-                  <input name="fullName" required type="text" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all" placeholder="John Doe" />
+                  <input name="fullName" value={bookingFormData.fullName} onChange={handleBookingInputChange} required type="text" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all" placeholder="John Doe" />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Phone Number</label>
-                  <input name="phone" required type="tel" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all" placeholder="+971 50 000 0000" />
+                  <input name="phone" value={bookingFormData.phone} onChange={handleBookingInputChange} required type="tel" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all" placeholder="+971 50 000 0000" />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className={selectedService && selectedService.startsWith('Job Application') ? "md:col-span-2" : ""}>
                   <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Email Address</label>
-                  <input name="email" required type="email" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all" placeholder="john@example.com" />
+                  <input name="email" value={bookingFormData.email} onChange={handleBookingInputChange} required type="email" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all" placeholder="john@example.com" />
                 </div>
                 {(!selectedService || !selectedService.startsWith('Job Application')) && (
                   <div>
                     <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Preferred Date</label>
-                    <input name="date" type="date" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all text-slate-600 dark:text-slate-300" />
+                    <input name="date" value={bookingFormData.date} onChange={handleBookingInputChange} type="date" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all text-slate-600 dark:text-slate-300" />
                   </div>
                 )}
               </div>
@@ -3245,12 +3269,45 @@ const App = () => {
 
               <div>
                 <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Message (Optional)</label>
-                <textarea name="message" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all h-24 resize-none" placeholder="Tell us more about your requirements..."></textarea>
+                <textarea name="message" value={bookingFormData.message} onChange={handleBookingInputChange} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all h-24 resize-none" placeholder="Tell us more about your requirements..."></textarea>
               </div>
               </div>
 
               {/* Payment Step UI */}
               <div className={bookingStep === 'payment' ? 'space-y-6 animate-in fade-in slide-in-from-right-4' : 'hidden'}>
+                
+                {/* Booking Summary */}
+                <div className="bg-slate-50 dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                  <h4 className="font-bold text-slate-900 dark:text-white mb-3 border-b border-slate-200 dark:border-slate-700 pb-2 flex items-center gap-2">
+                    <FileCheck size={18} className="text-brand-600" />
+                    {lang === 'en' ? 'Booking Summary' : 'ملخص الحجز'}
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                      <div>
+                        <span className="text-slate-500 dark:text-slate-400 block text-xs uppercase tracking-wider">{lang === 'en' ? 'Service' : 'الخدمة'}</span>
+                        <span className="font-medium text-slate-900 dark:text-white">{selectedService}</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-500 dark:text-slate-400 block text-xs uppercase tracking-wider">{lang === 'en' ? 'Name' : 'الاسم'}</span>
+                        <span className="font-medium text-slate-900 dark:text-white">{bookingFormData.fullName}</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-500 dark:text-slate-400 block text-xs uppercase tracking-wider">{lang === 'en' ? 'Email' : 'البريد الإلكتروني'}</span>
+                        <span className="font-medium text-slate-900 dark:text-white">{bookingFormData.email}</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-500 dark:text-slate-400 block text-xs uppercase tracking-wider">{lang === 'en' ? 'Phone' : 'رقم الهاتف'}</span>
+                        <span className="font-medium text-slate-900 dark:text-white">{bookingFormData.phone}</span>
+                      </div>
+                      {bookingFormData.date && (
+                        <div>
+                          <span className="text-slate-500 dark:text-slate-400 block text-xs uppercase tracking-wider">{lang === 'en' ? 'Date' : 'التاريخ'}</span>
+                          <span className="font-medium text-slate-900 dark:text-white">{bookingFormData.date}</span>
+                        </div>
+                      )}
+                  </div>
+                </div>
+
                 <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{lang === 'en' ? 'Select Payment Method' : 'اختر طريقة الدفع'}</h4>
                 
                 <div className="grid grid-cols-1 gap-4">
@@ -3366,8 +3423,15 @@ const App = () => {
                   </button>
                 )}
                 {bookingStep === 'payment' ? (
-                  <button type="submit" key="submit-btn" className="flex-1 bg-brand-600 text-white font-bold py-4 rounded-xl hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/20 hover:shadow-brand-600/40 transform hover:-translate-y-0.5">
-                    {lang === 'en' ? 'Submit & Pay' : 'إرسال ودفع'}
+                  <button type="submit" key="submit-btn" disabled={isSubmitting} className="flex-1 bg-brand-600 text-white font-bold py-4 rounded-xl hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/20 hover:shadow-brand-600/40 transform hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                        {lang === 'en' ? 'Processing...' : 'جاري المعالجة...'}
+                      </>
+                    ) : (
+                      lang === 'en' ? 'Submit & Pay' : 'إرسال ودفع'
+                    )}
                   </button>
                 ) : (
                   <button type="button" key="next-btn" onClick={() => { const form = document.getElementById('bookingForm'); if(form.checkValidity()) setBookingStep('payment'); else form.reportValidity(); }} className="flex-1 bg-brand-600 text-white font-bold py-4 rounded-xl hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/20 hover:shadow-brand-600/40 transform hover:-translate-y-0.5">

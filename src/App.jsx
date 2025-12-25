@@ -434,7 +434,7 @@ const galleryItems = [
   },
   {
     type: 'video',
-    src: "https://youtu.be/7AvUxJad7oU",
+    src: "https://assets.mixkit.co/videos/preview/mixkit-traffic-lights-in-a-city-at-night-4362-large.mp4",
     poster: "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&q=80&w=800",
     title: { en: "City Lights", ar: "أضواء المدينة" }
   },
@@ -1995,7 +1995,7 @@ const App = () => {
               {/* Tour Video Card */}
               <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-lg cursor-default">
                 <video 
-                  src="https://youtu.be/1vv4yPZnRic" 
+                  src="https://assets.mixkit.co/videos/preview/mixkit-people-walking-in-a-busy-street-market-4356-large.mp4" 
                   autoPlay 
                   muted 
                   loop 

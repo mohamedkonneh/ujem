@@ -1263,8 +1263,8 @@ const App = () => {
       <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-start px-4 pt-6 pointer-events-none">
         
         {/* Left Side: Expanding Pill Menu */}
-        <div className="pointer-events-auto bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl rounded-full p-2 flex items-center gap-0 hover:gap-6 transition-all duration-500 hover:bg-slate-900/95 hover:px-8 group/pill max-w-fit">
-            {/* Logo */}
+        <div className="pointer-events-auto bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl rounded-full p-2 flex items-center gap-2 transition-all duration-500 hover:bg-slate-900/95 hover:pr-6 group/pill max-w-fit">
+            {/* Logo (Always Visible) */}
             <div className="flex-shrink-0 flex items-center px-2">
               <button onClick={() => navigateTo('home')} className="hover:scale-105 transition-transform duration-300 block">
                 <span className="text-3xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-500 to-amber-600 drop-shadow-sm">
@@ -1273,8 +1273,9 @@ const App = () => {
               </button>
             </div>
 
-            {/* Expanding Menu Items */}
-            <div className="hidden w-0 overflow-hidden group-hover/pill:w-auto opacity-0 group-hover/pill:opacity-100 md:flex items-center gap-6 transition-all duration-500 delay-75">
+            {/* Expanding Menu Items (Hidden by default, reveal on hover) */}
+            <div className="w-0 overflow-hidden group-hover/pill:w-auto opacity-0 group-hover/pill:opacity-100 flex items-center gap-4 transition-all duration-500 ease-in-out">
+              <div className="flex items-center gap-4 pl-2 border-l border-white/10">
               <button onClick={() => navigateTo('home')} className={`text-slate-300 hover:text-brand-400 transition-colors font-medium text-sm whitespace-nowrap ${activePage === 'home' ? 'text-brand-400' : ''}`}>{t.home}</button>
               
               {/* Services */}
@@ -1363,11 +1364,29 @@ const App = () => {
                   </div>
                 </div>
               </div>
+              </div>
+            </div>
 
-              {/* Book Now */}
-              <button onClick={() => openModal(null)} className="flex items-center bg-white/10 text-white px-4 py-2 rounded-full hover:bg-white/20 transition-colors font-medium text-sm border border-white/10 whitespace-nowrap">
-                <Calendar size={14} className="mr-2 rtl:ml-2" /> {t.bookNow}
-              </button>
+            {/* Always Visible Buttons (Explore & Book Now) */}
+            <div className="flex items-center gap-2 pl-2 border-l border-white/10">
+               {/* Explore Services */}
+               <div className="relative group/item">
+                  <button onClick={() => navigateTo('services')} className="flex items-center bg-white/5 hover:bg-brand-600 text-white px-4 py-2 rounded-full transition-all font-medium text-sm border border-white/10 whitespace-nowrap">
+                    {t.explore} <ChevronDown size={14} className="ml-1 rtl:mr-1 group-hover/item:rotate-180 transition-transform duration-200" />
+                  </button>
+                   <div className="absolute start-0 top-full pt-4 w-64 opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-200 z-50">
+                        <div className="bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 overflow-hidden p-2">
+                          {serviceTypes[lang].map((service) => (
+                            <button key={service} onClick={() => openModal(service)} className="block w-full text-start px-4 py-3 text-sm text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-slate-800 hover:text-brand-600 dark:hover:text-brand-400 rounded-lg transition-colors">
+                              {service}
+                            </button>
+                          ))}
+                        </div>
+                  </div>
+               </div>
+               <button onClick={() => openModal(null)} className="flex items-center bg-brand-600 hover:bg-brand-500 text-white px-4 py-2 rounded-full transition-all font-medium text-sm shadow-lg shadow-brand-900/20 whitespace-nowrap">
+                  <Calendar size={14} className="mr-2 rtl:ml-2" /> {t.bookNow}
+               </button>
             </div>
         </div>
 

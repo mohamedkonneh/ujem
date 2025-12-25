@@ -1275,9 +1275,10 @@ const App = () => {
             <div className="hidden w-0 overflow-hidden group-hover:w-auto opacity-0 group-hover:opacity-100 md:flex space-x-6 items-center transition-all duration-500 delay-75">
               <button onClick={() => navigateTo('home')} className={`text-slate-300 hover:text-brand-400 transition-colors font-medium text-sm ${activePage === 'home' ? 'text-brand-400' : ''}`}>{t.home}</button>
               
+              {/* Explore (Services) with Dropdown */}
               <div className="relative group">
-                <button onClick={() => navigateTo('services')} className={`flex items-center text-slate-300 hover:text-brand-400 transition-colors font-medium text-sm ${activePage === 'services' ? 'text-brand-400' : ''}`}>
-                  {t.services} <ChevronDown size={16} className="mx-1 group-hover:rotate-180 transition-transform duration-200" />
+                <button onClick={() => navigateTo('services')} className={`flex items-center bg-brand-600/20 text-brand-300 px-3 py-1 rounded-full hover:bg-brand-600 hover:text-white transition-colors font-medium text-sm ${activePage === 'services' ? 'bg-brand-600 text-white' : ''}`}>
+                  {t.explore} <ChevronDown size={16} className="mx-1 group-hover:rotate-180 transition-transform duration-200" />
                 </button>
                 <div className="absolute start-0 top-full pt-4 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 ">
                   <div className="bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 overflow-hidden p-2">
@@ -1289,6 +1290,11 @@ const App = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Book Now Button */}
+              <button onClick={() => openModal(null)} className="flex items-center bg-white/10 text-white px-3 py-1 rounded-full hover:bg-white/20 transition-colors font-medium text-sm border border-white/10">
+                <Calendar size={14} className="mr-2 rtl:ml-2" /> {t.bookNow}
+              </button>
 
               <button onClick={() => navigateTo('plan')} className={`text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-medium ${activePage === 'plan' ? 'text-brand-600 dark:text-brand-400' : ''}`}>{t.planTrip}</button>
 
@@ -1531,57 +1537,9 @@ const App = () => {
           </div>
         ))}
 
-        {/* Top Buttons (Moved from Center) */}
-        <div className="absolute top-8 left-0 w-full z-30 flex justify-center gap-4 animate-in slide-in-from-top duration-1000">
-          <button onClick={() => navigateTo('services')} className="group relative px-5 py-2 bg-brand-600 text-white rounded-full font-bold text-sm shadow-xl shadow-brand-600/20 overflow-hidden transition-all hover:scale-105">
-            <span className="flex items-center gap-2">
-              {t.explore} <ArrowRight size={16} className="rtl:rotate-180 transition-transform group-hover:translate-x-1" />
-            </span>
-          </button>
-          <button onClick={() => openModal(null)} className="px-5 py-2 rounded-full font-bold text-sm text-white bg-white/5 backdrop-blur-md border border-white/20 hover:bg-white/10 transition-all hover:scale-105 flex items-center justify-center gap-2">
-            <Calendar size={16} /> {t.bookNow}
-          </button>
-        </div>
 
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full flex flex-col xl:justify-center items-center pt-24 pb-12 gap-8 xl:gap-0">
           
-          {/* Weather, Date & Currency Card (Second on Mobile) */}
-          <div className="order-2 xl:order-none relative xl:absolute xl:top-28 xl:right-8 z-30 animate-in slide-in-from-bottom xl:slide-in-from-right duration-1000 w-full max-w-sm xl:w-72">
-            <div className="bg-slate-900/40 backdrop-blur-xl border border-white/10 p-6 rounded-3xl shadow-2xl text-white w-full hover:bg-slate-900/50 transition-colors group">
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <p className="text-4xl font-bold font-mono tracking-wider text-brand-100">{time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
-                  <p className="text-sm text-slate-300 mt-1">{time.toLocaleDateString(lang === 'ar' ? 'ar-AE' : 'en-US', { weekday: 'long', month: 'short', day: 'numeric' })}</p>
-                </div>
-                <div className="bg-white/10 p-2 rounded-full">
-                  <CloudSun size={24} className="text-yellow-400" />
-                </div>
-              </div>
-              
-              <div className="space-y-3">
-                <div className="flex items-center justify-between text-sm border-t border-white/10 pt-3">
-                  <span className="text-slate-300">{lang === 'ar' ? 'دبي' : 'Dubai'}</span>
-                  <span className="font-bold text-xl">{weather ? Math.round(weather.temperature) : '--'}°C</span>
-                </div>
-                
-                {/* Mini Currency Converter */}
-                <div className="bg-black/20 rounded-xl p-3 border border-white/5">
-                  <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
-                    <span className="flex items-center gap-1"><Coins size={10} /> Exchange</span>
-                  </div>
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-1 bg-white/5 rounded px-2 py-1">
-                      <span className="font-bold text-sm">1 USD</span>
-                    </div>
-                    <ArrowRight size={12} className="text-slate-500" />
-                    <div className="flex items-center gap-1 bg-brand-600/20 text-brand-300 rounded px-2 py-1 border border-brand-500/30">
-                      <span className="font-bold text-sm">3.67 AED</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Slider Indicators (Bottom Center) */}

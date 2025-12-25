@@ -208,7 +208,7 @@ const shopProducts = [
     id: 3,
     name: { en: "Multi-Purpose Laptop Bag", ar: "حقيبة لابتوب متعددة الاستخدامات" },
     price: { en: "AED 80", ar: "80 درهم" },
-    image: "https://img.kwcdn.com/product/fancy/3775f693-dd43-4cdd-a8fb-38b30e491579.jpg?imageView2/2/w/800/q/70/format/avif",
+    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&q=80&w=800",
     category: { en: "Laptops & Computers", ar: "لابتوب وكمبيوتر" },
     rating: 4.2,
     description: { en: "Vertical laptop bag, tablet bag, laptop inner bag, shoulder bag-33.78cm.", ar: "حقيبة لابتوب عمودية، حقيبة تابلت، حقيبة داخلية للابتوب، حقيبة كتف - 33.78 سم." },
@@ -241,7 +241,7 @@ const shopProducts = [
     id: 6,
     name: { en: "Designer Men's Suit", ar: "بدلة رجالية مصممة" },
     price: { en: "AED 1200", ar: "1200 درهم" },
-    image: "https://img.kwcdn.com/product/fmket/022357f5703fc66f36edfdeea8731250.jpg?imageView2/2/w/800/q/70/format/avif",
+    image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&q=80&w=800",
     category: { en: "Mens Fashion", ar: "أزياء رجالية" },
     rating: 4.9,
     description: { en: "Premium tailored suit for business and formal events.", ar: "بدلة مصممة خصيصاً للأعمال والمناسبات الرسمية." },
@@ -282,10 +282,10 @@ const shopProducts = [
     onSale: false
   },
 {
-   id: 8,
-    name: { en: "Multi-Function USB Hub", ar: "تلفزيون ذكي فائق الدقة" },
+   id: 11,
+    name: { en: "Multi-Function USB Hub", ar: "موزع USB متعدد الوظائف" },
     price: { en: "AED 50", ar: "50 درهم" },
-    image: "https://img.kwcdn.com/product/fancy/cc8fc5d1-29e4-4705-8a55-63407f01ab05.jpg?imageView2/2/w/800/q/70/format/avif",
+    image: "https://images.unsplash.com/photo-1625842268584-8f3296236761?auto=format&fit=crop&q=80&w=800",
     category: { en: "Electricals", ar: "أدوات كهربائية" },
     rating: 4.8,
     description: { en: "8-in-2 Multi-Function Hub | USB 3.0 + USB-C + SD/TF + 3.5mm Audio Ports for computers.", ar: "تجربة سينمائية بدقة 4K وميزات ذكية." },
@@ -296,7 +296,7 @@ const shopProducts = [
     id: 10,
     name: { en: "Men's Sports Casual Shoes", ar: "حذاء رياضي كاجوال للرجال" },
     price: { en: "AED 250", ar: "250 درهم" },
-    image: "https://img.kwcdn.com/product/fancy/4339ec00-bf42-41fe-be61-c82344be2e4f.jpg?imageView2/2/w/800/q/70/format/avif",
+    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800",
     category: { en: "FootWears", ar: "أحذية" },
     rating: 5.0,
     description: { en: "  Men's Sports Casual Shoes, Suitable for Gym Workouts And Night Runs.", ar: "حذاء رياضي عصري للرجال، متعدد الاستخدامات، مناسب لتمارين الجيم والجري الليلي." },
@@ -3281,12 +3281,12 @@ const App = () => {
                     <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{lang === 'en' ? 'Date From' : 'من تاريخ'}</label>
-                        <input name="dateFrom" value={bookingFormData.dateFrom} onChange={handleBookingInputChange} type="date" min={new Date().toISOString().split('T')[0]} required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all text-slate-600 dark:text-slate-300" />
+                        <input name="dateFrom" value={bookingFormData.dateFrom} onChange={handleBookingInputChange} type="date" min={new Date().toISOString().split('T')[0]} required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all text-slate-600" />
                       </div>
                       {(selectedService === 'Hotel Booking' || selectedService === 'Holiday Packages' || selectedService === 'حجز فنادق' || selectedService === 'باقات عطلات') && (
                         <div>
                           <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">{lang === 'en' ? 'Date To' : 'إلى تاريخ'}</label>
-                          <input name="dateTo" value={bookingFormData.dateTo} onChange={handleBookingInputChange} type="date" min={bookingFormData.dateFrom || new Date().toISOString().split('T')[0]} required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all text-slate-600 dark:text-slate-300" />
+                          <input name="dateTo" value={bookingFormData.dateTo} onChange={handleBookingInputChange} type="date" min={bookingFormData.dateFrom || new Date().toISOString().split('T')[0]} required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition-all text-slate-600" />
                         </div>
                       )}
                     </div>

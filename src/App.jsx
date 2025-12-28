@@ -181,6 +181,70 @@ const highlightImages = [
   }
 ];
 
+const safariPackages = [
+  {
+    id: 'morning-safari',
+    title: { en: "Morning Desert Safari", ar: "سفاري صحراوي صباحي" },
+    price: { en: "AED 150", ar: "150 درهم" },
+    duration: { en: "4 Hours", ar: "4 ساعات" },
+    image: "https://images.unsplash.com/photo-1547234935-80c7142ee969?auto=format&fit=crop&q=80&w=800",
+    includes: {
+      en: ["Dune Bashing", "Camel Ride", "Sandboarding", "Water & Soft Drinks"],
+      ar: ["تقريع الكثبان الرملية", "ركوب الجمال", "التزلج على الرمال", "مياه ومشروبات غازية"]
+    },
+    description: {
+      en: "Experience the golden dunes in the early morning sun. Perfect for those who want a quick adrenaline rush.",
+      ar: "استمتع بالكثبان الذهبية في شمس الصباح الباكر. مثالي لأولئك الذين يريدون اندفاع الأدرينالين السريع."
+    }
+  },
+  {
+    id: 'evening-safari',
+    title: { en: "Evening Desert Safari + BBQ", ar: "سفاري صحراوي مسائي + شواء" },
+    price: { en: "AED 250", ar: "250 درهم" },
+    duration: { en: "6 Hours", ar: "6 ساعات" },
+    image: "https://images.unsplash.com/photo-1518182170546-0766aa6f18f6?auto=format&fit=crop&q=80&w=800",
+    includes: {
+      en: ["Dune Bashing", "BBQ Dinner", "Belly Dance", "Henna Painting", "Camel Ride"],
+      ar: ["تقريع الكثبان الرملية", "عشاء مشاوي", "رقص شرقي", "رسم الحناء", "ركوب الجمال"]
+    },
+    description: {
+      en: "The classic Dubai experience. Watch the sunset over the dunes followed by a traditional Arabian night.",
+      ar: "تجربة دبي الكلاسيكية. شاهد غروب الشمس فوق الكثبان الرملية تليها ليلة عربية تقليدية."
+    },
+    popular: true
+  },
+  {
+    id: 'overnight-safari',
+    title: { en: "Overnight Desert Safari", ar: "سفاري صحراوي ليلي" },
+    price: { en: "AED 450", ar: "450 درهم" },
+    duration: { en: "18 Hours", ar: "18 ساعة" },
+    image: "https://images.unsplash.com/photo-1501232060322-aa87215ab531?auto=format&fit=crop&q=80&w=800",
+    includes: {
+      en: ["Everything in Evening Safari", "Overnight Tent Stay", "Breakfast", "Sunrise View"],
+      ar: ["كل شيء في السفاري المسائي", "مبيت في الخيمة", "إفطار", "مشهد شروق الشمس"]
+    },
+    description: {
+      en: "Sleep under the stars in the middle of the desert. A truly magical experience away from the city lights.",
+      ar: "نم تحت النجوم في وسط الصحراء. تجربة سحرية حقاً بعيداً عن أضواء المدينة."
+    }
+  },
+  {
+    id: 'vip-safari',
+    title: { en: "VIP Private Safari", ar: "سفاري خاص VIP" },
+    price: { en: "AED 1200", ar: "1200 درهم" },
+    duration: { en: "6 Hours", ar: "6 ساعات" },
+    image: "https://images.unsplash.com/photo-1545167622-3a6ac15670b3?auto=format&fit=crop&q=80&w=800",
+    includes: {
+      en: ["Private 4x4 Land Cruiser", "Table Service", "Premium BBQ", "Private Seating"],
+      ar: ["لاند كروزر 4x4 خاص", "خدمة الطاولة", "مشاوي فاخرة", "جلسة خاصة"]
+    },
+    description: {
+      en: "Luxury desert experience with a private vehicle and dedicated service.",
+      ar: "تجربة صحراوية فاخرة مع سيارة خاصة وخدمة مخصصة."
+    }
+  }
+];
+
 const shopProducts = [
   {
     id: 1,
@@ -1699,7 +1763,14 @@ const App = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-4 gap-4">
               {highlightImages.map((item, index) => (
-                <div key={index} onClick={() => openModal(item.title[lang])} className="group relative h-48 rounded-xl overflow-hidden cursor-pointer shadow-2xl border border-white/30 hover:-translate-y-2 transition-all duration-300 bg-white/10 backdrop-blur-md hover:bg-white/20">
+                <div key={index} onClick={() => {
+                  if (item.title.en === "Safari Packages") {
+                    setActivePage('safari');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  } else {
+                    openModal(item.title[lang]);
+                  }
+                }} className="group relative h-48 rounded-xl overflow-hidden cursor-pointer shadow-2xl border border-white/30 hover:-translate-y-2 transition-all duration-300 bg-white/10 backdrop-blur-md hover:bg-white/20">
                   {index === 0 && (
                     <div className="absolute top-3 left-3 z-20">
                       <span className="absolute inset-0 rounded-full bg-brand-500 animate-ping opacity-75"></span>
@@ -1819,7 +1890,14 @@ const App = () => {
                 onTouchEnd={() => setIsServicesHovered(false)}
               >
                 {highlightImages.map((item, index) => (
-                  <div key={index} onClick={() => openModal(item.title[lang])} className="min-w-[85vw] md:min-w-0 snap-center group relative h-96 rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 flex-shrink-0">
+                  <div key={index} onClick={() => {
+                    if (item.title.en === "Safari Packages") {
+                      setActivePage('safari');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                      openModal(item.title[lang]);
+                    }
+                  }} className="min-w-[85vw] md:min-w-0 snap-center group relative h-96 rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 flex-shrink-0">
                     {index === 0 && (
                       <div className="absolute top-4 left-4 z-20">
                         <span className="absolute inset-0 rounded-full bg-brand-500 animate-ping opacity-75"></span>
@@ -2745,6 +2823,64 @@ const App = () => {
           </div>
         </div>
       </section>
+      )}
+
+      {/* --- SAFARI PACKAGES PAGE --- */}
+      {activePage === 'safari' && (
+        <section id="safari" className="pt-32 pb-24 bg-slate-50 dark:bg-slate-900 transition-colors min-h-screen animate-in fade-in slide-in-from-bottom-4 duration-500">
+          {/* Hero for Safari */}
+          <div className="relative h-[40vh] min-h-[300px] w-full overflow-hidden mb-12">
+            <img src="https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&q=80&w=1600" alt="Desert Safari" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <div className="text-center text-white px-4">
+                  <h1 className="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">{lang === 'en' ? "Desert Safari Adventures" : "مغامرات السفاري الصحراوية"}</h1>
+                  <p className="text-xl max-w-2xl mx-auto drop-shadow-md">{lang === 'en' ? "Discover the magic of the Arabian Desert with our premium safari packages." : "اكتشف سحر الصحراء العربية مع باقات السفاري المتميزة لدينا."}</p>
+                </div>
+            </div>
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {safariPackages.map((pkg) => (
+                  <div key={pkg.id} className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 dark:border-slate-700 flex flex-col group">
+                      <div className="relative h-64 overflow-hidden">
+                        <img src={pkg.image} alt={pkg.title[lang]} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        {pkg.popular && (
+                            <div className="absolute top-4 left-4 bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg flex items-center gap-1">
+                              <Star size={12} fill="currentColor" /> {lang === 'en' ? 'POPULAR' : 'شائع'}
+                            </div>
+                        )}
+                        <div className="absolute bottom-4 right-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm px-3 py-1 rounded-lg text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1">
+                            <Clock size={14} /> {pkg.duration[lang]}
+                        </div>
+                      </div>
+                      <div className="p-6 flex-1 flex flex-col">
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{pkg.title[lang]}</h3>
+                        <p className="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">{pkg.description[lang]}</p>
+                        
+                        <div className="mb-6 space-y-2">
+                            {pkg.includes[lang].map((inc, i) => (
+                              <div key={i} className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                                  <CheckCircle size={14} className="text-brand-600 shrink-0" /> {inc}
+                              </div>
+                            ))}
+                        </div>
+
+                        <div className="mt-auto flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700">
+                            <div>
+                              <span className="text-xs text-slate-400 block uppercase">{lang === 'en' ? 'Per Person' : 'للشخص'}</span>
+                              <span className="text-2xl font-bold text-brand-600">{pkg.price[lang]}</span>
+                            </div>
+                            <button onClick={() => openModal(pkg.title[lang])} className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-2 rounded-xl font-bold hover:bg-brand-600 dark:hover:bg-brand-400 hover:text-white transition-colors">
+                              {t.bookNow}
+                            </button>
+                        </div>
+                      </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        </section>
       )}
 
       {/* --- ABOUT SECTION --- */}

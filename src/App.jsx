@@ -193,6 +193,8 @@ const safariPackages = [
       { src: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Sandboarding", ar: "تزلج على الرمال" } },
       { src: "https://images.unsplash.com/photo-1598605272254-16f0c0ecdfa5?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Camel Trek", ar: "رحلة الجمال" } }
     ],
+    pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },  // Example Dubai coordinates
+    locationCoordinates: { latitude: 24.8607, longitude: 55.1310 }, // Example desert coordinates
     includes: {
       en: ["Dune Bashing", "Camel Ride", "Sandboarding", "Water & Soft Drinks"],
       ar: ["تقريع الكثبان الرملية", "ركوب الجمال", "التزلج على الرمال", "مياه ومشروبات غازية"]
@@ -223,6 +225,8 @@ const safariPackages = [
       { src: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "BBQ Dinner", ar: "عشاء مشاوي" } },
       { src: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Camp Vibes", ar: "أجواء المخيم" } }
     ],
+    pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },  // Example Dubai coordinates
+    locationCoordinates: { latitude: 24.8607, longitude: 55.1310 }, // Example desert coordinates
     includes: {
       en: ["Dune Bashing", "BBQ Dinner", "Belly Dance", "Henna Painting", "Camel Ride"],
       ar: ["تقريع الكثبان الرملية", "عشاء مشاوي", "رقص شرقي", "رسم الحناء", "ركوب الجمال"]
@@ -255,6 +259,8 @@ const safariPackages = [
       { src: "https://images.unsplash.com/photo-1489516408517-6c0a1387c6ce?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Morning Coffee", ar: "قهوة الصباح" } },
       { src: "https://images.unsplash.com/photo-1545167622-3a6ac15670b3?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Desert Sunrise", ar: "شروق الصحراء" } }
     ],
+    pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },  // Example Dubai coordinates
+    locationCoordinates: { latitude: 24.8607, longitude: 55.1310 }, // Example desert coordinates
     includes: {
       en: ["Everything in Evening Safari", "Overnight Tent Stay", "Breakfast", "Sunrise View"],
       ar: ["كل شيء في السفاري المسائي", "مبيت في الخيمة", "إفطار", "مشهد شروق الشمس"]
@@ -286,6 +292,8 @@ const safariPackages = [
       { src: "https://images.unsplash.com/photo-1552560229-edf081349691?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "VIP Setup", ar: "تجهيزات VIP" } },
       { src: "https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Luxury Dining", ar: "عشاء فاخر" } }
     ],
+    pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },  // Example Dubai coordinates
+    locationCoordinates: { latitude: 24.8607, longitude: 55.1310 }, // Example desert coordinates
     includes: {
       en: ["Private 4x4 Land Cruiser", "Table Service", "Premium BBQ", "Private Seating"],
       ar: ["لاند كروزر 4x4 خاص", "خدمة الطاولة", "مشاوي فاخرة", "جلسة خاصة"]
@@ -887,9 +895,43 @@ const App = () => {
     });
   };
 
+const MapComponent = ({ latitude, longitude }) => {
+    // This is a placeholder for a real map component.  You would
+    // integrate a mapping library here (e.g., Google Maps, Leaflet).
+
+    useEffect(() => {
+        // Example: Initialize a Leaflet map here (after installing Leaflet)
+        // const map = L.map('map').setView([latitude, longitude], 13);
+        // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+        // In a real implementation, you would use the latitude and
+        // longitude props to set the map's center and add markers.
+    }, [latitude, longitude]);
+
+    return (
+        <div className="relative w-full h-48 bg-slate-200 dark:bg-slate-700 rounded-xl overflow-hidden">
+            <div className="absolute inset-0 flex items-center justify-center text-slate-500 dark:text-slate-400 italic">
+                {latitude && longitude ? (
+                    <div id="map">
+                        Map will load here!
+                    </div>
+                ) : (
+                    <p>Map Loading...</p>
+                )}
+            </div>
+            {/* Replace the div above with your preferred map component */}
+            {/* Example: <div id="map" style={{ height: "200px" }}></div> */}
+        </div>
+    );
+};
+
   useEffect(() => {
     setShopFilter('All');
   }, [lang]);
+
+  useEffect(() => {
+    setContactStatus('idle');
+  }, [activePage, selectedSafari]);
 
   useEffect(() => {
     localStorage.setItem('ujem_cart', JSON.stringify(cartItems));
@@ -3097,6 +3139,11 @@ const App = () => {
                           <div className="absolute left-0 rtl:right-0 rtl:left-auto top-1 w-10 h-10 rounded-full bg-brand-100 dark:bg-brand-900/30 border-4 border-white dark:border-slate-800 flex items-center justify-center text-brand-600 dark:text-brand-400 font-bold text-xs z-10">
                             {index + 1}
                           </div>
+                          {/* Conditionally render the map for the first two itinerary items */}
+                          {index < 2 && (
+                            <MapComponent latitude={selectedSafari.locationCoordinates.latitude} longitude={selectedSafari.locationCoordinates.longitude} />
+                            
+                          )}
                           <div>
                             <span className="text-xs font-bold text-brand-600 uppercase tracking-wider mb-1 block">{item.time}</span>
                             <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-1">{item.title[lang]}</h4>
@@ -3122,6 +3169,57 @@ const App = () => {
                         />
                       ))}
                    </div>
+                </div>
+
+                {/* Inquiry Form */}
+                <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-100 dark:border-slate-700" id="safari-inquiry">
+                   <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">{lang === 'en' ? 'Have Questions?' : 'لديك أسئلة؟'}</h2>
+                   
+                   {contactStatus === 'success' ? (
+                      <div className="text-center py-8 bg-green-50 dark:bg-green-900/20 rounded-xl border border-green-100 dark:border-green-800">
+                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 mb-4 text-green-600">
+                          <CheckCircle size={32} />
+                        </div>
+                        <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{lang === 'en' ? "Inquiry Sent!" : "تم إرسال الاستفسار!"}</h4>
+                        <p className="text-slate-600 dark:text-slate-400 mb-6">{lang === 'en' ? "We will get back to you shortly regarding this package." : "سنرد عليك قريباً بخصوص هذه الباقة."}</p>
+                        <button onClick={() => setContactStatus('idle')} className="text-brand-600 font-bold hover:underline">{lang === 'en' ? "Send another inquiry" : "إرسال استفسار آخر"}</button>
+                      </div>
+                   ) : (
+                     <form onSubmit={handleContactSubmit} className="space-y-4">
+                        <input type="hidden" name="subject" value={`Safari Inquiry: ${selectedSafari.title[lang]}`} />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{lang === 'en' ? "Your Name" : "اسمك"}</label>
+                            <input name="name" required type="text" className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-brand-600 outline-none transition-all" placeholder="John Doe" />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{lang === 'en' ? "Phone Number" : "رقم الهاتف"}</label>
+                            <input name="phone" required type="tel" className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-brand-600 outline-none transition-all" placeholder="+971..." />
+                          </div>
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{lang === 'en' ? "Email Address" : "البريد الإلكتروني"}</label>
+                          <input name="email" required type="email" className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-brand-600 outline-none transition-all" placeholder="john@example.com" />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{lang === 'en' ? "Message" : "الرسالة"}</label>
+                          <textarea name="message" required className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-brand-600 outline-none transition-all h-32 resize-none" placeholder={lang === 'en' ? `I'm interested in ${selectedSafari.title[lang]}...` : `أنا مهتم بـ ${selectedSafari.title[lang]}...`}></textarea>
+                        </div>
+                        <button type="submit" disabled={contactStatus === 'submitting'} className="bg-brand-600 text-white font-bold py-3 px-8 rounded-xl hover:bg-brand-700 transition-colors shadow-lg shadow-brand-600/20 disabled:opacity-70 flex items-center gap-2">
+                          {contactStatus === 'submitting' ? (
+                            <>
+                              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                              {lang === 'en' ? "Sending..." : "جاري الإرسال..."}
+                            </>
+                          ) : (
+                            <>
+                              <Send size={18} />
+                              {lang === 'en' ? "Send Inquiry" : "إرسال الاستفسار"}
+                            </>
+                          )}
+                        </button>
+                     </form>
+                   )}
                 </div>
               </div>
 

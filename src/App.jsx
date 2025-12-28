@@ -187,9 +187,9 @@ const safariPackages = [
     title: { en: "Morning Desert Safari", ar: "سفاري صحراوي صباحي" },
     price: { en: "AED 150", ar: "150 درهم" },
     duration: { en: "4 Hours", ar: "4 ساعات" },
-    image: "https://images.unsplash.com/photo-1547234935-80c7142ee969?auto=format&fit=crop&q=80&w=800",
+    image: "https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=center,quality=60,width=535,height=400,dpr=2/tour_img/5d8359ca70fb9.jpeg",
     gallery: [
-      { src: "https://images.unsplash.com/photo-1547234935-80c7142ee969?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Morning Dunes", ar: "كثبان صباحية" } },
+      { src: "https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=center,quality=60,width=1920,dpr=1/tour_img/5d8359dfee840.jpeg", type: 'image', title: { en: "Morning Dunes", ar: "كثبان صباحية" } },
       { src: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Sandboarding", ar: "تزلج على الرمال" } },
       { src: "https://images.unsplash.com/photo-1598605272254-16f0c0ecdfa5?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Camel Trek", ar: "رحلة الجمال" } }
     ],
@@ -209,7 +209,7 @@ const safariPackages = [
     duration: { en: "6 Hours", ar: "6 ساعات" },
     image: "https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=center,quality=60,width=535,height=400,dpr=2/tour_img/e72c3b67bc0e05aef4400ec52459360b37815118c8b3f23a096d79a1cd2867d6.png",
     gallery: [
-      { src: "https://images.unsplash.com/photo-1518182170546-0766aa6f18f6?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Sunset Views", ar: "مناظر الغروب" } },
+      { src: "https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=center,quality=60,width=1920,dpr=1/tour_img/78e31f703c288a173bc6ea1c494b3c24091ead6d7e72545dcc615c75e60b7b8f.jpeg", type: 'image', title: { en: "Sunset Views", ar: "مناظر الغروب" } },
       { src: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "BBQ Dinner", ar: "عشاء مشاوي" } },
       { src: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Camp Vibes", ar: "أجواء المخيم" } }
     ],
@@ -743,6 +743,8 @@ const App = () => {
   const [manualMailto, setManualMailto] = useState('');
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [currentLightboxItems, setCurrentLightboxItems] = useState(galleryItems);
+  const [compareList, setCompareList] = useState([]);
+  const [isCompareOpen, setIsCompareOpen] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currencyAmount, setCurrencyAmount] = useState(1);
   const [currencyFrom, setCurrencyFrom] = useState('USD');
@@ -826,6 +828,20 @@ const App = () => {
     setActivePage('book');
     setBookingStep('selection');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const toggleCompare = (pkg) => {
+    setCompareList(prev => {
+      const exists = prev.find(p => p.id === pkg.id);
+      if (exists) {
+        return prev.filter(p => p.id !== pkg.id);
+      }
+      if (prev.length >= 2) {
+        alert(lang === 'en' ? "You can only compare 2 packages at a time." : "يمكنك مقارنة باقتين فقط في كل مرة.");
+        return prev;
+      }
+      return [...prev, pkg];
+    });
   };
 
   useEffect(() => {
@@ -2879,6 +2895,13 @@ const App = () => {
                         <div className="absolute bottom-4 right-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm px-3 py-1 rounded-lg text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1">
                             <Clock size={14} /> {pkg.duration[lang]}
                         </div>
+                        <button 
+                          onClick={(e) => { e.stopPropagation(); toggleCompare(pkg); }}
+                          className={`absolute top-4 right-4 p-2 rounded-full shadow-md transition-colors z-20 ${compareList.find(p => p.id === pkg.id) ? 'bg-brand-600 text-white' : 'bg-white/90 text-slate-400 hover:text-brand-600'}`}
+                          title={lang === 'en' ? "Compare" : "مقارنة"}
+                        >
+                          <ArrowRightLeft size={18} />
+                        </button>
                       </div>
                       <div className="p-6 flex-1 flex flex-col">
                         <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{pkg.title[lang]}</h3>
@@ -2925,6 +2948,70 @@ const App = () => {
                 ))}
             </div>
           </div>
+
+          {/* Compare Floating Button */}
+          {compareList.length > 0 && (
+            <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 animate-in slide-in-from-bottom-4 fade-in">
+              <button 
+                onClick={() => setIsCompareOpen(true)}
+                className="bg-slate-900 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 hover:scale-105 transition-transform border border-slate-700"
+              >
+                <ArrowRightLeft size={20} />
+                <span className="font-bold">{lang === 'en' ? `Compare (${compareList.length})` : `مقارنة (${compareList.length})`}</span>
+                <span onClick={(e) => { e.stopPropagation(); setCompareList([]); }} className="bg-white/20 rounded-full p-1 hover:bg-white/30 ml-2 cursor-pointer">
+                  <X size={14} />
+                </span>
+              </button>
+            </div>
+          )}
+
+          {/* Compare Modal */}
+          {isCompareOpen && (
+            <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm animate-in fade-in duration-200">
+              <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl max-w-5xl w-full p-6 relative animate-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto">
+                <button 
+                    onClick={() => setIsCompareOpen(false)}
+                    className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors z-10"
+                  >
+                    <X size={24} />
+                  </button>
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center">
+                    {lang === 'en' ? "Package Comparison" : "مقارنة الباقات"}
+                  </h3>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {compareList.map(pkg => (
+                      <div key={pkg.id} className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 relative">
+                        <button onClick={() => toggleCompare(pkg)} className="absolute top-4 right-4 text-slate-400 hover:text-red-500 transition-colors"><Trash2 size={20} /></button>
+                        <img src={pkg.image} alt={pkg.title[lang]} className="w-full h-48 object-cover rounded-lg mb-4" />
+                        <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{pkg.title[lang]}</h4>
+                        <p className="text-brand-600 font-bold text-2xl mb-4">{pkg.price[lang]}</p>
+                        
+                        <div className="space-y-4 divide-y divide-slate-200 dark:divide-slate-700">
+                          <div className="pt-4 first:pt-0"><span className="text-xs font-bold text-slate-500 uppercase block mb-1">{lang === 'en' ? 'Duration' : 'المدة'}</span><p className="text-slate-700 dark:text-slate-300 font-medium">{pkg.duration[lang]}</p></div>
+                          <div className="pt-4"><span className="text-xs font-bold text-slate-500 uppercase block mb-1">{lang === 'en' ? 'Includes' : 'يشمل'}</span><ul className="space-y-1">{pkg.includes[lang].map((inc, i) => (<li key={i} className="text-sm text-slate-600 dark:text-slate-400 flex items-center gap-2"><Check size={14} className="text-green-500 shrink-0" /> {inc}</li>))}</ul></div>
+                          <div className="pt-4"><span className="text-xs font-bold text-slate-500 uppercase block mb-1">{lang === 'en' ? 'Description' : 'الوصف'}</span><p className="text-sm text-slate-600 dark:text-slate-400">{pkg.description[lang]}</p></div>
+                        </div>
+                        <button onClick={() => { setIsCompareOpen(false); openModal(pkg.title[lang]); }} className="w-full mt-6 bg-brand-600 text-white py-3 rounded-xl font-bold hover:bg-brand-700 transition-colors shadow-lg shadow-brand-600/20">{t.bookNow}</button>
+                      </div>
+                    ))}
+                    {compareList.length === 1 && (
+                      <div className="border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-xl p-6 flex flex-col items-center justify-center text-center min-h-[400px]">
+                          <div className="bg-slate-100 dark:bg-slate-800 p-4 rounded-full mb-4">
+                            <ArrowRightLeft size={32} className="text-slate-400" />
+                          </div>
+                          <p className="text-slate-500 dark:text-slate-400 font-medium">
+                            {lang === 'en' ? "Select another package to compare" : "اختر باقة أخرى للمقارنة"}
+                          </p>
+                          <button onClick={() => setIsCompareOpen(false)} className="mt-4 text-brand-600 font-bold hover:underline">
+                            {lang === 'en' ? "Browse Packages" : "تصفح الباقات"}
+                          </button>
+                      </div>
+                    )}
+                  </div>
+              </div>
+            </div>
+          )}
         </section>
       )}
 

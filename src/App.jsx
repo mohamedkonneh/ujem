@@ -188,6 +188,11 @@ const safariPackages = [
     price: { en: "AED 150", ar: "150 درهم" },
     duration: { en: "4 Hours", ar: "4 ساعات" },
     image: "https://images.unsplash.com/photo-1547234935-80c7142ee969?auto=format&fit=crop&q=80&w=800",
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1547234935-80c7142ee969?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Morning Dunes", ar: "كثبان صباحية" } },
+      { src: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Sandboarding", ar: "تزلج على الرمال" } },
+      { src: "https://images.unsplash.com/photo-1598605272254-16f0c0ecdfa5?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Camel Trek", ar: "رحلة الجمال" } }
+    ],
     includes: {
       en: ["Dune Bashing", "Camel Ride", "Sandboarding", "Water & Soft Drinks"],
       ar: ["تقريع الكثبان الرملية", "ركوب الجمال", "التزلج على الرمال", "مياه ومشروبات غازية"]
@@ -202,7 +207,12 @@ const safariPackages = [
     title: { en: "Evening Desert Safari + BBQ", ar: "سفاري صحراوي مسائي + شواء" },
     price: { en: "AED 250", ar: "250 درهم" },
     duration: { en: "6 Hours", ar: "6 ساعات" },
-    image: "https://images.unsplash.com/photo-1518182170546-0766aa6f18f6?auto=format&fit=crop&q=80&w=800",
+    image: "https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=center,quality=60,width=535,height=400,dpr=2/tour_img/e72c3b67bc0e05aef4400ec52459360b37815118c8b3f23a096d79a1cd2867d6.png",
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1518182170546-0766aa6f18f6?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Sunset Views", ar: "مناظر الغروب" } },
+      { src: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "BBQ Dinner", ar: "عشاء مشاوي" } },
+      { src: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Camp Vibes", ar: "أجواء المخيم" } }
+    ],
     includes: {
       en: ["Dune Bashing", "BBQ Dinner", "Belly Dance", "Henna Painting", "Camel Ride"],
       ar: ["تقريع الكثبان الرملية", "عشاء مشاوي", "رقص شرقي", "رسم الحناء", "ركوب الجمال"]
@@ -218,7 +228,12 @@ const safariPackages = [
     title: { en: "Overnight Desert Safari", ar: "سفاري صحراوي ليلي" },
     price: { en: "AED 450", ar: "450 درهم" },
     duration: { en: "18 Hours", ar: "18 ساعة" },
-    image: "https://images.unsplash.com/photo-1501232060322-aa87215ab531?auto=format&fit=crop&q=80&w=800",
+    image: "https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=center,quality=60,width=535,height=400,dpr=2/tour_img/19c9c5238d22df5d5e08c668a59826874e8d37f728fcab0ae16894001e41f8e7.jpg",
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1501232060322-aa87215ab531?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Starry Night", ar: "ليلة مرصعة بالنجوم" } },
+      { src: "https://images.unsplash.com/photo-1489516408517-6c0a1387c6ce?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Morning Coffee", ar: "قهوة الصباح" } },
+      { src: "https://images.unsplash.com/photo-1545167622-3a6ac15670b3?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Desert Sunrise", ar: "شروق الصحراء" } }
+    ],
     includes: {
       en: ["Everything in Evening Safari", "Overnight Tent Stay", "Breakfast", "Sunrise View"],
       ar: ["كل شيء في السفاري المسائي", "مبيت في الخيمة", "إفطار", "مشهد شروق الشمس"]
@@ -234,6 +249,11 @@ const safariPackages = [
     price: { en: "AED 1200", ar: "1200 درهم" },
     duration: { en: "6 Hours", ar: "6 ساعات" },
     image: "https://images.unsplash.com/photo-1545167622-3a6ac15670b3?auto=format&fit=crop&q=80&w=800",
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1545167622-3a6ac15670b3?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Private Cruiser", ar: "كروزر خاص" } },
+      { src: "https://images.unsplash.com/photo-1552560229-edf081349691?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "VIP Setup", ar: "تجهيزات VIP" } },
+      { src: "https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Luxury Dining", ar: "عشاء فاخر" } }
+    ],
     includes: {
       en: ["Private 4x4 Land Cruiser", "Table Service", "Premium BBQ", "Private Seating"],
       ar: ["لاند كروزر 4x4 خاص", "خدمة الطاولة", "مشاوي فاخرة", "جلسة خاصة"]
@@ -722,6 +742,7 @@ const App = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [manualMailto, setManualMailto] = useState('');
   const [lightboxIndex, setLightboxIndex] = useState(null);
+  const [currentLightboxItems, setCurrentLightboxItems] = useState(galleryItems);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currencyAmount, setCurrencyAmount] = useState(1);
   const [currencyFrom, setCurrencyFrom] = useState('USD');
@@ -2453,7 +2474,12 @@ const App = () => {
             {galleryItems.map((item, index) => (
               <div 
                 key={index} 
-                onClick={() => item.type === 'image' && setLightboxIndex(index)}
+                onClick={() => {
+                  if (item.type === 'image') {
+                    setCurrentLightboxItems(galleryItems);
+                    setLightboxIndex(index);
+                  }
+                }}
                 className={`relative group rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-slate-800 h-64 border border-slate-100 dark:border-slate-700 ${item.type === 'image' ? 'cursor-pointer' : ''}`}
               >
                 {item.type === 'video' ? (
@@ -2858,6 +2884,25 @@ const App = () => {
                         <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{pkg.title[lang]}</h3>
                         <p className="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">{pkg.description[lang]}</p>
                         
+                        <div className="mb-4">
+                          <p className="text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase">{lang === 'en' ? 'Gallery' : 'المعرض'}</p>
+                          <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
+                            {pkg.gallery.map((img, idx) => (
+                              <img 
+                                key={idx} 
+                                src={img.src} 
+                                alt={img.title[lang]}
+                                className="w-16 h-16 object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity border border-slate-200 dark:border-slate-700" 
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setCurrentLightboxItems(pkg.gallery);
+                                  setLightboxIndex(idx);
+                                }}
+                              />
+                            ))}
+                          </div>
+                        </div>
+
                         <div className="mb-6 space-y-2">
                             {pkg.includes[lang].map((inc, i) => (
                               <div key={i} className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
@@ -3707,7 +3752,7 @@ const App = () => {
       {lightboxIndex !== null && (
         <div className="fixed inset-0 z-[110] bg-black/90 flex flex-col items-center justify-center p-4 animate-in fade-in duration-300" onClick={() => setLightboxIndex(null)}>
           <a 
-            href={galleryItems[lightboxIndex].src} 
+            href={currentLightboxItems[lightboxIndex].src} 
             download 
             target="_blank"
             rel="noopener noreferrer"
@@ -3723,14 +3768,14 @@ const App = () => {
                 try {
                   await navigator.share({
                     title: galleryItems[lightboxIndex].title[lang],
-                    text: `Check out this image: ${galleryItems[lightboxIndex].title[lang]}`,
-                    url: galleryItems[lightboxIndex].src,
+                    text: `Check out this image: ${currentLightboxItems[lightboxIndex].title[lang]}`,
+                    url: currentLightboxItems[lightboxIndex].src,
                   });
                 } catch (error) {
                   console.log('Error sharing', error);
                 }
               } else {
-                navigator.clipboard.writeText(galleryItems[lightboxIndex].src);
+                navigator.clipboard.writeText(currentLightboxItems[lightboxIndex].src);
                 alert(lang === 'en' ? 'Link copied to clipboard!' : 'تم نسخ الرابط إلى الحافظة!');
               }
             }}
@@ -3745,9 +3790,9 @@ const App = () => {
           <button 
             onClick={(e) => {
               e.stopPropagation();
-              let prevIndex = (lightboxIndex - 1 + galleryItems.length) % galleryItems.length;
-              while (galleryItems[prevIndex].type !== 'image' && prevIndex !== lightboxIndex) {
-                prevIndex = (prevIndex - 1 + galleryItems.length) % galleryItems.length;
+              let prevIndex = (lightboxIndex - 1 + currentLightboxItems.length) % currentLightboxItems.length;
+              while (currentLightboxItems[prevIndex].type !== 'image' && prevIndex !== lightboxIndex) {
+                prevIndex = (prevIndex - 1 + currentLightboxItems.length) % currentLightboxItems.length;
               }
               setLightboxIndex(prevIndex);
             }}
@@ -3757,22 +3802,22 @@ const App = () => {
           </button>
 
           <img 
-            src={galleryItems[lightboxIndex].src} 
-            alt={galleryItems[lightboxIndex].title[lang]} 
+            src={currentLightboxItems[lightboxIndex].src} 
+            alt={currentLightboxItems[lightboxIndex].title[lang]} 
             className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-300" 
             onClick={(e) => e.stopPropagation()} 
           />
 
           <div className="mt-4 text-center z-50" onClick={(e) => e.stopPropagation()}>
-            <h3 className="text-white text-xl font-bold tracking-wide">{galleryItems[lightboxIndex].title[lang]}</h3>
+            <h3 className="text-white text-xl font-bold tracking-wide">{currentLightboxItems[lightboxIndex].title[lang]}</h3>
           </div>
 
           <button 
             onClick={(e) => {
               e.stopPropagation();
-              let nextIndex = (lightboxIndex + 1) % galleryItems.length;
-              while (galleryItems[nextIndex].type !== 'image' && nextIndex !== lightboxIndex) {
-                nextIndex = (nextIndex + 1) % galleryItems.length;
+              let nextIndex = (lightboxIndex + 1) % currentLightboxItems.length;
+              while (currentLightboxItems[nextIndex].type !== 'image' && nextIndex !== lightboxIndex) {
+                nextIndex = (nextIndex + 1) % currentLightboxItems.length;
               }
               setLightboxIndex(nextIndex);
             }}

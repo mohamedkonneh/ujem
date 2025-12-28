@@ -200,7 +200,17 @@ const safariPackages = [
     description: {
       en: "Experience the golden dunes in the early morning sun. Perfect for those who want a quick adrenaline rush.",
       ar: "استمتع بالكثبان الذهبية في شمس الصباح الباكر. مثالي لأولئك الذين يريدون اندفاع الأدرينالين السريع."
-    }
+    },
+    longDescription: {
+      en: "Start your day with an adrenaline-pumping adventure in the Dubai desert. Our Morning Safari is designed for those who want to experience the thrill of dune bashing and the beauty of the desert sunrise without committing to a full evening tour. You'll be picked up in a 4x4 Land Cruiser and whisked away to the red dunes of Lahbab. After a safety briefing, enjoy 45 minutes of intense dune bashing. Stop for photos in the middle of the desert, try your hand at sandboarding down the steep slopes, and enjoy a short camel ride before heading back to the city.",
+      ar: "ابدأ يومك بمغامرة تضخ الأدرينالين في صحراء دبي. تم تصميم السفاري الصباحي لأولئك الذين يرغبون في تجربة إثارة تقريع الكثبان الرملية وجمال شروق الشمس في الصحراء دون الالتزام بجولة مسائية كاملة. سيتم نقلك في سيارة لاند كروزر 4x4 ونقلك إلى الكثبان الحمراء في لهباب. بعد إحاطة السلامة، استمتع بـ 45 دقيقة من تقريع الكثبان الرملية المكثف. توقف لالتقاط الصور في وسط الصحراء، وجرب التزلج على الرمال أسفل المنحدرات الشديدة، واستمتع بركوب الجمال القصير قبل العودة إلى المدينة."
+    },
+    itinerary: [
+      { time: "08:00 AM", title: { en: "Pickup", ar: "الاستقبال" }, desc: { en: "Pickup from your hotel in 4x4 Land Cruiser.", ar: "الاستقبال من فندقك في سيارة لاند كروزر 4x4." } },
+      { time: "09:00 AM", title: { en: "Dune Bashing", ar: "تقريع الكثبان" }, desc: { en: "45 minutes of thrilling dune bashing.", ar: "45 دقيقة من تقريع الكثبان الرملية المثير." } },
+      { time: "10:00 AM", title: { en: "Activities", ar: "الأنشطة" }, desc: { en: "Sandboarding and Camel Ride photo stop.", ar: "التزلج على الرمال ووقفة تصوير ركوب الجمال." } },
+      { time: "11:00 AM", title: { en: "Drop-off", ar: "التوصيل" }, desc: { en: "Return to your hotel.", ar: "العودة إلى فندقك." } }
+    ]
   },
   {
     id: 'evening-safari',
@@ -221,7 +231,18 @@ const safariPackages = [
       en: "The classic Dubai experience. Watch the sunset over the dunes followed by a traditional Arabian night.",
       ar: "تجربة دبي الكلاسيكية. شاهد غروب الشمس فوق الكثبان الرملية تليها ليلة عربية تقليدية."
     },
-    popular: true
+    popular: true,
+    longDescription: {
+      en: "Immerse yourself in the magic of the Arabian desert with our Evening Desert Safari. This 6-hour tour offers the perfect blend of adventure and culture. Feel the rush of dune bashing in a 4x4, capture the breathtaking sunset over the dunes, and ride a camel at our traditional Bedouin camp. As night falls, enjoy a delicious BBQ dinner buffet with live entertainment including belly dancing, Tanoura show, and fire performance. Henna painting and shisha are also available to complete your authentic experience.",
+      ar: "انغمس في سحر الصحراء العربية مع سفاري الصحراء المسائي. تقدم هذه الجولة التي تستغرق 6 ساعات مزيجاً مثالياً من المغامرة والثقافة. اشعر باندفاع تقريع الكثبان الرملية في سيارة دفع رباعي، والتقط غروب الشمس الخلاب فوق الكثبان الرملية، واركب جملاً في مخيمنا البدوي التقليدي. مع حلول الليل، استمتع بوفيه عشاء مشاوي لذيذ مع ترفيه حي يشمل الرقص الشرقي، وعرض التنورة، وعرض النار. يتوفر أيضاً رسم الحناء والشيشة لإكمال تجربتك الأصيلة."
+    },
+    itinerary: [
+      { time: "03:00 PM", title: { en: "Pickup", ar: "الاستقبال" }, desc: { en: "Pickup from your location.", ar: "الاستقبال من موقعك." } },
+      { time: "04:30 PM", title: { en: "Desert Adventure", ar: "مغامرة الصحراء" }, desc: { en: "Dune bashing and sunset photography.", ar: "تقريع الكثبان وتصوير الغروب." } },
+      { time: "06:00 PM", title: { en: "Camp Arrival", ar: "الوصول للمخيم" }, desc: { en: "Camel riding and welcome drinks.", ar: "ركوب الجمال ومشروبات ترحيبية." } },
+      { time: "07:00 PM", title: { en: "Dinner & Show", ar: "العشاء والعرض" }, desc: { en: "BBQ Dinner with live entertainment.", ar: "عشاء مشاوي مع ترفيه حي." } },
+      { time: "09:00 PM", title: { en: "Drop-off", ar: "التوصيل" }, desc: { en: "Return to your location.", ar: "العودة إلى موقعك." } }
+    ]
   },
   {
     id: 'overnight-safari',
@@ -241,7 +262,18 @@ const safariPackages = [
     description: {
       en: "Sleep under the stars in the middle of the desert. A truly magical experience away from the city lights.",
       ar: "نم تحت النجوم في وسط الصحراء. تجربة سحرية حقاً بعيداً عن أضواء المدينة."
-    }
+    },
+    longDescription: {
+      en: "Extend your desert adventure with an unforgettable overnight stay. After the evening safari activities and dinner, settle into your comfortable tent or sleep under the open sky. Experience the silence of the desert at night and wake up to a spectacular sunrise. A freshly prepared breakfast is served before we drive you back to the city. This is the ultimate way to connect with nature and experience the desert lifestyle.",
+      ar: "مدد مغامرتك الصحراوية مع إقامة ليلية لا تُنسى. بعد أنشطة السفاري المسائية والعشاء، استقر في خيمتك المريحة أو نم تحت السماء المفتوحة. جرب صمت الصحراء في الليل واستيقظ على شروق شمس مذهل. يتم تقديم وجبة إفطار طازجة قبل أن نعيدك إلى المدينة. هذه هي الطريقة المثلى للتواصل مع الطبيعة وتجربة نمط الحياة الصحراوي."
+    },
+    itinerary: [
+      { time: "03:00 PM", title: { en: "Start", ar: "البداية" }, desc: { en: "Same itinerary as Evening Safari.", ar: "نفس برنامج السفاري المسائي." } },
+      { time: "10:00 PM", title: { en: "Bonfire", ar: "نار المخيم" }, desc: { en: "Relax by the bonfire under the stars.", ar: "الاسترخاء بجانب النار تحت النجوم." } },
+      { time: "06:00 AM", title: { en: "Sunrise", ar: "شروق الشمس" }, desc: { en: "Wake up for sunrise views.", ar: "الاستيقاظ لمشاهدة الشروق." } },
+      { time: "07:00 AM", title: { en: "Breakfast", ar: "الإفطار" }, desc: { en: "Traditional breakfast served.", ar: "تقديم إفطار تقليدي." } },
+      { time: "08:30 AM", title: { en: "Departure", ar: "المغادرة" }, desc: { en: "Drive back to the city.", ar: "العودة إلى المدينة." } }
+    ]
   },
   {
     id: 'vip-safari',
@@ -261,7 +293,17 @@ const safariPackages = [
     description: {
       en: "Luxury desert experience with a private vehicle and dedicated service.",
       ar: "تجربة صحراوية فاخرة مع سيارة خاصة وخدمة مخصصة."
-    }
+    },
+    longDescription: {
+      en: "Indulge in the ultimate luxury with our VIP Private Safari. You will have a dedicated 4x4 Land Cruiser exclusively for your group. Enjoy a personalized dune bashing session at your own pace. At the camp, you'll have a reserved VIP seating area with table service, so you don't have to wait in queues for food or drinks. A premium BBQ dinner is served directly to your table. Perfect for couples, families, or anyone seeking privacy and comfort.",
+      ar: "انغمس في الرفاهية المطلقة مع سفاري VIP الخاص بنا. سيكون لديك سيارة لاند كروزر 4x4 مخصصة حصرياً لمجموعتك. استمتع بجلسة تقريع كثبان رملية مخصصة حسب رغبتك. في المخيم، سيكون لديك منطقة جلوس VIP محجوزة مع خدمة الطاولة، لذلك لن تضطر للانتظار في طوابير للطعام أو الشراب. يتم تقديم عشاء مشاوي فاخر مباشرة إلى طاولتك. مثالي للأزواج والعائلات أو أي شخص يبحث عن الخصوصية والراحة."
+    },
+    itinerary: [
+      { time: "Flexible", title: { en: "Pickup", ar: "الاستقبال" }, desc: { en: "Private pickup at your preferred time.", ar: "استقبال خاص في الوقت المفضل لديك." } },
+      { time: "Adventure", title: { en: "Private Dune Bashing", ar: "تقريع خاص" }, desc: { en: "Customized dune drive experience.", ar: "تجربة قيادة كثبان مخصصة." } },
+      { time: "Dining", title: { en: "VIP Service", ar: "خدمة VIP" }, desc: { en: "Table service dinner in private area.", ar: "عشاء بخدمة الطاولة في منطقة خاصة." } },
+      { time: "Return", title: { en: "Drop-off", ar: "التوصيل" }, desc: { en: "Private drop-off at your location.", ar: "توصيل خاص إلى موقعك." } }
+    ]
   }
 ];
 
@@ -745,6 +787,7 @@ const App = () => {
   const [currentLightboxItems, setCurrentLightboxItems] = useState(galleryItems);
   const [compareList, setCompareList] = useState([]);
   const [isCompareOpen, setIsCompareOpen] = useState(false);
+  const [selectedSafari, setSelectedSafari] = useState(null);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currencyAmount, setCurrencyAmount] = useState(1);
   const [currencyFrom, setCurrencyFrom] = useState('USD');
@@ -2884,7 +2927,7 @@ const App = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {safariPackages.map((pkg) => (
-                  <div key={pkg.id} className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 dark:border-slate-700 flex flex-col group">
+                  <div key={pkg.id} onClick={() => { setSelectedSafari(pkg); setActivePage('safari-details'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 dark:border-slate-700 flex flex-col group cursor-pointer">
                       <div className="relative h-64 overflow-hidden">
                         <img src={pkg.image} alt={pkg.title[lang]} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                         {pkg.popular && (
@@ -2939,7 +2982,7 @@ const App = () => {
                               <span className="text-xs text-slate-400 block uppercase">{lang === 'en' ? 'Per Person' : 'للشخص'}</span>
                               <span className="text-2xl font-bold text-brand-600">{pkg.price[lang]}</span>
                             </div>
-                            <button onClick={() => openModal(pkg.title[lang])} className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-2 rounded-xl font-bold hover:bg-brand-600 dark:hover:bg-brand-400 hover:text-white transition-colors">
+                            <button onClick={(e) => { e.stopPropagation(); openModal(pkg.title[lang]); }} className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-2 rounded-xl font-bold hover:bg-brand-600 dark:hover:bg-brand-400 hover:text-white transition-colors">
                               {t.bookNow}
                             </button>
                         </div>
@@ -3012,6 +3055,104 @@ const App = () => {
               </div>
             </div>
           )}
+        </section>
+      )}
+
+      {/* --- SAFARI DETAILS PAGE --- */}
+      {activePage === 'safari-details' && selectedSafari && (
+        <section className="pt-32 pb-24 bg-slate-50 dark:bg-slate-900 transition-colors min-h-screen animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Back Button */}
+            <button onClick={() => setActivePage('safari')} className="mb-6 flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-medium">
+              <ChevronLeft size={20} className="rtl:rotate-180" /> {lang === 'en' ? 'Back to Packages' : 'العودة للباقات'}
+            </button>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+              {/* Main Content */}
+              <div className="lg:col-span-2 space-y-8">
+                <div className="rounded-3xl overflow-hidden shadow-2xl h-[400px] relative group">
+                  <img src={selectedSafari.image} alt={selectedSafari.title[lang]} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-8">
+                    <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">{selectedSafari.title[lang]}</h1>
+                    <div className="flex items-center gap-4 text-white/90 text-sm">
+                      <span className="flex items-center gap-1"><Clock size={16} /> {selectedSafari.duration[lang]}</span>
+                      {selectedSafari.popular && <span className="flex items-center gap-1 text-amber-400"><Star size={16} fill="currentColor" /> {lang === 'en' ? 'Popular Choice' : 'خيار شائع'}</span>}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-100 dark:border-slate-700">
+                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">{lang === 'en' ? 'Overview' : 'نظرة عامة'}</h2>
+                  <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
+                    {selectedSafari.longDescription ? selectedSafari.longDescription[lang] : selectedSafari.description[lang]}
+                  </p>
+                </div>
+
+                {selectedSafari.itinerary && (
+                  <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-100 dark:border-slate-700">
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">{lang === 'en' ? 'Itinerary' : 'برنامج الرحلة'}</h2>
+                    <div className="space-y-8 relative before:absolute before:left-[19px] rtl:before:right-[19px] rtl:before:left-auto before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-200 dark:before:bg-slate-700">
+                      {selectedSafari.itinerary.map((item, index) => (
+                        <div key={index} className="relative pl-12 rtl:pr-12 rtl:pl-0">
+                          <div className="absolute left-0 rtl:right-0 rtl:left-auto top-1 w-10 h-10 rounded-full bg-brand-100 dark:bg-brand-900/30 border-4 border-white dark:border-slate-800 flex items-center justify-center text-brand-600 dark:text-brand-400 font-bold text-xs z-10">
+                            {index + 1}
+                          </div>
+                          <div>
+                            <span className="text-xs font-bold text-brand-600 uppercase tracking-wider mb-1 block">{item.time}</span>
+                            <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-1">{item.title[lang]}</h4>
+                            <p className="text-slate-600 dark:text-slate-400 text-sm">{item.desc[lang]}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Gallery Preview */}
+                <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-100 dark:border-slate-700">
+                   <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">{lang === 'en' ? 'Photo Gallery' : 'معرض الصور'}</h2>
+                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                      {selectedSafari.gallery.map((img, idx) => (
+                        <img 
+                          key={idx} 
+                          src={img.src} 
+                          alt={img.title[lang]} 
+                          className="w-full h-32 object-cover rounded-xl cursor-pointer hover:opacity-90 transition-opacity"
+                          onClick={() => { setCurrentLightboxItems(selectedSafari.gallery); setLightboxIndex(idx); }}
+                        />
+                      ))}
+                   </div>
+                </div>
+              </div>
+
+              {/* Sidebar */}
+              <div className="lg:col-span-1 space-y-6">
+                <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-xl border border-slate-100 dark:border-slate-700 sticky top-24">
+                  <div className="mb-6">
+                    <span className="text-sm text-slate-500 dark:text-slate-400 block mb-1">{lang === 'en' ? 'Starting from' : 'يبدأ من'}</span>
+                    <span className="text-4xl font-extrabold text-brand-600">{selectedSafari.price[lang]}</span>
+                    <span className="text-sm text-slate-400"> / {lang === 'en' ? 'Person' : 'شخص'}</span>
+                  </div>
+                  
+                  <button onClick={() => openModal(selectedSafari.title[lang])} className="w-full bg-brand-600 text-white font-bold py-4 rounded-xl hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/20 mb-6 flex items-center justify-center gap-2">
+                    <Calendar size={20} /> {t.bookNow}
+                  </button>
+
+                  <div className="space-y-4 border-t border-slate-100 dark:border-slate-700 pt-6">
+                    <h4 className="font-bold text-slate-900 dark:text-white mb-2">{lang === 'en' ? 'What\'s Included' : 'ماذا يشمل'}</h4>
+                    <ul className="space-y-3">
+                      {selectedSafari.includes[lang].map((inc, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-400">
+                          <CheckCircle size={16} className="text-green-500 shrink-0 mt-0.5" />
+                          <span>{inc}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       )}
 

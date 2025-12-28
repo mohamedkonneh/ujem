@@ -896,31 +896,36 @@ const App = () => {
   };
 
 const MapComponent = ({ latitude, longitude }) => {
-    // This is a placeholder for a real map component.  You would
-    // integrate a mapping library here (e.g., Google Maps, Leaflet).
+  if (!latitude || !longitude) return null;
 
-    useEffect(() => {
-        // Example: Initialize a Leaflet map here (after installing Leaflet)
-        // const map = L.map('map').setView([latitude, longitude], 13);
-        // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-
-        // In a real implementation, you would use the latitude and
-        // longitude props to set the map's center and add markers.
-    }, [latitude, longitude]);
+  // Calculate bounding box for the map view (approx 0.02 degrees padding)
+  const bbox = `${longitude - 0.02}%2C${latitude - 0.02}%2C${longitude + 0.02}%2C${latitude + 0.02}`;
+  const src = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${latitude}%2C${longitude}`;
 
     return (
-        <div className="relative w-full h-48 bg-slate-200 dark:bg-slate-700 rounded-xl overflow-hidden">
-            <div className="absolute inset-0 flex items-center justify-center text-slate-500 dark:text-slate-400 italic">
-                {latitude && longitude ? (
-                    <div id="map">
-                        Map will load here!
-                    </div>
-                ) : (
-                    <p>Map Loading...</p>
-                )}
-            </div>
-            {/* Replace the div above with your preferred map component */}
-            {/* Example: <div id="map" style={{ height: "200px" }}></div> */}
+    <div className="relative w-full h-48 bg-slate-100 dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 mt-3 shadow-sm group/map">
+      <iframe
+        width="100%"
+        height="100%"
+        frameBorder="0"
+        scrolling="no"
+        marginHeight="0"
+        marginWidth="0"
+        src={src}
+        title="Location Map"
+        className="w-full h-full grayscale hover:grayscale-0 transition-all duration-500"
+        loading="lazy"
+      ></iframe>
+      <div className="absolute bottom-2 right-2 bg-white/90 dark:bg-slate-900/90 px-2 py-1 rounded text-[10px] shadow-sm z-10 opacity-0 group-hover/map:opacity-100 transition-opacity">
+        <a 
+          href={`https://www.openstreetmap.org/?mlat=${latitude}&mlon=${longitude}#map=14/${latitude}/${longitude}`} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-brand-600 hover:underline font-bold flex items-center gap-1"
+        >
+          <MapPin size={10} /> View Larger Map
+        </a>
+      </div>
         </div>
     );
 };
@@ -3141,8 +3146,10 @@ const MapComponent = ({ latitude, longitude }) => {
                           </div>
                           {/* Conditionally render the map for the first two itinerary items */}
                           {index < 2 && (
-                            <MapComponent latitude={selectedSafari.locationCoordinates.latitude} longitude={selectedSafari.locationCoordinates.longitude} />
-                            
+                            <MapComponent 
+                              latitude={index === 0 ? selectedSafari.pickupCoordinates?.latitude : selectedSafari.locationCoordinates?.latitude} 
+                              longitude={index === 0 ? selectedSafari.pickupCoordinates?.longitude : selectedSafari.locationCoordinates?.longitude} 
+                            />
                           )}
                           <div>
                             <span className="text-xs font-bold text-brand-600 uppercase tracking-wider mb-1 block">{item.time}</span>

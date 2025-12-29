@@ -318,11 +318,11 @@ const safariPackages = [
     title: { en: "Quad Bike Safari", ar: "سفاري الدراجات الرباعية" },
     price: { en: "AED 350", ar: "350 درهم" },
     duration: { en: "4 Hours", ar: "4 ساعات" },
-    image: "https://images.unsplash.com/photo-1570060388576-92c286611918?auto=format&fit=crop&q=80&w=800",
+    image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/c3/11/cd/caption.jpg?w=800&h=600&s=1",
     gallery: [
-      { src: "https://images.unsplash.com/photo-1570060388576-92c286611918?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Quad Biking", ar: "ركوب الدراجات الرباعية" } },
-      { src: "https://images.unsplash.com/photo-1547234935-80c7142ee969?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Desert Action", ar: "أكشن الصحراء" } },
-      { src: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Sand Dunes", ar: "كثبان رملية" } }
+      { src: "https://www.tripadvisor.com/AttractionProductReview-g295424-d15302065-Dubai_Half_Day_Desert_Safari_Camels_Quad_Bike_Refreshments-Dubai_Emirate_of_Dubai.html", type: 'image', title: { en: "Quad Biking", ar: "ركوب الدراجات الرباعية" } },
+      { src: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/72/87/e8/caption.jpg?w=800&h=600&s=1", type: 'image', title: { en: "Desert Action", ar: "أكشن الصحراء" } },
+      { src: "https://www.tripadvisor.com/AttractionProductReview-g295424-d19496422-Dubai_Morning_Desert_Safari_with_Quad_Biking_More_Activities-Dubai_Emirate_of_Duba.html", type: 'image', title: { en: "Sand Dunes", ar: "كثبان رملية" } }
     ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
@@ -338,7 +338,7 @@ const safariPackages = [
     gallery: [
       { src: "https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Buggy Jump", ar: "قفزة العربة" } },
       { src: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Desert Track", ar: "مسار صحراوي" } },
-      { src: "https://images.unsplash.com/photo-1545167622-3a6ac15670b3?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Adventure", ar: "مغامرة" } }
+      { src: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/aa/40/dd/caption.jpg?w=600&h=600&s=1", type: 'image', title: { en: "Adventure", ar: "مغامرة" } }
     ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
@@ -350,11 +350,11 @@ const safariPackages = [
     title: { en: "Hatta Mountain Safari", ar: "سفاري جبال حتا" },
     price: { en: "AED 200", ar: "200 درهم" },
     duration: { en: "6 Hours", ar: "6 ساعات" },
-    image: "https://images.unsplash.com/photo-1589886773788-0e6c22d99906?auto=format&fit=crop&q=80&w=800",
+    image: "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/0f/9d/1f/4b.jpg",
     gallery: [
-      { src: "https://images.unsplash.com/photo-1589886773788-0e6c22d99906?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Hatta Dam", ar: "سد حتا" } },
-      { src: "https://images.unsplash.com/photo-1597659840241-37e2b9c2f55f?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Hatta Mountains", ar: "جبال حتا" } },
-      { src: "https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Heritage Village", ar: "القرية التراثية" } }
+      { src: "https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=center,quality=60,width=535,height=400,dpr=2/tour_img/0e154ea66eaf0cb823e17918de4506190b5628b6422433fca68dc3d50031cfc9.jpg", type: 'image', title: { en: "Hatta Dam", ar: "سد حتا" } },
+      { src: "https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=auto,quality=60,width=390,height=260,dpr=2/tour_img/fa9270c19e9b7b538dfb378bc7c9a89c3c373857467bf30f4d871cfe8affd435.jpeg", type: 'image', title: { en: "Hatta Mountains", ar: "جبال حتا" } },
+      { src: "https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=center,quality=60,width=265,height=195,dpr=2/tour_img/852c01b49dd0a1a154f2e0b06c6125e0dee582bd663b700dc4aee427438fdda9.jpeg", type: 'image', title: { en: "Heritage Village", ar: "القرية التراثية" } }
     ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8186, longitude: 56.1235 },
@@ -366,11 +366,11 @@ const safariPackages = [
     title: { en: "Falconry Safari", ar: "سفاري الصقور" },
     price: { en: "AED 400", ar: "400 درهم" },
     duration: { en: "5 Hours", ar: "5 ساعات" },
-    image: "https://images.unsplash.com/photo-1569673604358-1352d327525d?auto=format&fit=crop&q=80&w=800",
+    image: "https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=auto,quality=60,width=270,height=180,dpr=2/tour_img/83a4588b770e577e94c305c17705109925f3d2167486a2e4b0eafb6c9e881005.jpeg",
     gallery: [
-      { src: "https://images.unsplash.com/photo-1569673604358-1352d327525d?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Falcon", ar: "صقر" } },
-      { src: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Falconry Show", ar: "عرض الصقور" } },
-      { src: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Desert Tradition", ar: "تقليد صحراوي" } }
+      { src: "https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=auto,quality=60,width=270,height=180,dpr=2/tour_img/10e532ab364025be.jpeg", type: 'image', title: { en: "Falcon", ar: "صقر" } },
+      { src: "https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=auto,quality=60,width=270,height=180,dpr=2/tour_img/588ec5ed840b43ca0080bd1795c61c5680d51220b9ec6eb6cab6dc7a4b4801e7.jpg", type: 'image', title: { en: "Falconry Show", ar: "عرض الصقور" } },
+      { src: "https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=auto,quality=60,width=270,height=180,dpr=2/tour_img/76247e2276dde4629e6389dc84124a0d23f5221bd6a3bac7c3f16c14f09b972d.jpg", type: 'image', title: { en: "Desert Tradition", ar: "تقليد صحراوي" } }
     ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },

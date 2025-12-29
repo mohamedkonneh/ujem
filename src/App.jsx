@@ -1119,6 +1119,83 @@ const DraggableCard = ({ children, className, onClick }) => {
   );
 };
 
+const SafariWeatherWidget = ({ latitude, longitude, lang }) => {
+  const [weather, setWeather] = useState(null);
+  const [currency, setCurrency] = useState('AED');
+  
+  const rates = {
+    AED: 1,
+    USD: 0.27,
+    EUR: 0.25,
+    GBP: 0.21
+  };
+
+  useEffect(() => {
+    if (latitude && longitude) {
+      fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`)
+        .then(res => res.json())
+        .then(data => setWeather(data.current_weather))
+        .catch(err => console.error(err));
+    }
+  }, [latitude, longitude]);
+
+  const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const today = new Date().toLocaleDateString(lang === 'en' ? 'en-US' : 'ar-AE', dateOptions);
+
+  return (
+    <div className="bg-gradient-to-br from-brand-500 to-brand-700 rounded-2xl p-6 text-white shadow-lg mb-6 relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none"></div>
+      
+      <div className="relative z-10">
+        <div className="flex justify-between items-start mb-6">
+          <div>
+            <p className="text-brand-100 text-xs font-bold uppercase tracking-wider mb-1 flex items-center gap-1">
+              <MapPin size={12} /> {lang === 'en' ? 'Location Weather' : 'طقس الموقع'}
+            </p>
+            <div className="flex items-center gap-3">
+              <CloudSun className="text-yellow-300" size={32} />
+              <div>
+                <span className="text-3xl font-bold">{weather ? `${Math.round(weather.temperature)}°` : '--'}</span>
+                <span className="text-lg opacity-80">C</span>
+              </div>
+            </div>
+            {weather && (
+              <p className="text-xs text-brand-100 mt-1">
+                {lang === 'en' ? `Wind: ${weather.windspeed} km/h` : `الرياح: ${weather.windspeed} كم/س`}
+              </p>
+            )}
+          </div>
+          <div className="text-right">
+             <div className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-lg inline-block">
+               <p className="text-xs font-bold">{today}</p>
+             </div>
+          </div>
+        </div>
+        
+        <div className="bg-black/20 rounded-xl p-3 backdrop-blur-sm">
+          <div className="flex justify-between items-center mb-2">
+             <span className="text-xs font-bold uppercase tracking-wider opacity-80">{lang === 'en' ? 'Currency' : 'العملة'}</span>
+             <select 
+               value={currency} 
+               onChange={(e) => setCurrency(e.target.value)}
+               className="bg-transparent border-none p-0 text-sm font-bold focus:ring-0 cursor-pointer text-white text-right"
+             >
+               <option value="AED" className="text-slate-900">AED (Dirham)</option>
+               <option value="USD" className="text-slate-900">USD (Dollar)</option>
+               <option value="EUR" className="text-slate-900">EUR (Euro)</option>
+               <option value="GBP" className="text-slate-900">GBP (Pound)</option>
+             </select>
+          </div>
+          <div className="flex justify-between items-end">
+            <span className="text-xs opacity-70">1 AED ≈</span>
+            <span className="text-xl font-bold">{rates[currency]} {currency}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -3577,6 +3654,11 @@ const MapComponent = ({ latitude, longitude }) => {
 
               {/* Sidebar */}
               <div className="lg:col-span-1 space-y-6">
+                <SafariWeatherWidget 
+                  latitude={selectedSafari.locationCoordinates?.latitude} 
+                  longitude={selectedSafari.locationCoordinates?.longitude} 
+                  lang={lang} 
+                />
                 <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-xl border border-slate-100 dark:border-slate-700 sticky top-24">
                   <div className="mb-6">
                     <span className="text-sm text-slate-500 dark:text-slate-400 block mb-1">{lang === 'en' ? 'Starting from' : 'يبدأ من'}</span>

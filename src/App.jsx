@@ -319,7 +319,11 @@ const safariPackages = [
     price: { en: "AED 350", ar: "350 درهم" },
     duration: { en: "4 Hours", ar: "4 ساعات" },
     image: "https://images.unsplash.com/photo-1570060388576-92c286611918?auto=format&fit=crop&q=80&w=800",
-    gallery: [],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1570060388576-92c286611918?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Quad Biking", ar: "ركوب الدراجات الرباعية" } },
+      { src: "https://images.unsplash.com/photo-1547234935-80c7142ee969?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Desert Action", ar: "أكشن الصحراء" } },
+      { src: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Sand Dunes", ar: "كثبان رملية" } }
+    ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["Quad Bike Rental", "Safety Gear", "Guide"], ar: ["تأجير دراجة رباعية", "معدات السلامة", "مرشد"] },
@@ -331,7 +335,11 @@ const safariPackages = [
     price: { en: "AED 600", ar: "600 درهم" },
     duration: { en: "4 Hours", ar: "4 ساعات" },
     image: "https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?auto=format&fit=crop&q=80&w=800",
-    gallery: [],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Buggy Jump", ar: "قفزة العربة" } },
+      { src: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Desert Track", ar: "مسار صحراوي" } },
+      { src: "https://images.unsplash.com/photo-1545167622-3a6ac15670b3?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Adventure", ar: "مغامرة" } }
+    ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["Buggy Rental", "Safety Gear", "Refreshments"], ar: ["تأجير عربة", "معدات السلامة", "مرطبات"] },
@@ -343,7 +351,11 @@ const safariPackages = [
     price: { en: "AED 200", ar: "200 درهم" },
     duration: { en: "6 Hours", ar: "6 ساعات" },
     image: "https://images.unsplash.com/photo-1589886773788-0e6c22d99906?auto=format&fit=crop&q=80&w=800",
-    gallery: [],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1589886773788-0e6c22d99906?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Hatta Dam", ar: "سد حتا" } },
+      { src: "https://images.unsplash.com/photo-1597659840241-37e2b9c2f55f?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Hatta Mountains", ar: "جبال حتا" } },
+      { src: "https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Heritage Village", ar: "القرية التراثية" } }
+    ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8186, longitude: 56.1235 },
     includes: { en: ["Mountain Drive", "Hatta Dam Visit", "Heritage Village"], ar: ["قيادة جبلية", "زيارة سد حتا", "القرية التراثية"] },
@@ -355,7 +367,11 @@ const safariPackages = [
     price: { en: "AED 400", ar: "400 درهم" },
     duration: { en: "5 Hours", ar: "5 ساعات" },
     image: "https://images.unsplash.com/photo-1569673604358-1352d327525d?auto=format&fit=crop&q=80&w=800",
-    gallery: [],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1569673604358-1352d327525d?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Falcon", ar: "صقر" } },
+      { src: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Falconry Show", ar: "عرض الصقور" } },
+      { src: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Desert Tradition", ar: "تقليد صحراوي" } }
+    ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["Falcon Show", "Photo Opportunity", "Breakfast"], ar: ["عرض الصقور", "فرصة تصوير", "إفطار"] },
@@ -367,7 +383,11 @@ const safariPackages = [
     price: { en: "AED 1100", ar: "1100 درهم" },
     duration: { en: "4 Hours", ar: "4 ساعات" },
     image: "https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&q=80&w=800",
-    gallery: [],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Balloon Flight", ar: "رحلة المنطاد" } },
+      { src: "https://images.unsplash.com/photo-1545167622-3a6ac15670b3?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Sunrise View", ar: "منظر الشروق" } },
+      { src: "https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Desert from Above", ar: "الصحراء من الأعلى" } }
+    ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["1 Hour Flight", "Flight Certificate", "Breakfast"], ar: ["رحلة لمدة ساعة", "شهادة طيران", "إفطار"] },
@@ -379,7 +399,11 @@ const safariPackages = [
     price: { en: "AED 180", ar: "180 درهم" },
     duration: { en: "3 Hours", ar: "3 ساعات" },
     image: "https://images.unsplash.com/photo-1598605272254-16f0c0ecdfa5?auto=format&fit=crop&q=80&w=800",
-    gallery: [],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1598605272254-16f0c0ecdfa5?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Camel Ride", ar: "ركوب الجمال" } },
+      { src: "https://images.unsplash.com/photo-1518182170546-0766aa6f18f6?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Camel Caravan", ar: "قافلة الجمال" } },
+      { src: "https://images.unsplash.com/photo-1547234935-80c7142ee969?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Desert Sunset", ar: "غروب الصحراء" } }
+    ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["45 Min Camel Ride", "Refreshments", "Transfers"], ar: ["ركوب جمال 45 دقيقة", "مرطبات", "نقل"] },
@@ -391,7 +415,11 @@ const safariPackages = [
     price: { en: "AED 800", ar: "800 درهم" },
     duration: { en: "4 Hours", ar: "4 ساعات" },
     image: "https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&q=80&w=800",
-    gallery: [],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Private Setup", ar: "تجهيز خاص" } },
+      { src: "https://images.unsplash.com/photo-1552560229-edf081349691?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Romantic Dinner", ar: "عشاء رومانسي" } },
+      { src: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Desert Night", ar: "ليل الصحراء" } }
+    ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["Private Setup", "Gourmet Dinner", "Butler Service"], ar: ["تجهيز خاص", "عشاء فاخر", "خدمة نادل"] },
@@ -403,7 +431,11 @@ const safariPackages = [
     price: { en: "AED 220", ar: "220 درهم" },
     duration: { en: "4 Hours", ar: "4 ساعات" },
     image: "https://images.unsplash.com/photo-1545167622-3a6ac15670b3?auto=format&fit=crop&q=80&w=800",
-    gallery: [],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1545167622-3a6ac15670b3?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Sunrise", ar: "شروق الشمس" } },
+      { src: "https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Morning Light", ar: "ضوء الصباح" } },
+      { src: "https://images.unsplash.com/photo-1547234935-80c7142ee969?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Golden Dunes", ar: "كثبان ذهبية" } }
+    ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["Dune Bashing", "Sunrise View", "Breakfast Box"], ar: ["تقريع الكثبان", "مشهد الشروق", "صندوق إفطار"] },
@@ -415,7 +447,11 @@ const safariPackages = [
     price: { en: "AED 900", ar: "900 درهم" },
     duration: { en: "12 Hours", ar: "12 ساعة" },
     image: "https://images.unsplash.com/photo-1547234935-80c7142ee969?auto=format&fit=crop&q=80&w=800",
-    gallery: [],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1547234935-80c7142ee969?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Liwa Dunes", ar: "كثبان ليوا" } },
+      { src: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Moreeb Dune", ar: "تل مرعب" } },
+      { src: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Empty Quarter", ar: "الربع الخالي" } }
+    ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 23.1308, longitude: 53.7585 },
     includes: { en: ["Moreeb Dune Visit", "Lunch", "Fort Visit"], ar: ["زيارة تل مرعب", "غداء", "زيارة الحصن"] },
@@ -427,7 +463,11 @@ const safariPackages = [
     price: { en: "AED 200", ar: "200 درهم" },
     duration: { en: "5 Hours", ar: "5 ساعات" },
     image: "https://images.unsplash.com/photo-1518182170546-0766aa6f18f6?auto=format&fit=crop&q=80&w=800",
-    gallery: [],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1518182170546-0766aa6f18f6?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Red Dunes", ar: "كثبان حمراء" } },
+      { src: "https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Dune Bashing", ar: "تقريع الكثبان" } },
+      { src: "https://images.unsplash.com/photo-1547234935-80c7142ee969?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Sandboarding", ar: "تزلج على الرمال" } }
+    ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["30 Min Dune Bashing", "Sandboarding", "Water"], ar: ["30 دقيقة تقريع كثبان", "تزلج على الرمال", "مياه"] },
@@ -439,7 +479,11 @@ const safariPackages = [
     price: { en: "AED 350", ar: "350 درهم" },
     duration: { en: "6 Hours", ar: "6 ساعات" },
     image: "https://images.unsplash.com/photo-1501232060322-aa87215ab531?auto=format&fit=crop&q=80&w=800",
-    gallery: [],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1501232060322-aa87215ab531?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Starry Night", ar: "ليلة مرصعة بالنجوم" } },
+      { src: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Campfire", ar: "نار المخيم" } },
+      { src: "https://images.unsplash.com/photo-1489516408517-6c0a1387c6ce?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Night Sky", ar: "سماء الليل" } }
+    ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["Night Drive", "Telescope Stargazing", "Dinner"], ar: ["قيادة ليلية", "رصد النجوم بالتلسكوب", "عشاء"] },
@@ -451,7 +495,11 @@ const safariPackages = [
     price: { en: "AED 280", ar: "280 درهم" },
     duration: { en: "5 Hours", ar: "5 ساعات" },
     image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800",
-    gallery: [],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Bedouin Camp", ar: "مخيم بدوي" } },
+      { src: "https://images.unsplash.com/photo-1552560229-edf081349691?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Arabic Coffee", ar: "قهوة عربية" } },
+      { src: "https://images.unsplash.com/photo-1598605272254-16f0c0ecdfa5?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Traditional Dress", ar: "زي تقليدي" } }
+    ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["Heritage Camp", "Traditional Food", "Costumes"], ar: ["مخيم تراثي", "طعام تقليدي", "أزياء"] },
@@ -463,7 +511,11 @@ const safariPackages = [
     price: { en: "AED 500", ar: "500 درهم" },
     duration: { en: "6 Hours", ar: "6 ساعات" },
     image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=800",
-    gallery: [],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Hummer H2", ar: "همر H2" } },
+      { src: "https://images.unsplash.com/photo-1547234935-80c7142ee969?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Luxury Ride", ar: "رحلة فاخرة" } },
+      { src: "https://images.unsplash.com/photo-1518182170546-0766aa6f18f6?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Desert Drive", ar: "قيادة صحراوية" } }
+    ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["Hummer H2 Ride", "VIP Camp Access", "BBQ"], ar: ["ركوب همر H2", "دخول مخيم VIP", "مشاوي"] },
@@ -475,7 +527,11 @@ const safariPackages = [
     price: { en: "AED 250", ar: "250 درهم" },
     duration: { en: "2 Hours", ar: "ساعتان" },
     image: "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&q=80&w=800",
-    gallery: [],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Horse Riding", ar: "ركوب الخيل" } },
+      { src: "https://images.unsplash.com/photo-1598605272254-16f0c0ecdfa5?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Desert Horse", ar: "حصان الصحراء" } },
+      { src: "https://images.unsplash.com/photo-1545167622-3a6ac15670b3?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Sunset Ride", ar: "رحلة الغروب" } }
+    ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["1 Hour Horse Ride", "Instructor", "Water"], ar: ["ساعة ركوب خيل", "مدرب", "مياه"] },
@@ -487,7 +543,11 @@ const safariPackages = [
     price: { en: "AED 350", ar: "350 درهم" },
     duration: { en: "5 Hours", ar: "5 ساعات" },
     image: "https://images.unsplash.com/photo-1489516408517-6c0a1387c6ce?auto=format&fit=crop&q=80&w=800",
-    gallery: [],
+    gallery: [
+      { src: "https://images.unsplash.com/photo-1489516408517-6c0a1387c6ce?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Oryx", ar: "المها" } },
+      { src: "https://images.unsplash.com/photo-1547234935-80c7142ee969?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Gazelle", ar: "غزال" } },
+      { src: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Vintage Rover", ar: "روفر كلاسيكي" } }
+    ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["Wildlife Spotting", "Vintage Land Rover", "Breakfast"], ar: ["مشاهدة الحياة البرية", "لاند روفر كلاسيكي", "إفطار"] },

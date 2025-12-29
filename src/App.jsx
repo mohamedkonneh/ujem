@@ -2629,6 +2629,62 @@ const MapComponent = ({ latitude, longitude }) => {
                 </div>
               </div>
             </div>
+
+            {/* Related Products from Shop */}
+            <div className="mt-16 border-t border-slate-200 dark:border-slate-700 pt-12">
+              <div className="flex justify-between items-end mb-8">
+                 <div>
+                   <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{lang === 'en' ? 'Gear Up for Adventure' : 'تجهّز للمغامرة'}</h3>
+                   <p className="text-slate-500 dark:text-slate-400 mt-2">{lang === 'en' ? 'Essential items from our shop for your safari.' : 'عناصر أساسية من متجرنا لرحلة السفاري الخاصة بك.'}</p>
+                 </div>
+                 <button onClick={() => navigateTo('shop')} className="text-brand-600 font-bold hover:underline text-sm hidden md:block">
+                   {lang === 'en' ? 'View All Products' : 'عرض كل المنتجات'}
+                 </button>
+              </div>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                {shopProducts
+                  .filter(p => ['Travel Essentials', 'Accessories', 'FootWears', 'Merchandise'].includes(p.category.en))
+                  .slice(0, 4)
+                  .map((product) => (
+                  <div 
+                    key={product.id} 
+                    onClick={() => {
+                      setSelectedProduct(product);
+                      const isFootwear = product.category.en === 'FootWears';
+                      const sizes = isFootwear ? (product.sizes || ["40", "41", "42", "43", "44", "45"]) : ["XL", "XXL", "Medium", "Small"];
+                      setSelectedSize(sizes[0]);
+                      const colors = product.colors || defaultColors;
+                      setSelectedColor(colors[0]);
+                      setCustomColor('');
+                    }} 
+                    className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer group border border-slate-100 dark:border-slate-700"
+                  >
+                    <div className="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-700">
+                      <img src={product.image} alt={product.name[lang]} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      {product.onSale && (
+                        <div className="absolute top-2 left-2 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-sm">{lang === 'en' ? 'SALE' : 'خصم'}</div>
+                      )}
+                    </div>
+                    <div className="p-4">
+                      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{product.category[lang]}</div>
+                      <h4 className="font-bold text-slate-900 dark:text-white text-sm mb-2 line-clamp-1 group-hover:text-brand-600 transition-colors">{product.name[lang]}</h4>
+                      <div className="flex items-center justify-between">
+                        <span className="text-brand-600 font-bold">{product.price[lang]}</span>
+                        <div className="bg-slate-100 dark:bg-slate-700 p-1.5 rounded-full text-slate-600 dark:text-slate-300 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                          <ShoppingBag size={14} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 text-center md:hidden">
+                 <button onClick={() => navigateTo('shop')} className="text-brand-600 font-bold hover:underline text-sm">
+                   {lang === 'en' ? 'View All Products' : 'عرض كل المنتجات'}
+                 </button>
+              </div>
+            </div>
           </div>
         </section>
       )}

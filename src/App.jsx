@@ -327,7 +327,14 @@ const safariPackages = [
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["Quad Bike Rental", "Safety Gear", "Guide"], ar: ["تأجير دراجة رباعية", "معدات السلامة", "مرشد"] },
-    description: { en: "Thrilling self-drive quad bike experience in the open desert.", ar: "تجربة قيادة دراجة رباعية مثيرة في الصحراء المفتوحة." }
+    description: { en: "Thrilling self-drive quad bike experience in the open desert.", ar: "تجربة قيادة دراجة رباعية مثيرة في الصحراء المفتوحة." },
+    longDescription: { en: "Take control of your own 4-wheeled machine and conquer the desert dunes. Our Quad Bike Safari gives you the freedom to explore the open desert at your own pace. After a safety briefing and instructions, you'll follow our guide through a thrilling track of dunes. Perfect for thrill-seekers.", ar: "تحكم في آلتك ذات الأربع عجلات واغزو كثبان الصحراء. يمنحك سفاري الدراجات الرباعية الحرية لاستكشاف الصحراء المفتوحة بالسرعة التي تناسبك. بعد إحاطة السلامة والتعليمات، ستتبع مرشدنا عبر مسار مثير من الكثبان الرملية. مثالي للباحثين عن الإثارة." },
+    itinerary: [
+      { time: "08:00 AM", title: { en: "Pickup", ar: "الاستقبال" }, desc: { en: "Pickup from your location.", ar: "الاستقبال من موقعك." } },
+      { time: "09:30 AM", title: { en: "Quad Biking", ar: "ركوب الدراجات" }, desc: { en: "1 hour of intense quad biking.", ar: "ساعة من ركوب الدراجات الرباعية المكثف." } },
+      { time: "11:00 AM", title: { en: "Refreshments", ar: "مرطبات" }, desc: { en: "Water and soft drinks break.", ar: "مياه ومشروبات غازية." } },
+      { time: "12:00 PM", title: { en: "Drop-off", ar: "التوصيل" }, desc: { en: "Return to your location.", ar: "العودة إلى موقعك." } }
+    ]
   },
   {
     id: 'dune-buggy',
@@ -343,7 +350,14 @@ const safariPackages = [
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["Buggy Rental", "Safety Gear", "Refreshments"], ar: ["تأجير عربة", "معدات السلامة", "مرطبات"] },
-    description: { en: "High-power dune buggy ride for adrenaline seekers.", ar: "رحلة عربة كثبان عالية القوة للباحثين عن الأدرينالين." }
+    description: { en: "High-power dune buggy ride for adrenaline seekers.", ar: "رحلة عربة كثبان عالية القوة للباحثين عن الأدرينالين." },
+    longDescription: { en: "Experience the raw power of a dune buggy as you navigate the challenging terrain of the Dubai desert. These safety-equipped buggies allow you to tackle steeper dunes and faster speeds than standard quad bikes. A guided tour ensures you see the best spots while staying safe.", ar: "جرب القوة الخام لعربة الكثبان الرملية وأنت تتنقل في التضاريس الصعبة لصحراء دبي. تسمح لك هذه العربات المجهزة بمعدات السلامة بالتعامل مع الكثبان الرملية الأكثر انحدارًا والسرعات الأسرع من الدراجات الرباعية القياسية. تضمن الجولة المصحوبة بمرشدين رؤية أفضل المواقع مع الحفاظ على السلامة." },
+    itinerary: [
+      { time: "08:00 AM", title: { en: "Pickup", ar: "الاستقبال" }, desc: { en: "Pickup from your location.", ar: "الاستقبال من موقعك." } },
+      { time: "09:30 AM", title: { en: "Buggy Adventure", ar: "مغامرة العربة" }, desc: { en: "1 hour dune buggy drive.", ar: "ساعة قيادة عربة الكثبان." } },
+      { time: "11:00 AM", title: { en: "Photo Stop", ar: "وقفة تصوير" }, desc: { en: "Stop at high dunes for photos.", ar: "توقف عند الكثبان العالية للصور." } },
+      { time: "12:00 PM", title: { en: "Drop-off", ar: "التوصيل" }, desc: { en: "Return to your location.", ar: "العودة إلى موقعك." } }
+    ]
   },
   {
     id: 'hatta-safari',
@@ -359,7 +373,14 @@ const safariPackages = [
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8186, longitude: 56.1235 },
     includes: { en: ["Mountain Drive", "Hatta Dam Visit", "Heritage Village"], ar: ["قيادة جبلية", "زيارة سد حتا", "القرية التراثية"] },
-    description: { en: "Explore the rugged mountains and scenic dams of Hatta.", ar: "استكشف الجبال الوعرة والسدود الخلابة في حتا." }
+    description: { en: "Explore the rugged mountains and scenic dams of Hatta.", ar: "استكشف الجبال الوعرة والسدود الخلابة في حتا." },
+    longDescription: { en: "Escape the city and head to the Hatta Mountains. This safari combines off-road driving through wadis (dry riverbeds) with visits to the historic Hatta Heritage Village and the stunning Hatta Dam. Enjoy the cooler mountain air and breathtaking rocky landscapes.", ar: "اهرب من المدينة وتوجه إلى جبال حتا. يجمع هذا السفاري بين القيادة على الطرق الوعرة عبر الوديان وزيارات لقرية حتا التراثية التاريخية وسد حتا المذهل. استمتع بهواء الجبل البارد والمناظر الطبيعية الصخرية الخلابة." },
+    itinerary: [
+      { time: "07:00 AM", title: { en: "Pickup", ar: "الاستقبال" }, desc: { en: "Pickup from Dubai.", ar: "الاستقبال من دبي." } },
+      { time: "09:00 AM", title: { en: "Hatta Dam", ar: "سد حتا" }, desc: { en: "Kayaking and photo stop.", ar: "تجديف ووقفة تصوير." } },
+      { time: "11:00 AM", title: { en: "Heritage Village", ar: "القرية التراثية" }, desc: { en: "Explore ancient fort and houses.", ar: "استكشاف الحصن والمنازل القديمة." } },
+      { time: "01:00 PM", title: { en: "Drop-off", ar: "التوصيل" }, desc: { en: "Return to Dubai.", ar: "العودة إلى دبي." } }
+    ]
   },
   {
     id: 'falconry-safari',
@@ -375,7 +396,14 @@ const safariPackages = [
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["Falcon Show", "Photo Opportunity", "Breakfast"], ar: ["عرض الصقور", "فرصة تصوير", "إفطار"] },
-    description: { en: "Witness the traditional art of falconry in the desert.", ar: "شاهد الفن التقليدي للصقارة في الصحراء." }
+    description: { en: "Witness the traditional art of falconry in the desert.", ar: "شاهد الفن التقليدي للصقارة في الصحراء." },
+    longDescription: { en: "Experience the ancient Bedouin tradition of falconry. Watch these majestic birds of prey in action as they swoop and dive to catch lures. You'll have the opportunity to hold a falcon and take photos. A traditional Emirati breakfast is included in this cultural experience.", ar: "جرب التقليد البدوي القديم للصقارة. شاهد هذه الطيور الجارحة المهيبة وهي تنقض وتغوص للقبض على الطعوم. ستتاح لك الفرصة لحمل صقر والتقاط الصور. يتم تضمين إفطار إماراتي تقليدي في هذه التجربة الثقافية." },
+    itinerary: [
+      { time: "06:00 AM", title: { en: "Pickup", ar: "الاستقبال" }, desc: { en: "Early morning pickup.", ar: "استقبال في الصباح الباكر." } },
+      { time: "07:30 AM", title: { en: "Falcon Show", ar: "عرض الصقور" }, desc: { en: "Interactive falconry display.", ar: "عرض صقارة تفاعلي." } },
+      { time: "09:00 AM", title: { en: "Breakfast", ar: "الإفطار" }, desc: { en: "Traditional breakfast at camp.", ar: "إفطار تقليدي في المخيم." } },
+      { time: "11:00 AM", title: { en: "Drop-off", ar: "التوصيل" }, desc: { en: "Return to hotel.", ar: "العودة إلى الفندق." } }
+    ]
   },
   {
     id: 'hot-air-balloon',
@@ -391,7 +419,14 @@ const safariPackages = [
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["1 Hour Flight", "Flight Certificate", "Breakfast"], ar: ["رحلة لمدة ساعة", "شهادة طيران", "إفطار"] },
-    description: { en: "Float over the desert at sunrise for breathtaking views.", ar: "حلق فوق الصحراء عند شروق الشمس لمناظر خلابة." }
+    description: { en: "Float over the desert at sunrise for breathtaking views.", ar: "حلق فوق الصحراء عند شروق الشمس لمناظر خلابة." },
+    longDescription: { en: "See the desert from a new perspective. Drift peacefully over the endless dunes at 4,000 feet as the sun rises over the Hajar Mountains. Spot wandering camels and gazelles from above. After landing, enjoy a gourmet breakfast in a traditional Bedouin camp.", ar: "شاهد الصحراء من منظور جديد. انجرف بسلام فوق الكثبان الرملية التي لا نهاية لها على ارتفاع 4000 قدم بينما تشرق الشمس فوق جبال الحجر. رصد الجمال والغزلان المتجولة من الأعلى. بعد الهبوط، استمتع بوجبة إفطار فاخرة في مخيم بدوي تقليدي." },
+    itinerary: [
+      { time: "04:00 AM", title: { en: "Pickup", ar: "الاستقبال" }, desc: { en: "Pre-dawn pickup.", ar: "استقبال قبل الفجر." } },
+      { time: "06:00 AM", title: { en: "Takeoff", ar: "الإقلاع" }, desc: { en: "Sunrise balloon flight.", ar: "رحلة المنطاد عند الشروق." } },
+      { time: "08:00 AM", title: { en: "Breakfast", ar: "الإفطار" }, desc: { en: "Gourmet breakfast.", ar: "إفطار فاخر." } },
+      { time: "10:00 AM", title: { en: "Drop-off", ar: "التوصيل" }, desc: { en: "Return to city.", ar: "العودة إلى المدينة." } }
+    ]
   },
   {
     id: 'camel-trekking',
@@ -407,7 +442,14 @@ const safariPackages = [
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["45 Min Camel Ride", "Refreshments", "Transfers"], ar: ["ركوب جمال 45 دقيقة", "مرطبات", "نقل"] },
-    description: { en: "Traditional camel caravan experience through the dunes.", ar: "تجربة قافلة الجمال التقليدية عبر الكثبان الرملية." }
+    description: { en: "Traditional camel caravan experience through the dunes.", ar: "تجربة قافلة الجمال التقليدية عبر الكثبان الرملية." },
+    longDescription: { en: "Travel like the Bedouins of old on a camel caravan. This peaceful trek takes you through the quiet dunes, allowing you to appreciate the silence and beauty of the desert. It's a great way to slow down and connect with nature.", ar: "سافر مثل البدو القدامى في قافلة جمال. تأخذك هذه الرحلة الهادئة عبر الكثبان الرملية الهادئة، مما يسمح لك بتقدير صمت وجمال الصحراء. إنها طريقة رائعة للتباطؤ والتواصل مع الطبيعة." },
+    itinerary: [
+      { time: "08:00 AM", title: { en: "Pickup", ar: "الاستقبال" }, desc: { en: "Pickup from hotel.", ar: "الاستقبال من الفندق." } },
+      { time: "09:00 AM", title: { en: "Camel Trek", ar: "رحلة الجمال" }, desc: { en: "45-minute guided camel ride.", ar: "رحلة جمال موجهة لمدة 45 دقيقة." } },
+      { time: "10:00 AM", title: { en: "Refreshments", ar: "مرطبات" }, desc: { en: "Arabic coffee and dates.", ar: "قهوة عربية وتمور." } },
+      { time: "11:00 AM", title: { en: "Drop-off", ar: "التوصيل" }, desc: { en: "Return to hotel.", ar: "العودة إلى الفندق." } }
+    ]
   },
   {
     id: 'private-dinner',
@@ -423,7 +465,14 @@ const safariPackages = [
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["Private Setup", "Gourmet Dinner", "Butler Service"], ar: ["تجهيز خاص", "عشاء فاخر", "خدمة نادل"] },
-    description: { en: "Romantic private dinner setup under the stars.", ar: "عشاء رومانسي خاص تحت النجوم." }
+    description: { en: "Romantic private dinner setup under the stars.", ar: "عشاء رومانسي خاص تحت النجوم." },
+    longDescription: { en: "Surprise your loved one with a private dinner in the middle of the desert. We set up a secluded area with carpets, cushions, and low tables, illuminated by torches and the starry sky. A private butler will serve a multi-course gourmet dinner while you enjoy the tranquility.", ar: "فاجئ من تحب بعشاء خاص في وسط الصحراء. نقوم بإعداد منطقة منعزلة بالسجاد والوسائد والطاولات المنخفضة، مضاءة بالمشاعل والسماء المرصعة بالنجوم. سيقدم خادم خاص عشاءً فاخراً متعدد الأطباق بينما تستمتع بالهدوء." },
+    itinerary: [
+      { time: "05:00 PM", title: { en: "Pickup", ar: "الاستقبال" }, desc: { en: "Private luxury pickup.", ar: "استقبال فاخر خاص." } },
+      { time: "06:00 PM", title: { en: "Sunset", ar: "الغروب" }, desc: { en: "Arrive at private setup.", ar: "الوصول إلى التجهيز الخاص." } },
+      { time: "07:00 PM", title: { en: "Dinner", ar: "العشاء" }, desc: { en: "Gourmet dinner served.", ar: "تقديم العشاء الفاخر." } },
+      { time: "09:00 PM", title: { en: "Drop-off", ar: "التوصيل" }, desc: { en: "Return to hotel.", ar: "العودة إلى الفندق." } }
+    ]
   },
   {
     id: 'sunrise-safari',
@@ -439,7 +488,14 @@ const safariPackages = [
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["Dune Bashing", "Sunrise View", "Breakfast Box"], ar: ["تقريع الكثبان", "مشهد الشروق", "صندوق إفطار"] },
-    description: { en: "Watch the desert come alive with the first light of day.", ar: "شاهد الصحراء تنبض بالحياة مع أول ضوء للنهار." }
+    description: { en: "Watch the desert come alive with the first light of day.", ar: "شاهد الصحراء تنبض بالحياة مع أول ضوء للنهار." },
+    longDescription: { en: "Beat the heat and the crowds with a sunrise safari. Witness the spectacular colors of the desert as the sun peeks over the horizon. Enjoy a thrilling dune bashing session in the cool morning air followed by a light breakfast picnic.", ar: "تغلب على الحرارة والزحام مع سفاري شروق الشمس. شاهد الألوان المذهلة للصحراء بينما تطل الشمس فوق الأفق. استمتع بجلسة تقريع كثبان مثيرة في هواء الصباح البارد تليها نزهة إفطار خفيفة." },
+    itinerary: [
+      { time: "04:30 AM", title: { en: "Pickup", ar: "الاستقبال" }, desc: { en: "Early morning pickup.", ar: "استقبال في الصباح الباكر." } },
+      { time: "06:00 AM", title: { en: "Sunrise", ar: "الشروق" }, desc: { en: "Watch sunrise on dunes.", ar: "مشاهدة الشروق على الكثبان." } },
+      { time: "07:00 AM", title: { en: "Dune Drive", ar: "قيادة الكثبان" }, desc: { en: "Morning dune bashing.", ar: "تقريع الكثبان الصباحي." } },
+      { time: "08:30 AM", title: { en: "Drop-off", ar: "التوصيل" }, desc: { en: "Return to hotel.", ar: "العودة إلى الفندق." } }
+    ]
   },
   {
     id: 'liwa-safari',
@@ -455,7 +511,14 @@ const safariPackages = [
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 23.1308, longitude: 53.7585 },
     includes: { en: ["Moreeb Dune Visit", "Lunch", "Fort Visit"], ar: ["زيارة تل مرعب", "غداء", "زيارة الحصن"] },
-    description: { en: "Expedition to the Empty Quarter and the massive Moreeb Dune.", ar: "رحلة استكشافية إلى الربع الخالي وتل مرعب الضخم." }
+    description: { en: "Expedition to the Empty Quarter and the massive Moreeb Dune.", ar: "رحلة استكشافية إلى الربع الخالي وتل مرعب الضخم." },
+    longDescription: { en: "Venture deep into the Empty Quarter (Rub' al Khali) to see the legendary Liwa Oasis. Visit the massive Moreeb Dune, one of the highest sand dunes in the world. This full-day expedition includes lunch and visits to camel farms and ancient forts.", ar: "غامر في عمق الربع الخالي لرؤية واحة ليوا الأسطورية. قم بزيارة تل مرعب الضخم، أحد أعلى الكثبان الرملية في العالم. تشمل هذه الرحلة الاستكشافية ليوم كامل الغداء وزيارات لمزارع الجمال والحصون القديمة." },
+    itinerary: [
+      { time: "08:00 AM", title: { en: "Pickup", ar: "الاستقبال" }, desc: { en: "Pickup and drive to Liwa.", ar: "الاستقبال والقيادة إلى ليوا." } },
+      { time: "11:00 AM", title: { en: "Liwa Oasis", ar: "واحة ليوا" }, desc: { en: "Explore oasis and forts.", ar: "استكشاف الواحة والحصون." } },
+      { time: "01:00 PM", title: { en: "Moreeb Dune", ar: "تل مرعب" }, desc: { en: "Visit the massive dune.", ar: "زيارة التل الضخم." } },
+      { time: "06:00 PM", title: { en: "Drop-off", ar: "التوصيل" }, desc: { en: "Return to Dubai.", ar: "العودة إلى دبي." } }
+    ]
   },
   {
     id: 'red-dune-bashing',
@@ -471,7 +534,14 @@ const safariPackages = [
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["30 Min Dune Bashing", "Sandboarding", "Water"], ar: ["30 دقيقة تقريع كثبان", "تزلج على الرمال", "مياه"] },
-    description: { en: "Intense dune bashing experience on the high red dunes.", ar: "تجربة تقريع كثبان مكثفة على الكثبان الحمراء العالية." }
+    description: { en: "Intense dune bashing experience on the high red dunes.", ar: "تجربة تقريع كثبان مكثفة على الكثبان الحمراء العالية." },
+    longDescription: { en: "For those who just want the action. Head straight to the high red dunes of Lahbab for an intense 30-45 minute dune bashing session. Our expert drivers will take you on a rollercoaster ride across the sand. Includes a stop for sandboarding.", ar: "لأولئك الذين يريدون الأكشن فقط. توجه مباشرة إلى الكثبان الحمراء العالية في لهباب لجلسة تقريع كثبان مكثفة لمدة 30-45 دقيقة. سيأخذك سائقونا الخبراء في رحلة أفعوانية عبر الرمال. يشمل وقفة للتزلج على الرمال." },
+    itinerary: [
+      { time: "03:00 PM", title: { en: "Pickup", ar: "الاستقبال" }, desc: { en: "Pickup in 4x4.", ar: "استقبال في 4x4." } },
+      { time: "04:00 PM", title: { en: "Dune Bashing", ar: "تقريع الكثبان" }, desc: { en: "High intensity dune drive.", ar: "قيادة كثبان عالية الكثافة." } },
+      { time: "04:45 PM", title: { en: "Sandboarding", ar: "تزلج على الرمال" }, desc: { en: "Slide down the dunes.", ar: "تزحلق أسفل الكثبان." } },
+      { time: "06:00 PM", title: { en: "Drop-off", ar: "التوصيل" }, desc: { en: "Return to location.", ar: "العودة إلى الموقع." } }
+    ]
   },
   {
     id: 'starlight-safari',
@@ -487,7 +557,14 @@ const safariPackages = [
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["Night Drive", "Telescope Stargazing", "Dinner"], ar: ["قيادة ليلية", "رصد النجوم بالتلسكوب", "عشاء"] },
-    description: { en: "Discover the desert night sky away from city pollution.", ar: "اكتشف سماء الصحراء الليلية بعيداً عن تلوث المدينة." }
+    description: { en: "Discover the desert night sky away from city pollution.", ar: "اكتشف سماء الصحراء الليلية بعيداً عن تلوث المدينة." },
+    longDescription: { en: "Escape the light pollution of the city and gaze at the wonders of the universe. This safari takes you to a remote desert location where an astronomer will guide you through the constellations using a telescope. Enjoy a quiet dinner under the stars.", ar: "اهرب من التلوث الضوئي للمدينة وتأمل عجائب الكون. يأخذك هذا السفاري إلى موقع صحراوي نائي حيث سيرشدك عالم فلك عبر الأبراج باستخدام التلسكوب. استمتع بعشاء هادئ تحت النجوم." },
+    itinerary: [
+      { time: "06:00 PM", title: { en: "Pickup", ar: "الاستقبال" }, desc: { en: "Evening pickup.", ar: "استقبال مسائي." } },
+      { time: "07:30 PM", title: { en: "Night Drive", ar: "قيادة ليلية" }, desc: { en: "Drive to remote spot.", ar: "القيادة إلى موقع نائي." } },
+      { time: "08:30 PM", title: { en: "Stargazing", ar: "رصد النجوم" }, desc: { en: "Telescope session & dinner.", ar: "جلسة تلسكوب وعشاء." } },
+      { time: "10:30 PM", title: { en: "Drop-off", ar: "التوصيل" }, desc: { en: "Return to city.", ar: "العودة إلى المدينة." } }
+    ]
   },
   {
     id: 'bedouin-culture',
@@ -503,7 +580,14 @@ const safariPackages = [
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["Heritage Camp", "Traditional Food", "Costumes"], ar: ["مخيم تراثي", "طعام تقليدي", "أزياء"] },
-    description: { en: "Immerse yourself in the authentic Bedouin lifestyle.", ar: "انغمس في نمط الحياة البدوي الأصيل." }
+    description: { en: "Immerse yourself in the authentic Bedouin lifestyle.", ar: "انغمس في نمط الحياة البدوي الأصيل." },
+    longDescription: { en: "Step back in time and experience life as a Bedouin. Visit a traditional camp built from natural materials. Learn about their customs, try on traditional costumes, watch cooking demonstrations, and enjoy authentic Emirati cuisine. No dune bashing, just pure culture.", ar: "عد بالزمن إلى الوراء وجرب الحياة كبدوي. قم بزيارة مخيم تقليدي مبني من مواد طبيعية. تعرف على عاداتهم، وجرب الأزياء التقليدية، وشاهد عروض الطهي، واستمتع بالمأكولات الإماراتية الأصيلة. لا يوجد تقريع للكثبان الرملية، مجرد ثقافة خالصة." },
+    itinerary: [
+      { time: "03:30 PM", title: { en: "Pickup", ar: "الاستقبال" }, desc: { en: "Pickup from hotel.", ar: "الاستقبال من الفندق." } },
+      { time: "05:00 PM", title: { en: "Camp Arrival", ar: "الوصول للمخيم" }, desc: { en: "Welcome with Arabic coffee.", ar: "ترحيب بالقهوة العربية." } },
+      { time: "06:00 PM", title: { en: "Activities", ar: "الأنشطة" }, desc: { en: "Costumes, cooking, henna.", ar: "أزياء، طهي، حناء." } },
+      { time: "08:30 PM", title: { en: "Drop-off", ar: "التوصيل" }, desc: { en: "Return to hotel.", ar: "العودة إلى الفندق." } }
+    ]
   },
   {
     id: 'luxury-hummer',
@@ -519,7 +603,14 @@ const safariPackages = [
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["Hummer H2 Ride", "VIP Camp Access", "BBQ"], ar: ["ركوب همر H2", "دخول مخيم VIP", "مشاوي"] },
-    description: { en: "Ride the dunes in style with a luxury Hummer H2.", ar: "اركب الكثبان الرملية بأناقة مع همر H2 فاخرة." }
+    description: { en: "Ride the dunes in style with a luxury Hummer H2.", ar: "اركب الكثبان الرملية بأناقة مع همر H2 فاخرة." },
+    longDescription: { en: "Upgrade your safari experience with a ride in a Hummer H2. This spacious and powerful vehicle offers a smoother ride over the dunes. Enjoy VIP treatment at the camp with reserved seating and table service for dinner.", ar: "قم بترقية تجربة السفاري الخاصة بك برحلة في همر H2. توفر هذه السيارة الفسيحة والقوية رحلة أكثر سلاسة فوق الكثبان الرملية. استمتع بمعاملة VIP في المخيم مع مقاعد محجوزة وخدمة الطاولة للعشاء." },
+    itinerary: [
+      { time: "03:00 PM", title: { en: "Pickup", ar: "الاستقبال" }, desc: { en: "Pickup in Hummer H2.", ar: "استقبال في همر H2." } },
+      { time: "04:30 PM", title: { en: "Dune Drive", ar: "قيادة الكثبان" }, desc: { en: "Luxury dune bashing.", ar: "تقريع كثبان فاخر." } },
+      { time: "07:00 PM", title: { en: "VIP Dinner", ar: "عشاء VIP" }, desc: { en: "Dinner in VIP area.", ar: "عشاء في منطقة VIP." } },
+      { time: "09:00 PM", title: { en: "Drop-off", ar: "التوصيل" }, desc: { en: "Return in Hummer.", ar: "العودة في الهمر." } }
+    ]
   },
   {
     id: 'horse-riding',
@@ -535,7 +626,14 @@ const safariPackages = [
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["1 Hour Horse Ride", "Instructor", "Water"], ar: ["ساعة ركوب خيل", "مدرب", "مياه"] },
-    description: { en: "Enjoy a peaceful horse ride across the desert sands.", ar: "استمتع بركوب خيل هادئ عبر رمال الصحراء." }
+    description: { en: "Enjoy a peaceful horse ride across the desert sands.", ar: "استمتع بركوب خيل هادئ عبر رمال الصحراء." },
+    longDescription: { en: "Explore the desert on horseback. Suitable for beginners and experienced riders alike, this tour takes you through the scenic desert landscape. Connect with these magnificent animals and enjoy the tranquility of nature.", ar: "استكشف الصحراء على ظهر الخيل. مناسبة للمبتدئين والفرسان ذوي الخبرة على حد سواء، تأخذك هذه الجولة عبر المناظر الطبيعية الصحراوية الخلابة. تواصل مع هذه الحيوانات الرائعة واستمتع بهدوء الطبيعة." },
+    itinerary: [
+      { time: "04:00 PM", title: { en: "Pickup", ar: "الاستقبال" }, desc: { en: "Pickup from hotel.", ar: "الاستقبال من الفندق." } },
+      { time: "05:00 PM", title: { en: "Horse Ride", ar: "ركوب الخيل" }, desc: { en: "1 hour guided ride.", ar: "ساعة ركوب موجهة." } },
+      { time: "06:00 PM", title: { en: "Sunset", ar: "الغروب" }, desc: { en: "Photos with horses.", ar: "صور مع الخيول." } },
+      { time: "07:00 PM", title: { en: "Drop-off", ar: "التوصيل" }, desc: { en: "Return to hotel.", ar: "العودة إلى الفندق." } }
+    ]
   },
   {
     id: 'nature-reserve',
@@ -551,7 +649,14 @@ const safariPackages = [
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
     includes: { en: ["Wildlife Spotting", "Vintage Land Rover", "Breakfast"], ar: ["مشاهدة الحياة البرية", "لاند روفر كلاسيكي", "إفطار"] },
-    description: { en: "Spot oryx and gazelles in the Dubai Desert Conservation Reserve.", ar: "شاهد المها والغزلان في محمية دبي الصحراوية." }
+    description: { en: "Spot oryx and gazelles in the Dubai Desert Conservation Reserve.", ar: "شاهد المها والغزلان في محمية دبي الصحراوية." },
+    longDescription: { en: "Visit the Dubai Desert Conservation Reserve in a vintage 1950s Land Rover. This protected area is home to Arabian Oryx, gazelles, and other native wildlife. Learn about the desert ecosystem from a conservation guide and enjoy a premium breakfast.", ar: "قم بزيارة محمية دبي الصحراوية في سيارة لاند روفر كلاسيكية من الخمسينيات. هذه المنطقة المحمية هي موطن للمها العربي والغزلان وغيرها من الحيوانات البرية المحلية. تعرف على النظام البيئي الصحراوي من مرشد الحفاظ على البيئة واستمتع بوجبة إفطار متميزة." },
+    itinerary: [
+      { time: "07:00 AM", title: { en: "Pickup", ar: "الاستقبال" }, desc: { en: "Pickup in Range Rover.", ar: "استقبال في رينج روفر." } },
+      { time: "08:30 AM", title: { en: "Wildlife Drive", ar: "جولة الحياة البرية" }, desc: { en: "Spot Oryx & Gazelles.", ar: "رصد المها والغزلان." } },
+      { time: "10:00 AM", title: { en: "Breakfast", ar: "الإفطار" }, desc: { en: "Luxury desert breakfast.", ar: "إفطار صحراوي فاخر." } },
+      { time: "11:30 AM", title: { en: "Drop-off", ar: "التوصيل" }, desc: { en: "Return to hotel.", ar: "العودة إلى الفندق." } }
+    ]
   }
 ];
 

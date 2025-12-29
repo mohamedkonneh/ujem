@@ -253,11 +253,11 @@ const safariPackages = [
     title: { en: "Overnight Desert Safari", ar: "سفاري صحراوي ليلي" },
     price: { en: "AED 450", ar: "450 درهم" },
     duration: { en: "18 Hours", ar: "18 ساعة" },
-    image: "https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=center,quality=60,width=535,height=400,dpr=2/tour_img/19c9c5238d22df5d5e08c668a59826874e8d37f728fcab0ae16894001e41f8e7.jpg",
+    image: "https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=center,quality=60,width=535,height=400,dpr=2/tour_img/7b473b3218e0b991.jpeg",
     gallery: [
-      { src: "https://images.unsplash.com/photo-1501232060322-aa87215ab531?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Starry Night", ar: "ليلة مرصعة بالنجوم" } },
-      { src: "https://images.unsplash.com/photo-1489516408517-6c0a1387c6ce?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Morning Coffee", ar: "قهوة الصباح" } },
-      { src: "https://images.unsplash.com/photo-1545167622-3a6ac15670b3?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Desert Sunrise", ar: "شروق الصحراء" } }
+      { src: "https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=center,quality=60,width=535,height=400,dpr=2/tour_img/3a4dd222f366cde3444619eb33ae00cd908cf093f12491a5c2771d160a53c423.jpg", type: 'image', title: { en: "Starry Night", ar: "ليلة مرصعة بالنجوم" } },
+      { src: "https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=center,quality=60,width=265,height=195,dpr=2/tour_img/15df5dc7304acb6079974dbfe57c914b07a6cae17bd7025e6316103e620035d3.jpg", type: 'image', title: { en: "Morning Coffee", ar: "قهوة الصباح" } },
+      { src: "https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=center,quality=60,width=265,height=195,dpr=2/tour_img/f6501edf2cd7a5c8a376d07d56997829038f2346a9a875ea13855a1d0b48c863.jpg", type: 'image', title: { en: "Desert Sunrise", ar: "شروق الصحراء" } }
     ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },  // Example Dubai coordinates
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 }, // Example desert coordinates
@@ -286,11 +286,11 @@ const safariPackages = [
     title: { en: "VIP Private Safari", ar: "سفاري خاص VIP" },
     price: { en: "AED 1200", ar: "1200 درهم" },
     duration: { en: "6 Hours", ar: "6 ساعات" },
-    image: "https://images.unsplash.com/photo-1545167622-3a6ac15670b3?auto=format&fit=crop&q=80&w=800",
+    image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/98/c2/b9/caption.jpg?w=600&h=600&s=1",
     gallery: [
-      { src: "https://images.unsplash.com/photo-1545167622-3a6ac15670b3?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Private Cruiser", ar: "كروزر خاص" } },
+      { src: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/a6/bb/c7/caption.jpg?w=800&h=600&s=1", type: 'image', title: { en: "Private Cruiser", ar: "كروزر خاص" } },
       { src: "https://images.unsplash.com/photo-1552560229-edf081349691?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "VIP Setup", ar: "تجهيزات VIP" } },
-      { src: "https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Luxury Dining", ar: "عشاء فاخر" } }
+      { src: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/61/7f/c8/caption.jpg?w=800&h=600&s=1", type: 'image', title: { en: "Luxury Dining", ar: "عشاء فاخر" } }
     ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },  // Example Dubai coordinates
     locationCoordinates: { latitude: 24.8607, longitude: 55.1310 }, // Example desert coordinates

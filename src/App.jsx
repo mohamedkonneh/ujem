@@ -289,7 +289,7 @@ const safariPackages = [
     image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/98/c2/b9/caption.jpg?w=600&h=600&s=1",
     gallery: [
       { src: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/a6/bb/c7/caption.jpg?w=800&h=600&s=1", type: 'image', title: { en: "Private Cruiser", ar: "كروزر خاص" } },
-      { src: "https://images.unsplash.com/photo-1552560229-edf081349691?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "VIP Setup", ar: "تجهيزات VIP" } },
+      { src: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/4c/88/99/caption.jpg?w=800&h=600&s=1", type: 'image', title: { en: "VIP Setup", ar: "تجهيزات VIP" } },
       { src: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/61/7f/c8/caption.jpg?w=800&h=600&s=1", type: 'image', title: { en: "Luxury Dining", ar: "عشاء فاخر" } }
     ],
     pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },  // Example Dubai coordinates
@@ -312,6 +312,186 @@ const safariPackages = [
       { time: "Dining", title: { en: "VIP Service", ar: "خدمة VIP" }, desc: { en: "Table service dinner in private area.", ar: "عشاء بخدمة الطاولة في منطقة خاصة." } },
       { time: "Return", title: { en: "Drop-off", ar: "التوصيل" }, desc: { en: "Private drop-off at your location.", ar: "توصيل خاص إلى موقعك." } }
     ]
+  },
+  {
+    id: 'quad-bike-safari',
+    title: { en: "Quad Bike Safari", ar: "سفاري الدراجات الرباعية" },
+    price: { en: "AED 350", ar: "350 درهم" },
+    duration: { en: "4 Hours", ar: "4 ساعات" },
+    image: "https://images.unsplash.com/photo-1570060388576-92c286611918?auto=format&fit=crop&q=80&w=800",
+    gallery: [],
+    pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
+    locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
+    includes: { en: ["Quad Bike Rental", "Safety Gear", "Guide"], ar: ["تأجير دراجة رباعية", "معدات السلامة", "مرشد"] },
+    description: { en: "Thrilling self-drive quad bike experience in the open desert.", ar: "تجربة قيادة دراجة رباعية مثيرة في الصحراء المفتوحة." }
+  },
+  {
+    id: 'dune-buggy',
+    title: { en: "Dune Buggy Adventure", ar: "مغامرة عربات الكثبان" },
+    price: { en: "AED 600", ar: "600 درهم" },
+    duration: { en: "4 Hours", ar: "4 ساعات" },
+    image: "https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?auto=format&fit=crop&q=80&w=800",
+    gallery: [],
+    pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
+    locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
+    includes: { en: ["Buggy Rental", "Safety Gear", "Refreshments"], ar: ["تأجير عربة", "معدات السلامة", "مرطبات"] },
+    description: { en: "High-power dune buggy ride for adrenaline seekers.", ar: "رحلة عربة كثبان عالية القوة للباحثين عن الأدرينالين." }
+  },
+  {
+    id: 'hatta-safari',
+    title: { en: "Hatta Mountain Safari", ar: "سفاري جبال حتا" },
+    price: { en: "AED 200", ar: "200 درهم" },
+    duration: { en: "6 Hours", ar: "6 ساعات" },
+    image: "https://images.unsplash.com/photo-1589886773788-0e6c22d99906?auto=format&fit=crop&q=80&w=800",
+    gallery: [],
+    pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
+    locationCoordinates: { latitude: 24.8186, longitude: 56.1235 },
+    includes: { en: ["Mountain Drive", "Hatta Dam Visit", "Heritage Village"], ar: ["قيادة جبلية", "زيارة سد حتا", "القرية التراثية"] },
+    description: { en: "Explore the rugged mountains and scenic dams of Hatta.", ar: "استكشف الجبال الوعرة والسدود الخلابة في حتا." }
+  },
+  {
+    id: 'falconry-safari',
+    title: { en: "Falconry Safari", ar: "سفاري الصقور" },
+    price: { en: "AED 400", ar: "400 درهم" },
+    duration: { en: "5 Hours", ar: "5 ساعات" },
+    image: "https://images.unsplash.com/photo-1569673604358-1352d327525d?auto=format&fit=crop&q=80&w=800",
+    gallery: [],
+    pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
+    locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
+    includes: { en: ["Falcon Show", "Photo Opportunity", "Breakfast"], ar: ["عرض الصقور", "فرصة تصوير", "إفطار"] },
+    description: { en: "Witness the traditional art of falconry in the desert.", ar: "شاهد الفن التقليدي للصقارة في الصحراء." }
+  },
+  {
+    id: 'hot-air-balloon',
+    title: { en: "Hot Air Balloon", ar: "منطاد الهواء الساخن" },
+    price: { en: "AED 1100", ar: "1100 درهم" },
+    duration: { en: "4 Hours", ar: "4 ساعات" },
+    image: "https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&q=80&w=800",
+    gallery: [],
+    pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
+    locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
+    includes: { en: ["1 Hour Flight", "Flight Certificate", "Breakfast"], ar: ["رحلة لمدة ساعة", "شهادة طيران", "إفطار"] },
+    description: { en: "Float over the desert at sunrise for breathtaking views.", ar: "حلق فوق الصحراء عند شروق الشمس لمناظر خلابة." }
+  },
+  {
+    id: 'camel-trekking',
+    title: { en: "Camel Trekking", ar: "رحلة الجمال" },
+    price: { en: "AED 180", ar: "180 درهم" },
+    duration: { en: "3 Hours", ar: "3 ساعات" },
+    image: "https://images.unsplash.com/photo-1598605272254-16f0c0ecdfa5?auto=format&fit=crop&q=80&w=800",
+    gallery: [],
+    pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
+    locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
+    includes: { en: ["45 Min Camel Ride", "Refreshments", "Transfers"], ar: ["ركوب جمال 45 دقيقة", "مرطبات", "نقل"] },
+    description: { en: "Traditional camel caravan experience through the dunes.", ar: "تجربة قافلة الجمال التقليدية عبر الكثبان الرملية." }
+  },
+  {
+    id: 'private-dinner',
+    title: { en: "Private Desert Dinner", ar: "عشاء صحراوي خاص" },
+    price: { en: "AED 800", ar: "800 درهم" },
+    duration: { en: "4 Hours", ar: "4 ساعات" },
+    image: "https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&q=80&w=800",
+    gallery: [],
+    pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
+    locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
+    includes: { en: ["Private Setup", "Gourmet Dinner", "Butler Service"], ar: ["تجهيز خاص", "عشاء فاخر", "خدمة نادل"] },
+    description: { en: "Romantic private dinner setup under the stars.", ar: "عشاء رومانسي خاص تحت النجوم." }
+  },
+  {
+    id: 'sunrise-safari',
+    title: { en: "Sunrise Desert Safari", ar: "سفاري شروق الشمس" },
+    price: { en: "AED 220", ar: "220 درهم" },
+    duration: { en: "4 Hours", ar: "4 ساعات" },
+    image: "https://images.unsplash.com/photo-1545167622-3a6ac15670b3?auto=format&fit=crop&q=80&w=800",
+    gallery: [],
+    pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
+    locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
+    includes: { en: ["Dune Bashing", "Sunrise View", "Breakfast Box"], ar: ["تقريع الكثبان", "مشهد الشروق", "صندوق إفطار"] },
+    description: { en: "Watch the desert come alive with the first light of day.", ar: "شاهد الصحراء تنبض بالحياة مع أول ضوء للنهار." }
+  },
+  {
+    id: 'liwa-safari',
+    title: { en: "Liwa Desert Safari", ar: "سفاري صحراء ليوا" },
+    price: { en: "AED 900", ar: "900 درهم" },
+    duration: { en: "12 Hours", ar: "12 ساعة" },
+    image: "https://images.unsplash.com/photo-1547234935-80c7142ee969?auto=format&fit=crop&q=80&w=800",
+    gallery: [],
+    pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
+    locationCoordinates: { latitude: 23.1308, longitude: 53.7585 },
+    includes: { en: ["Moreeb Dune Visit", "Lunch", "Fort Visit"], ar: ["زيارة تل مرعب", "غداء", "زيارة الحصن"] },
+    description: { en: "Expedition to the Empty Quarter and the massive Moreeb Dune.", ar: "رحلة استكشافية إلى الربع الخالي وتل مرعب الضخم." }
+  },
+  {
+    id: 'red-dune-bashing',
+    title: { en: "Red Dune Bashing", ar: "تقريع الكثبان الحمراء" },
+    price: { en: "AED 200", ar: "200 درهم" },
+    duration: { en: "5 Hours", ar: "5 ساعات" },
+    image: "https://images.unsplash.com/photo-1518182170546-0766aa6f18f6?auto=format&fit=crop&q=80&w=800",
+    gallery: [],
+    pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
+    locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
+    includes: { en: ["30 Min Dune Bashing", "Sandboarding", "Water"], ar: ["30 دقيقة تقريع كثبان", "تزلج على الرمال", "مياه"] },
+    description: { en: "Intense dune bashing experience on the high red dunes.", ar: "تجربة تقريع كثبان مكثفة على الكثبان الحمراء العالية." }
+  },
+  {
+    id: 'starlight-safari',
+    title: { en: "Starlight Safari", ar: "سفاري ضوء النجوم" },
+    price: { en: "AED 350", ar: "350 درهم" },
+    duration: { en: "6 Hours", ar: "6 ساعات" },
+    image: "https://images.unsplash.com/photo-1501232060322-aa87215ab531?auto=format&fit=crop&q=80&w=800",
+    gallery: [],
+    pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
+    locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
+    includes: { en: ["Night Drive", "Telescope Stargazing", "Dinner"], ar: ["قيادة ليلية", "رصد النجوم بالتلسكوب", "عشاء"] },
+    description: { en: "Discover the desert night sky away from city pollution.", ar: "اكتشف سماء الصحراء الليلية بعيداً عن تلوث المدينة." }
+  },
+  {
+    id: 'bedouin-culture',
+    title: { en: "Bedouin Culture Safari", ar: "سفاري الثقافة البدوية" },
+    price: { en: "AED 280", ar: "280 درهم" },
+    duration: { en: "5 Hours", ar: "5 ساعات" },
+    image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800",
+    gallery: [],
+    pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
+    locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
+    includes: { en: ["Heritage Camp", "Traditional Food", "Costumes"], ar: ["مخيم تراثي", "طعام تقليدي", "أزياء"] },
+    description: { en: "Immerse yourself in the authentic Bedouin lifestyle.", ar: "انغمس في نمط الحياة البدوي الأصيل." }
+  },
+  {
+    id: 'luxury-hummer',
+    title: { en: "Luxury Hummer Safari", ar: "سفاري همر فاخر" },
+    price: { en: "AED 500", ar: "500 درهم" },
+    duration: { en: "6 Hours", ar: "6 ساعات" },
+    image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=800",
+    gallery: [],
+    pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
+    locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
+    includes: { en: ["Hummer H2 Ride", "VIP Camp Access", "BBQ"], ar: ["ركوب همر H2", "دخول مخيم VIP", "مشاوي"] },
+    description: { en: "Ride the dunes in style with a luxury Hummer H2.", ar: "اركب الكثبان الرملية بأناقة مع همر H2 فاخرة." }
+  },
+  {
+    id: 'horse-riding',
+    title: { en: "Desert Horse Riding", ar: "ركوب الخيل في الصحراء" },
+    price: { en: "AED 250", ar: "250 درهم" },
+    duration: { en: "2 Hours", ar: "ساعتان" },
+    image: "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&q=80&w=800",
+    gallery: [],
+    pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
+    locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
+    includes: { en: ["1 Hour Horse Ride", "Instructor", "Water"], ar: ["ساعة ركوب خيل", "مدرب", "مياه"] },
+    description: { en: "Enjoy a peaceful horse ride across the desert sands.", ar: "استمتع بركوب خيل هادئ عبر رمال الصحراء." }
+  },
+  {
+    id: 'nature-reserve',
+    title: { en: "Nature Reserve Safari", ar: "سفاري المحمية الطبيعية" },
+    price: { en: "AED 350", ar: "350 درهم" },
+    duration: { en: "5 Hours", ar: "5 ساعات" },
+    image: "https://images.unsplash.com/photo-1489516408517-6c0a1387c6ce?auto=format&fit=crop&q=80&w=800",
+    gallery: [],
+    pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
+    locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
+    includes: { en: ["Wildlife Spotting", "Vintage Land Rover", "Breakfast"], ar: ["مشاهدة الحياة البرية", "لاند روفر كلاسيكي", "إفطار"] },
+    description: { en: "Spot oryx and gazelles in the Dubai Desert Conservation Reserve.", ar: "شاهد المها والغزلان في محمية دبي الصحراوية." }
   }
 ];
 
@@ -2972,10 +3152,10 @@ const MapComponent = ({ latitude, longitude }) => {
           </div>
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {safariPackages.map((pkg) => (
                   <div key={pkg.id} onClick={() => { setSelectedSafari(pkg); setActivePage('safari-details'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 dark:border-slate-700 flex flex-col group cursor-pointer">
-                      <div className="relative h-64 overflow-hidden">
+                      <div className="relative h-48 overflow-hidden">
                         <img src={pkg.image} alt={pkg.title[lang]} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                         {pkg.popular && (
                             <div className="absolute top-4 left-4 bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg flex items-center gap-1">

@@ -2533,7 +2533,7 @@ const MapComponent = ({ latitude, longitude }) => {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl group cursor-pointer" onClick={() => openModal('Winter Offer')}>
               <img 
-                src="https://scontent.fkwi5-2.fna.fbcdn.net/v/t51.71878-10/600286534_627548567069735_685495847000856654_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=111&_nc_cb=99be929b-f3b7c874&ccb=1-7&_nc_sid=c44d43&_nc_ohc=tMmYvMEzqAQQ7kNvwHxm-bE&_nc_oc=AdlIt6mPy5h3gDnCaYraajug-7727H35iSONVcC4BieyrxuMhgmloewzKm3sWgaRHLwuSGOZaZqqzAXYHZ5oW5kQ&_nc_zt=23&_nc_ht=scontent.fkwi5-2.fna&_nc_gid=I2onMPb4XEsRr3CfciVfZg&oh=00_AfpoRAfJ1KwkkXT496oJ2Nn7aNX3ZYPr5sPGl8K-lA6hgg&oe=695F5C68" 
+                src="https://scontent.fkwi6-2.fna.fbcdn.net/v/t51.82787-15/607293648_18027339704788899_6016439456991898860_n.jpg?_nc_cat=101&_nc_cb=99be929b-f3b7c874&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fxco2-JZxhoQ7kNvwE3BJnD&_nc_oc=AdlEEKaROOOLStHbK9sIYXNsPIwCnA2v5D0ZnMhb2a_QLKZ1pHpnOyda9xCVR423YRZ7zyLBcXAmiYVYFNqNoT0W&_nc_zt=23&_nc_ht=scontent.fkwi6-2.fna&_nc_gid=kUmDZlGUMXZtQ8x5IldcvA&oh=00_AfpSMh5e2c8qe1NpUbgNTAN5ZS9OQUZSllAs82baLNikPg&oe=695F3D1E" 
                 alt="Winter Offer" 
                 className="w-full h-64 md:h-[450px] object-cover transition-transform duration-700 group-hover:scale-105"
               />

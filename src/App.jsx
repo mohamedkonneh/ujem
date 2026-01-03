@@ -85,7 +85,7 @@ const navDropdowns = {
 const heroSlides = [
   {
     image: logo,
-    video: "https://videos.pexels.com/video-files/3764258/3764258-hd_1920_1080_25fps.mp4",
+    video: "https://cdn.pixabay.com/video/2023/08/24/176323-858719016_large.mp4",
     title: { en: "Discover Dubai's Wonders", ar: "اكتشف عجائب دبي" },
     subtitle: { en: "Experience world-class tourism in the heart of the UAE with Ujem Group", ar: "استمتع بسياحة عالمية المستوى في قلب الإمارات مع مجموعة عجم" }
   },
@@ -908,7 +908,7 @@ const galleryItems = [
   },
   {
     type: 'video',
-    src: "https://videos.pexels.com/video-files/855018/855018-hd_1920_1080_30fps.mp4",
+    src: "https://cdn.pixabay.com/video/2020/04/02/35224-408302299_large.mp4",
     poster: "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&q=80&w=800",
     title: { en: "City Lights", ar: "أضواء المدينة" }
   },
@@ -2571,7 +2571,7 @@ const MapComponent = ({ latitude, longitude }) => {
             <div className="relative h-[60vh] min-h-[500px] rounded-3xl overflow-hidden group perspective-1000 shadow-2xl border border-slate-200 dark:border-slate-700">
               {/* Parallax Background */}
               <video 
-                src="https://videos.pexels.com/video-files/3205633/3205633-hd_1920_1080_25fps.mp4" 
+                src="https://cdn.pixabay.com/video/2023/09/13/180449-864531670_large.mp4" 
                 autoPlay 
                 muted 
                 loop 
@@ -2844,7 +2844,7 @@ const MapComponent = ({ latitude, longitude }) => {
                   crossOrigin="anonymous"
                   className="w-full h-full object-cover"
                 >
-                  <source src="https://videos.pexels.com/video-files/4782829/4782829-hd.mp4" type="video/mp4" />
+                  <source src="https://cdn.pixabay.com/video/2024/02/13/201015-911753335_large.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>

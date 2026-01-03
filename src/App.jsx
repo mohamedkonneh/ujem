@@ -2142,7 +2142,7 @@ const MapComponent = ({ latitude, longitude }) => {
 
         {/* Search Bar Overlay */}
         {isSearchOpen && (
-          <div className="absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 p-4 shadow-lg animate-in slide-in-from-top-2">
+          <div className="absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 p-4 shadow-lg animate-in slide-in-from-top-2 pointer-events-auto">
             <div className="max-w-3xl mx-auto relative">
               <input 
                 type="text" 
@@ -2896,7 +2896,7 @@ const MapComponent = ({ latitude, longitude }) => {
                           <ShoppingBag size={14} />
                         </div>
                       </div>
-                    </div>
+                    </div>3
                   </div>
                 ))}
               </div>

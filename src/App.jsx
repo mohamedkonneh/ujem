@@ -1119,6 +1119,36 @@ const DraggableCard = ({ children, className, onClick }) => {
   );
 };
 
+const winterOfferDetails = {
+  id: 'winter-special',
+  title: { en: "Winter Special Package", ar: "باقة الشتاء الخاصة" },
+  description: { 
+    en: "Experience the best of Dubai this winter with our exclusive package combining desert adventures, city tours, and luxury dining. Enjoy the perfect weather with curated activities designed for unforgettable memories.", 
+    ar: "استمتع بأفضل ما في دبي هذا الشتاء مع باقتنا الحصرية التي تجمع بين مغامرات الصحراء وجولات المدينة وتناول الطعام الفاخر. استمتع بالطقس المثالي مع أنشطة مختارة بعناية لذكريات لا تُنسى." 
+  },
+  image: "https://scontent.fkwi6-2.fna.fbcdn.net/v/t51.82787-15/607293648_18027339704788899_6016439456991898860_n.jpg?_nc_cat=101&_nc_cb=99be929b-f3b7c874&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fxco2-JZxhoQ7kNvwE3BJnD&_nc_oc=AdlEEKaROOOLStHbK9sIYXNsPIwCnA2v5D0ZnMhb2a_QLKZ1pHpnOyda9xCVR423YRZ7zyLBcXAmiYVYFNqNoT0W&_nc_zt=23&_nc_ht=scontent.fkwi6-2.fna&_nc_gid=kUmDZlGUMXZtQ8x5IldcvA&oh=00_AfpSMh5e2c8qe1NpUbgNTAN5ZS9OQUZSllAs82baLNikPg&oe=695F3D1E",
+  price: { en: "AED 899", ar: "899 درهم" },
+  originalPrice: { en: "AED 1200", ar: "1200 درهم" },
+  features: {
+    en: ["Desert Safari with BBQ Dinner", "Dubai City Tour", "Dhow Cruise Dinner", "Burj Khalifa Ticket", "Hotel Transfers"],
+    ar: ["سفاري صحراوي مع عشاء مشاوي", "جولة في مدينة دبي", "عشاء رحلة بحرية", "تذكرة برج خليفة", "نقل من وإلى الفندق"]
+  },
+  relatedOffers: [
+    {
+      id: 'family-winter',
+      title: { en: "Family Winter Fun", ar: "مرح الشتاء العائلي" },
+      price: { en: "AED 1500", ar: "1500 درهم" },
+      image: "https://images.unsplash.com/photo-1597659840241-37e2b9c2f55f?auto=format&fit=crop&q=80&w=800"
+    },
+    {
+      id: 'couple-retreat',
+      title: { en: "Winter Couple Retreat", ar: "ملاذ الأزواج الشتوي" },
+      price: { en: "AED 1100", ar: "1100 درهم" },
+      image: "https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&q=80&w=800"
+    }
+  ]
+};
+
 const SafariWeatherWidget = ({ latitude, longitude, lang }) => {
   const [weather, setWeather] = useState(null);
   const [currency, setCurrency] = useState('AED');
@@ -1218,6 +1248,7 @@ const App = () => {
   const [compareList, setCompareList] = useState([]);
   const [isCompareOpen, setIsCompareOpen] = useState(false);
   const [selectedSafari, setSelectedSafari] = useState(null);
+  const [selectedOffer, setSelectedOffer] = useState(null);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currencyAmount, setCurrencyAmount] = useState(1);
   const [currencyFrom, setCurrencyFrom] = useState('USD');
@@ -1749,7 +1780,7 @@ const MapComponent = ({ latitude, longitude }) => {
   };
 
   const handleWinterOfferClick = (e) => {
-    e.stopPropagation();
+    if (e) e.stopPropagation();
     setShowConfetti(true);
     
     // Play confetti sound
@@ -1758,7 +1789,9 @@ const MapComponent = ({ latitude, longitude }) => {
     audio.play().catch(err => console.error("Audio play failed", err));
 
     setTimeout(() => setShowConfetti(false), 4000);
-    openModal('Winter Offer');
+    setSelectedOffer(winterOfferDetails);
+    setActivePage('offer-details');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleTestimonialSubmit = async (e) => {
@@ -2531,9 +2564,9 @@ const MapComponent = ({ latitude, longitude }) => {
       {activePage === 'home' && (
         <section className="py-8 bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl group cursor-pointer" onClick={() => openModal('Winter Offer')}>
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl group cursor-pointer" onClick={handleWinterOfferClick}>
               <img 
-                src="https://scontent.fkwi6-2.fna.fbcdn.net/v/t51.82787-15/607293648_18027339704788899_6016439456991898860_n.jpg?_nc_cat=101&_nc_cb=99be929b-f3b7c874&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fxco2-JZxhoQ7kNvwE3BJnD&_nc_oc=AdlEEKaROOOLStHbK9sIYXNsPIwCnA2v5D0ZnMhb2a_QLKZ1pHpnOyda9xCVR423YRZ7zyLBcXAmiYVYFNqNoT0W&_nc_zt=23&_nc_ht=scontent.fkwi6-2.fna&_nc_gid=kUmDZlGUMXZtQ8x5IldcvA&oh=00_AfpSMh5e2c8qe1NpUbgNTAN5ZS9OQUZSllAs82baLNikPg&oe=695F3D1E" 
+                src="https://images.unsplash.com/photo-1512632500716-3dbf1cb07ed7?auto=format&fit=crop&q=80&w=1600" 
                 alt="Winter Offer" 
                 className="w-full h-64 md:h-[450px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -3794,6 +3827,105 @@ const MapComponent = ({ latitude, longitude }) => {
                     </ul>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* --- OFFER DETAILS PAGE --- */}
+      {activePage === 'offer-details' && selectedOffer && (
+        <section className="pt-32 pb-24 bg-slate-50 dark:bg-slate-900 transition-colors min-h-screen animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+             {/* Back Button */}
+            <button onClick={() => setActivePage('home')} className="mb-6 flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-medium">
+              <ChevronLeft size={20} className="rtl:rotate-180" /> {lang === 'en' ? 'Back to Home' : 'العودة للرئيسية'}
+            </button>
+
+            <div className="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-2xl mb-12">
+               <div className="relative h-[400px] md:h-[500px]">
+                 <img src={selectedOffer.image} alt={selectedOffer.title[lang]} className="w-full h-full object-cover" />
+                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                 <div className="absolute bottom-0 left-0 p-8 md:p-12 text-white">
+                    <span className="bg-red-600 text-white px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider shadow-lg mb-4 inline-block animate-pulse">
+                      {lang === 'en' ? 'Limited Time Offer' : 'عرض لفترة محدودة'}
+                    </span>
+                    <h1 className="text-4xl md:text-6xl font-extrabold mb-4">{selectedOffer.title[lang]}</h1>
+                    <div className="flex items-center gap-4">
+                       <span className="text-3xl font-bold text-brand-400">{selectedOffer.price[lang]}</span>
+                       <span className="text-xl text-slate-400 line-through decoration-red-500 decoration-2">{selectedOffer.originalPrice[lang]}</span>
+                    </div>
+                 </div>
+               </div>
+               
+               <div className="p-8 md:p-12 grid grid-cols-1 lg:grid-cols-3 gap-12">
+                  <div className="lg:col-span-2 space-y-8">
+                     <div>
+                       <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">{lang === 'en' ? 'About This Offer' : 'عن هذا العرض'}</h3>
+                       <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed">{selectedOffer.description[lang]}</p>
+                     </div>
+                     
+                     <div>
+                       <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">{lang === 'en' ? 'What\'s Included' : 'ماذا يشمل'}</h3>
+                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                         {selectedOffer.features[lang].map((feature, idx) => (
+                           <div key={idx} className="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-100 dark:border-slate-700">
+                             <div className="bg-green-100 dark:bg-green-900/30 p-2 rounded-full text-green-600 dark:text-green-400">
+                               <CheckCircle size={20} />
+                             </div>
+                             <span className="font-medium text-slate-700 dark:text-slate-200">{feature}</span>
+                           </div>
+                         ))}
+                       </div>
+                     </div>
+                  </div>
+                  
+                  <div className="lg:col-span-1">
+                     <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 sticky top-24">
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">{lang === 'en' ? 'Booking Summary' : 'ملخص الحجز'}</h3>
+                        <div className="space-y-4 mb-8">
+                           <div className="flex justify-between text-sm">
+                             <span className="text-slate-500">{lang === 'en' ? 'Package Value' : 'قيمة الباقة'}</span>
+                             <span className="font-medium dark:text-white">{selectedOffer.originalPrice[lang]}</span>
+                           </div>
+                           <div className="flex justify-between text-sm">
+                             <span className="text-slate-500">{lang === 'en' ? 'Discount' : 'الخصم'}</span>
+                             <span className="font-medium text-green-600">-25%</span>
+                           </div>
+                           <div className="pt-4 border-t border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                             <span className="font-bold text-slate-900 dark:text-white">{lang === 'en' ? 'Total' : 'المجموع'}</span>
+                             <span className="text-2xl font-bold text-brand-600">{selectedOffer.price[lang]}</span>
+                           </div>
+                        </div>
+                        <button onClick={() => openModal(selectedOffer.title[lang])} className="w-full bg-brand-600 text-white font-bold py-4 rounded-xl hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/20 flex items-center justify-center gap-2">
+                          {t.bookNow} <ArrowRight size={20} className="rtl:rotate-180" />
+                        </button>
+                        <p className="text-xs text-center text-slate-400 mt-4">{lang === 'en' ? 'Limited availability. Book now to secure your spot.' : 'التوفر محدود. احجز الآن لتأمين مكانك.'}</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            {/* Related Offers */}
+            <div>
+              <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">{lang === 'en' ? 'More Winter Deals' : 'المزيد من عروض الشتاء'}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {selectedOffer.relatedOffers.map((offer) => (
+                  <div key={offer.id} className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg border border-slate-100 dark:border-slate-700 group cursor-pointer" onClick={() => openModal(offer.title[lang])}>
+                    <div className="h-48 overflow-hidden relative">
+                      <img src={offer.image} alt={offer.title[lang]} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                      <div className="absolute top-4 right-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm px-3 py-1 rounded-lg text-xs font-bold">
+                        {offer.price[lang]}
+                      </div>
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{offer.title[lang]}</h3>
+                      <button className="text-brand-600 font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                        {t.bookNow} <ArrowRight size={16} className="rtl:rotate-180" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

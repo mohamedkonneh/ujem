@@ -2833,14 +2833,20 @@ const MapComponent = ({ latitude, longitude }) => {
 
               {/* Tour Video Card */}
               <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-lg cursor-default">
-                <video 
-                  src="https://assets.mixkit.co/videos/preview/mixkit-people-walking-in-a-busy-street-market-4356-large.mp4" 
-                  autoPlay 
-                  muted 
-                  loop 
-                  playsInline 
-                  className="w-full h-full object-cover pointer-events-none"
-                />
+                <video
+                  poster="https://via.placeholder.com/800x450?text=Tour+Preview"
+                  preload="metadata"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  crossOrigin="anonymous"
+                  className="w-full h-full object-cover"
+                >
+                  <source src="https://assets.mixkit.co/videos/preview/mixkit-people-walking-in-a-busy-street-market-4356-large.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
                 <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
                 <div className="absolute bottom-6 left-6 pointer-events-none">
                    <span className="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-md uppercase tracking-wider mb-2 inline-block">

@@ -85,7 +85,7 @@ const navDropdowns = {
 const heroSlides = [
   {
     image: logo,
-    video: "https://assets.mixkit.co/videos/preview/mixkit-dubai-skyline-at-night-4537-large.mp4",
+    video: "https://videos.pexels.com/video-files/3764258/3764258-hd_1920_1080_25fps.mp4",
     title: { en: "Discover Dubai's Wonders", ar: "اكتشف عجائب دبي" },
     subtitle: { en: "Experience world-class tourism in the heart of the UAE with Ujem Group", ar: "استمتع بسياحة عالمية المستوى في قلب الإمارات مع مجموعة عجم" }
   },
@@ -908,7 +908,7 @@ const galleryItems = [
   },
   {
     type: 'video',
-    src: "https://assets.mixkit.co/videos/preview/mixkit-traffic-lights-in-a-city-at-night-4362-large.mp4",
+    src: "https://videos.pexels.com/video-files/855018/855018-hd_1920_1080_30fps.mp4",
     poster: "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&q=80&w=800",
     title: { en: "City Lights", ar: "أضواء المدينة" }
   },
@@ -2571,7 +2571,7 @@ const MapComponent = ({ latitude, longitude }) => {
             <div className="relative h-[60vh] min-h-[500px] rounded-3xl overflow-hidden group perspective-1000 shadow-2xl border border-slate-200 dark:border-slate-700">
               {/* Parallax Background */}
               <video 
-                src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-dubai-city-traffic-at-night-4539-large.mp4" 
+                src="https://videos.pexels.com/video-files/3205633/3205633-hd_1920_1080_25fps.mp4" 
                 autoPlay 
                 muted 
                 loop 
@@ -2844,7 +2844,7 @@ const MapComponent = ({ latitude, longitude }) => {
                   crossOrigin="anonymous"
                   className="w-full h-full object-cover"
                 >
-                  <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-city-traffic-at-night-11-large.mp4" type="video/mp4" />
+                  <source src="https://videos.pexels.com/video-files/4782829/4782829-hd.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>

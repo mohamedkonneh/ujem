@@ -2807,7 +2807,7 @@ const MapComponent = ({ latitude, longitude }) => {
                 onClick={() => openModal(lang === 'en' ? "Luxury Marina Cruises" : "رحلات مارينا الفاخرة")}
               >
                 <img 
-                  src="https://scontent.fkwi6-2.fna.fbcdn.net/v/t51.82787-15/603967789_18026690051788899_5349947420261549349_n.jpg?_nc_cat=103&_nc_cb=99be929b-f3b7c874&ccb=1-7&_nc_sid=127cfc&_nc_ohc=0Af5vsDZPJ0Q7kNvwHWWQoA&_nc_oc=Admjy7I29_UklA8TilOPMSnSi_zW-0-AgP1ixVYmdi_NnudSEDxKvqj6y_Ff-wLh-e6F327PcoiR1gSJ6-Y67gUT&_nc_zt=23&_nc_ht=scontent.fkwi6-2.fna&_nc_gid=KulR_9JPJHalXtM7Da_cMg&oh=00_AflGvUS-5U4dThW2n4j3bz16Dfw9mz-H9kas4BpyRjF6Fg&oe=69528F9E" 
+                  src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=800" 
                   alt="Luxury Marina" 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -2834,7 +2834,7 @@ const MapComponent = ({ latitude, longitude }) => {
               {/* Tour Video Card */}
               <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-lg cursor-default">
                 <video
-                  poster="https://via.placeholder.com/800x450?text=Tour+Preview"
+                  poster="https://placehold.co/800x450?text=Tour+Preview"
                   preload="metadata"
                   autoPlay
                   muted
@@ -2844,7 +2844,7 @@ const MapComponent = ({ latitude, longitude }) => {
                   crossOrigin="anonymous"
                   className="w-full h-full object-cover"
                 >
-                  <source src="https://assets.mixkit.co/videos/preview/mixkit-people-walking-in-a-busy-street-market-4356-large.mp4" type="video/mp4" />
+                  <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-city-traffic-at-night-11-large.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>

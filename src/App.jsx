@@ -2844,7 +2844,7 @@ const MapComponent = ({ latitude, longitude }) => {
                   crossOrigin="anonymous"
                   className="w-full h-full object-cover"
                 >
-                  <source src="https://cdn.pixabay.com/v/img/videos/PexelsVideos2650751_1.mp4" type="video/mp4" />
+                  <source src="https://cdn.pixabay.com/v/img/videos/PexelsVideos2603.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>

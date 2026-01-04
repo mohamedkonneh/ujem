@@ -2832,7 +2832,10 @@ const MapComponent = ({ latitude, longitude }) => {
               </div>
 
               {/* Tour Video Card */}
-              <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-lg cursor-default">
+              <div 
+                className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-lg cursor-pointer group"
+                onClick={() => openModal(lang === 'en' ? "City Walk Experience" : "تجربة سيتي ووك")}
+              >
                 <video
                   poster="https://placehold.co/800x450?text=Tour+Preview"
                   preload="metadata"
@@ -2840,9 +2843,8 @@ const MapComponent = ({ latitude, longitude }) => {
                   muted
                   loop
                   playsInline
-                  controls
                   crossOrigin="anonymous"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 >
                   <source src="https://cdn.pixabay.com/v/img/videos/PexelsVideos2603.mp4" type="video/mp4" />
                   Your browser does not support the video tag.

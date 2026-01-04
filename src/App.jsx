@@ -705,6 +705,10 @@ const winterOfferPackage = {
     en: ["Fast-track Application", "24/7 WhatsApp Support", "Document Pre-check", "No Hidden Fees"],
     ar: ["طلب سريع", "دعم واتساب 24/7", "فحص مسبق للمستندات", "بدون رسوم خفية"]
   },
+  requiredDocuments: {
+    en: ["Clear Passport Copy (6 months validity)", "Passport-size Photo (white background)", "National ID (for some nationalities)"],
+    ar: ["نسخة واضحة من جواز السفر (صلاحية 6 أشهر)", "صورة شخصية بحجم جواز السفر (خلفية بيضاء)", "الهوية الوطنية (لبعض الجنسيات)"]
+  },
   description: { en: "Get your UAE visa hassle-free with our special winter promotion. Fast, reliable, and affordable.", ar: "احصل على تأشيرة الإمارات بدون متاعب مع عرض الشتاء الخاص. سريع وموثوق وبأسعار معقولة." },
   longDescription: { en: "Planning a trip to the UAE this winter? Take advantage of our exclusive visa promotion. We offer a streamlined, digital-first application process to get your visa approved in record time. Our experts will pre-check your documents to minimize rejections and our support team is available around the clock to answer your questions. This offer is for a limited time only, so secure your visa today and get ready to explore the wonders of the UAE.", ar: "هل تخطط لرحلة إلى الإمارات هذا الشتاء؟ استفد من عرض التأشيرة الحصري. نحن نقدم عملية تقديم طلبات مبسطة ورقمية للحصول على الموافقة على تأشيرتك في وقت قياسي. سيقوم خبراؤنا بفحص مستنداتك مسبقًا لتقليل حالات الرفض وفريق الدعم لدينا متاح على مدار الساعة للإجابة على أسئلتك. هذا العرض لفترة محدودة فقط، لذا أمّن تأشيرتك اليوم واستعد لاستكشاف عجائب الإمارات." },
   itinerary: [
@@ -3958,6 +3962,20 @@ const MapComponent = ({ latitude, longitude }) => {
                       ))}
                     </ul>
                   </div>
+
+                  {selectedSafari.id === 'winter-offer' && selectedSafari.requiredDocuments && (
+                    <div className="space-y-4 border-t border-slate-100 dark:border-slate-700 pt-6">
+                      <h4 className="font-bold text-slate-900 dark:text-white mb-2">{lang === 'en' ? 'Required Documents' : 'المستندات المطلوبة'}</h4>
+                      <ul className="space-y-3">
+                        {selectedSafari.requiredDocuments[lang].map((doc, i) => (
+                          <li key={i} className="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-400">
+                            <FileCheck size={16} className="text-blue-500 shrink-0 mt-0.5" />
+                            <span>{doc}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

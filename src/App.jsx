@@ -688,11 +688,17 @@ const cityWalkPackage = {
 const winterOfferPackage = {
   id: 'winter-offer',
   title: { en: "Winter Visa Promotion", ar: "عرض تأشيرة الشتاء" },
-  price: { en: "AED 199", ar: "199 درهم" },
+  price: { en: "From AED 199", ar: "يبدأ من 199 درهم" },
+  variants: [
+    { id: '30-days', title: { en: "30 Days Single Entry", ar: "30 يوم دخول مرة واحدة" }, price: { en: "AED 199", ar: "199 درهم" } },
+    { id: '60-days', title: { en: "60 Days Single Entry", ar: "60 يوم دخول مرة واحدة" }, price: { en: "AED 399", ar: "399 درهم" } },
+    { id: '30-days-multi', title: { en: "30 Days Multiple Entry", ar: "30 يوم دخول متعدد" }, price: { en: "AED 499", ar: "499 درهم" } },
+    { id: '60-days-multi', title: { en: "60 Days Multiple Entry", ar: "60 يوم دخول متعدد" }, price: { en: "AED 799", ar: "799 درهم" } }
+  ],
   duration: { en: "24-48h Processing", ar: "معالجة خلال 24-48 ساعة" },
   image: "https://scontent.fkwi6-2.fna.fbcdn.net/v/t51.82787-15/607293648_18027339704788899_6016439456991898860_n.jpg?_nc_cat=101&_nc_cb=99be929b-f3b7c874&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fxco2-JZxhoQ7kNvwE3BJnD&_nc_oc=AdlEEKaROOOLStHbK9sIYXNsPIwCnA2v5D0ZnMhb2a_QLKZ1pHpnOyda9xCVR423YRZ7zyLBcXAmiYVYFNqNoT0W&_nc_zt=23&_nc_ht=scontent.fkwi6-2.fna&_nc_gid=kUmDZlGUMXZtQ8x5IldcvA&oh=00_AfpSMh5e2c8qe1NpUbgNTAN5ZS9OQUZSllAs82baLNikPg&oe=695F3D1E",
   gallery: [
-    { src: "https://www.facebook.com/photo/?fbid=763886293389819&set=a.113633121748476&__cft__[0]=AZYVDrQDceWBH4CrLnvIp7QH-D76WwAlaGE0Vgf44ZmWoKp8l_m7dSfbYY5LH6qH5P6wKOKOAiH-VCIqtkyo591MzAmtUWp_G0Olrr9-PN74A-HomJI9xX_2jSz0LPdYOkVBYGSHD5__4zcPUnNlJK32j9VYQZ8WU5ALr8B5DU3PucICFeO45iTs9pIU9qOY6oM&__tn__=EH-R", type: 'image', title: { en: "Visa Documents", ar: "مستندات التأشيرة" } },
+    { src: "https://scontent.fkwi6-2.fna.fbcdn.net/v/t39.30808-6/483594342_547381315040319_810481002546453597_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=108&_nc_cb=99be929b-f3b7c874&ccb=1-7&_nc_sid=833d8c&_nc_ohc=rdqz6GeBmJgQ7kNvwGnENNe&_nc_oc=AdmngD15ySyx4jGcvtDHSFEvVKxHyWICy9EGMKiP148qLUlAO-otQrbvismP_NK4Wv78BwULAYFPl7gEZMFHgKQE&_nc_zt=23&_nc_ht=scontent.fkwi6-2.fna&_nc_gid=rOiRj065ojqMX8ilaj_JUQ&oh=00_Afr1oAcIYSzrJwW8hGheZfXoDgA19pQ8txbeSBwJIbXtvQ&oe=69604960", type: 'image', title: { en: "Visa Documents", ar: "مستندات التأشيرة" } },
     { src: "https://scontent.fkwi6-2.fna.fbcdn.net/v/t51.82787-15/591171331_18025921847788899_5733794063145263469_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=104&_nc_cb=99be929b-f3b7c874&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Gnt32Fi37usQ7kNvwHypBKZ&_nc_oc=Adn7MBLjnbNlhqNcmA4vdV8FzHupM-tqH0a073C3yYJ2m_PjA8jr6bmicrBd8-xK0jAaaM8BjvbJbtz5lgH_w7Gq&_nc_zt=23&_nc_ht=scontent.fkwi6-2.fna&_nc_gid=onVobsCguRpVuiBJTaBcyA&oh=00_Afqi6x3jc0fe54F6nZUcseyH9CDgANCiYwN7eDTLkz37MQ&oe=69605ECB", type: 'image', title: { en: "Dubai Arrival", ar: "الوصول إلى دبي" } }
   ],
   includes: {
@@ -1266,6 +1272,7 @@ const App = () => {
   const [compareList, setCompareList] = useState([]);
   const [isCompareOpen, setIsCompareOpen] = useState(false);
   const [selectedSafari, setSelectedSafari] = useState(null);
+  const [selectedVariant, setSelectedVariant] = useState(null);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currencyAmount, setCurrencyAmount] = useState(1);
   const [currencyFrom, setCurrencyFrom] = useState('USD');
@@ -1339,6 +1346,14 @@ const App = () => {
   const [isTestimonialFormOpen, setIsTestimonialFormOpen] = useState(false);
   const [testimonialForm, setTestimonialForm] = useState({ name: '', role: '', quote: '' });
   const [moderationError, setModerationError] = useState('');
+
+  useEffect(() => {
+    if (selectedSafari?.variants) {
+      setSelectedVariant(selectedSafari.variants[0]);
+    } else {
+      setSelectedVariant(null);
+    }
+  }, [selectedSafari]);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -3876,14 +3891,40 @@ const MapComponent = ({ latitude, longitude }) => {
                 <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-xl border border-slate-100 dark:border-slate-700 sticky top-24">
                   <div className="mb-6">
                     <span className="text-sm text-slate-500 dark:text-slate-400 block mb-1">{lang === 'en' ? 'Starting from' : 'يبدأ من'}</span>
-                    <span className="text-4xl font-extrabold text-brand-600">{selectedSafari.price[lang]}</span>
+                    <span className="text-4xl font-extrabold text-brand-600">
+                      {selectedVariant ? selectedVariant.price[lang] : selectedSafari.price[lang]}
+                    </span>
                     <span className="text-sm text-slate-400"> / {lang === 'en' ? 'Person' : 'شخص'}</span>
                   </div>
                   
+                  {selectedSafari.variants && (
+                    <div className="mb-6">
+                      <span className="text-sm font-bold text-slate-900 dark:text-white block mb-3">{lang === 'en' ? 'Select Visa Type' : 'اختر نوع التأشيرة'}</span>
+                      <div className="space-y-2">
+                        {selectedSafari.variants.map((variant) => (
+                          <button
+                            key={variant.id}
+                            onClick={() => setSelectedVariant(variant)}
+                            className={`w-full flex items-center justify-between p-3 rounded-xl border-2 transition-all ${
+                              selectedVariant?.id === variant.id
+                                ? 'border-brand-600 bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-brand-400'
+                                : 'border-slate-200 dark:border-slate-700 hover:border-brand-300 text-slate-600 dark:text-slate-400'
+                            }`}
+                          >
+                            <span className="font-medium text-sm">{variant.title[lang]}</span>
+                            <span className="font-bold text-sm">{variant.price[lang]}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                   <div className="space-y-3 mb-6">
                     <button onClick={() => {
                       if (selectedSafari.id === 'winter-offer') {
-                        window.location.href = "https://visa.ujem.com/";
+                        const baseUrl = "https://visa.ujem.com/";
+                        const variantParam = selectedVariant ? `?type=${selectedVariant.id}` : "";
+                        window.location.href = baseUrl + variantParam;
                       } else {
                         openModal(selectedSafari.title[lang]);
                       }

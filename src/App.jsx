@@ -1342,6 +1342,44 @@ const App = () => {
   const [testimonialForm, setTestimonialForm] = useState({ name: '', role: '', quote: '' });
   const [moderationError, setModerationError] = useState('');
 
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const packageId = urlParams.get('package');
+
+    if (packageId) {
+      const allPackages = [...safariPackages, cityWalkPackage, winterOfferPackage];
+      const packageToShow = allPackages.find(p => p.id === packageId);
+
+      if (packageToShow) {
+        setSelectedSafari(packageToShow);
+        setActivePage('safari-details');
+        // Clean the URL to avoid re-triggering on refresh
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    }
+  }, []);
+
+  const handleShare = async () => {
+    if (!selectedSafari) return;
+
+    const shareUrl = `${window.location.origin}${window.location.pathname}?package=${selectedSafari.id}`;
+    const shareData = {
+      title: selectedSafari.title[lang],
+      text: selectedSafari.description[lang],
+      url: shareUrl,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        console.log("Share action was cancelled or failed.", err);
+      }
+    } else {
+      navigator.clipboard.writeText(shareUrl).then(() => alert(lang === 'en' ? 'Link copied to clipboard!' : 'تم نسخ الرابط إلى الحافظة!'), () => alert(lang === 'en' ? 'Could not copy link.' : 'لم يتمكن من نسخ الرابط.'));
+    }
+  };
+
   const openModal = (service) => {
     if (service === "UAE Visit Visa" || service === "تأشيرة زيارة الإمارات" || service === "Visa Processing" || service === "معالجة التأشيرات") {
       window.location.href = "https://visa.ujem.com/";
@@ -3842,9 +3880,31 @@ const MapComponent = ({ latitude, longitude }) => {
                     <span className="text-sm text-slate-400"> / {lang === 'en' ? 'Person' : 'شخص'}</span>
                   </div>
                   
-                  <button onClick={() => openModal(selectedSafari.title[lang])} className="w-full bg-brand-600 text-white font-bold py-4 rounded-xl hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/20 mb-6 flex items-center justify-center gap-2">
-                    <Calendar size={20} /> {t.bookNow}
-                  </button>
+                  <div className="space-y-3 mb-6">
+                    <button onClick={() => {
+                      if (selectedSafari.id === 'winter-offer') {
+                        window.location.href = "https://visa.ujem.com/";
+                      } else {
+                        openModal(selectedSafari.title[lang]);
+                      }
+                    }} className="w-full bg-brand-600 text-white font-bold py-4 rounded-xl hover:bg-brand-700 transition-all shadow-lg shadow-brand-600/20 flex items-center justify-center gap-2">
+                      <Calendar size={20} /> {t.bookNow}
+                    </button>
+
+                    <div className="flex gap-3">
+                      <button onClick={() => {
+                          const inquirySection = document.getElementById('safari-inquiry');
+                          if (inquirySection) {
+                              inquirySection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                          }
+                      }} className="flex-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold py-3 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-600 transition-all flex items-center justify-center gap-2 text-sm">
+                          <MessageSquare size={18} /> {lang === 'en' ? 'Inquire' : 'استفسار'}
+                      </button>
+                      <button onClick={handleShare} className="flex-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold py-3 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-600 transition-all flex items-center justify-center gap-2 text-sm">
+                          <Share2 size={18} /> {lang === 'en' ? 'Share' : 'مشاركة'}
+                      </button>
+                    </div>
+                  </div>
 
                   <div className="space-y-4 border-t border-slate-100 dark:border-slate-700 pt-6">
                     <h4 className="font-bold text-slate-900 dark:text-white mb-2">{lang === 'en' ? 'What\'s Included' : 'ماذا يشمل'}</h4>

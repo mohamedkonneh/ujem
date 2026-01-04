@@ -685,6 +685,31 @@ const cityWalkPackage = {
   ]
 };
 
+const winterOfferPackage = {
+  id: 'winter-offer',
+  title: { en: "Winter Offer", ar: "عرض الشتاء" },
+  price: { en: "AED 199", ar: "199 درهم" },
+  duration: { en: "Full Day", ar: "يوم كامل" },
+  image: "https://scontent.fkwi6-2.fna.fbcdn.net/v/t51.82787-15/607293648_18027339704788899_6016439456991898860_n.jpg?_nc_cat=101&_nc_cb=99be929b-f3b7c874&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fxco2-JZxhoQ7kNvwE3BJnD&_nc_oc=AdlEEKaROOOLStHbK9sIYXNsPIwCnA2v5D0ZnMhb2a_QLKZ1pHpnOyda9xCVR423YRZ7zyLBcXAmiYVYFNqNoT0W&_nc_zt=23&_nc_ht=scontent.fkwi6-2.fna&_nc_gid=kUmDZlGUMXZtQ8x5IldcvA&oh=00_AfpSMh5e2c8qe1NpUbgNTAN5ZS9OQUZSllAs82baLNikPg&oe=695F3D1E",
+  gallery: [
+    { src: "https://images.unsplash.com/photo-1542718610-500e36b387e6?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Snowy Desert", ar: "صحراء ثلجية" } },
+    { src: "https://images.unsplash.com/photo-1610052832434-c27de2a9b529?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Winter Fun", ar: "متعة الشتاء" } }
+  ],
+  pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
+  locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
+  includes: {
+    en: ["Special Winter Activities", "Hot Beverages", "Festive BBQ Dinner"],
+    ar: ["أنشطة شتوية خاصة", "مشروبات ساخنة", "عشاء شواء احتفالي"]
+  },
+  description: { en: "Don't miss out on our exclusive winter deals. Limited time only!", ar: "لا تفوت عروض الشتاء الحصرية. لفترة محدودة فقط!" },
+  longDescription: { en: "Experience the magic of winter in the desert with our special offer. Enjoy unique activities, cozy campfires, and a festive atmosphere. This package combines the thrill of a desert safari with the charm of a winter wonderland.", ar: "جرب سحر الشتاء في الصحراء مع عرضنا الخاص. استمتع بأنشطة فريدة ونيران المخيم المريحة وأجواء احتفالية. تجمع هذه الباقة بين إثارة رحلات السفاري الصحراوية وسحر أرض العجائب الشتوية." },
+  itinerary: [
+    { time: "02:00 PM", title: { en: "Pickup", ar: "الاستقبال" }, desc: { en: "Pickup from your location.", ar: "الاستقبال من موقعك." } },
+    { time: "03:30 PM", title: { en: "Winter Games", ar: "ألعاب شتوية" }, desc: { en: "Fun activities in the desert.", ar: "أنشطة ممتعة في الصحراء." } },
+    { time: "07:00 PM", title: { en: "Festive Dinner", ar: "عشاء احتفالي" }, desc: { en: "BBQ dinner with winter treats.", ar: "عشاء شواء مع حلويات شتوية." } }
+  ]
+};
+
 const shopProducts = [
   {
     id: 1,
@@ -1773,19 +1798,6 @@ const MapComponent = ({ latitude, longitude }) => {
     lastMessageCount.current = 1;
   };
 
-  const handleWinterOfferClick = (e) => {
-    e.stopPropagation();
-    setShowConfetti(true);
-    
-    // Play confetti sound
-    const audio = new Audio('https://cdn.pixabay.com/audio/2022/03/10/audio_c8c8a73467.mp3');
-    audio.volume = 0.5;
-    audio.play().catch(err => console.error("Audio play failed", err));
-
-    setTimeout(() => setShowConfetti(false), 4000);
-    openModal('Winter Offer');
-  };
-
   const handleTestimonialSubmit = async (e) => {
     e.preventDefault();
     
@@ -2556,7 +2568,11 @@ const MapComponent = ({ latitude, longitude }) => {
       {activePage === 'home' && (
         <section className="py-8 bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl group cursor-pointer" onClick={() => openModal('Winter Offer')}>
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl group cursor-pointer" onClick={() => {
+                  setSelectedSafari(winterOfferPackage);
+                  setActivePage('safari-details');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}>
               <img 
                 src="https://scontent.fkwi6-2.fna.fbcdn.net/v/t51.82787-15/607293648_18027339704788899_6016439456991898860_n.jpg?_nc_cat=101&_nc_cb=99be929b-f3b7c874&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fxco2-JZxhoQ7kNvwE3BJnD&_nc_oc=AdlEEKaROOOLStHbK9sIYXNsPIwCnA2v5D0ZnMhb2a_QLKZ1pHpnOyda9xCVR423YRZ7zyLBcXAmiYVYFNqNoT0W&_nc_zt=23&_nc_ht=scontent.fkwi6-2.fna&_nc_gid=kUmDZlGUMXZtQ8x5IldcvA&oh=00_AfpSMh5e2c8qe1NpUbgNTAN5ZS9OQUZSllAs82baLNikPg&oe=695F3D1E" 
                 alt="Winter Offer" 
@@ -2568,7 +2584,18 @@ const MapComponent = ({ latitude, longitude }) => {
                      <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-2 drop-shadow-lg">Winter Offer</h2>
                      <p className="text-white/90 text-lg mb-6 max-w-2xl">Don't miss out on our exclusive winter deals. Limited time only!</p>
                      <button 
-                       onClick={handleWinterOfferClick}
+                       onClick={(e) => {
+                          e.stopPropagation();
+                          setShowConfetti(true);
+                          const audio = new Audio('https://cdn.pixabay.com/audio/2022/03/10/audio_c8c8a73467.mp3');
+                          audio.volume = 0.5;
+                          audio.play().catch(err => console.error("Audio play failed", err));
+                          setTimeout(() => setShowConfetti(false), 4000);
+                          
+                          setSelectedSafari(winterOfferPackage);
+                          setActivePage('safari-details');
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                       }}
                        className="bg-brand-600 text-white px-8 py-3 rounded-full font-bold hover:bg-brand-700 transition-colors shadow-lg"
                      >
                        {t.bookNow}
@@ -3681,8 +3708,8 @@ const MapComponent = ({ latitude, longitude }) => {
         <section className="pt-32 pb-24 bg-slate-50 dark:bg-slate-900 transition-colors min-h-screen animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Back Button */}
-            <button onClick={() => setActivePage(selectedSafari.id === 'city-walk' ? 'home' : 'safari')} className="mb-6 flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-medium">
-              <ChevronLeft size={20} className="rtl:rotate-180" /> {selectedSafari.id === 'city-walk' ? (lang === 'en' ? 'Back to Home' : 'العودة للرئيسية') : (lang === 'en' ? 'Back to Packages' : 'العودة للباقات')}
+            <button onClick={() => setActivePage(['city-walk', 'winter-offer'].includes(selectedSafari.id) ? 'home' : 'safari')} className="mb-6 flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-medium">
+              <ChevronLeft size={20} className="rtl:rotate-180" /> {['city-walk', 'winter-offer'].includes(selectedSafari.id) ? (lang === 'en' ? 'Back to Home' : 'العودة للرئيسية') : (lang === 'en' ? 'Back to Packages' : 'العودة للباقات')}
             </button>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">

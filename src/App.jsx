@@ -660,6 +660,31 @@ const safariPackages = [
   }
 ];
 
+const cityWalkPackage = {
+  id: 'city-walk',
+  title: { en: "City Walk Experience", ar: "تجربة سيتي ووك" },
+  price: { en: "AED 100", ar: "100 درهم" },
+  duration: { en: "3 Hours", ar: "3 ساعات" },
+  image: "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&q=80&w=800",
+  gallery: [
+    { src: "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "City Lights", ar: "أضواء المدينة" } },
+    { src: "https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Downtown", ar: "وسط المدينة" } }
+  ],
+  pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
+  locationCoordinates: { latitude: 25.2048, longitude: 55.2708 },
+  includes: {
+    en: ["Guided Tour", "Refreshments", "Photo Stops"],
+    ar: ["جولة سياحية", "مرطبات", "وقفات تصوير"]
+  },
+  description: { en: "Explore the vibrant streets of Dubai City Walk.", ar: "استكشف شوارع سيتي ووك دبي النابضة بالحياة." },
+  longDescription: { en: "Immerse yourself in the urban culture of Dubai with our City Walk Experience. Discover modern architecture, street art, and premium shopping destinations.", ar: "انغمس في الثقافة الحضرية لدبي مع تجربة سيتي ووك. اكتشف العمارة الحديثة وفن الشارع ووجهات التسوق المتميزة." },
+  itinerary: [
+    { time: "05:00 PM", title: { en: "Meeting Point", ar: "نقطة التجمع" }, desc: { en: "Meet at City Walk entrance.", ar: "التجمع عند مدخل سيتي ووك." } },
+    { time: "05:30 PM", title: { en: "Tour Start", ar: "بدء الجولة" }, desc: { en: "Guided walk through the district.", ar: "جولة مشي عبر المنطقة." } },
+    { time: "07:00 PM", title: { en: "Dinner", ar: "العشاء" }, desc: { en: "Optional dinner at a local restaurant.", ar: "عشاء اختياري في مطعم محلي." } }
+  ]
+};
+
 const shopProducts = [
   {
     id: 1,
@@ -2834,7 +2859,11 @@ const MapComponent = ({ latitude, longitude }) => {
               {/* Tour Video Card */}
               <div 
                 className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-lg cursor-pointer group"
-                onClick={() => openModal(lang === 'en' ? "City Walk Experience" : "تجربة سيتي ووك")}
+                onClick={() => {
+                  setSelectedSafari(cityWalkPackage);
+                  setActivePage('safari-details');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
               >
                 <video
                   poster="https://placehold.co/800x450?text=Tour+Preview"
@@ -3652,8 +3681,8 @@ const MapComponent = ({ latitude, longitude }) => {
         <section className="pt-32 pb-24 bg-slate-50 dark:bg-slate-900 transition-colors min-h-screen animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Back Button */}
-            <button onClick={() => setActivePage('safari')} className="mb-6 flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-medium">
-              <ChevronLeft size={20} className="rtl:rotate-180" /> {lang === 'en' ? 'Back to Packages' : 'العودة للباقات'}
+            <button onClick={() => setActivePage(selectedSafari.id === 'city-walk' ? 'home' : 'safari')} className="mb-6 flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-medium">
+              <ChevronLeft size={20} className="rtl:rotate-180" /> {selectedSafari.id === 'city-walk' ? (lang === 'en' ? 'Back to Home' : 'العودة للرئيسية') : (lang === 'en' ? 'Back to Packages' : 'العودة للباقات')}
             </button>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">

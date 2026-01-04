@@ -687,26 +687,24 @@ const cityWalkPackage = {
 
 const winterOfferPackage = {
   id: 'winter-offer',
-  title: { en: "Winter Offer", ar: "عرض الشتاء" },
+  title: { en: "Winter Visa Promotion", ar: "عرض تأشيرة الشتاء" },
   price: { en: "AED 199", ar: "199 درهم" },
-  duration: { en: "Full Day", ar: "يوم كامل" },
+  duration: { en: "24-48h Processing", ar: "معالجة خلال 24-48 ساعة" },
   image: "https://scontent.fkwi6-2.fna.fbcdn.net/v/t51.82787-15/607293648_18027339704788899_6016439456991898860_n.jpg?_nc_cat=101&_nc_cb=99be929b-f3b7c874&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fxco2-JZxhoQ7kNvwE3BJnD&_nc_oc=AdlEEKaROOOLStHbK9sIYXNsPIwCnA2v5D0ZnMhb2a_QLKZ1pHpnOyda9xCVR423YRZ7zyLBcXAmiYVYFNqNoT0W&_nc_zt=23&_nc_ht=scontent.fkwi6-2.fna&_nc_gid=kUmDZlGUMXZtQ8x5IldcvA&oh=00_AfpSMh5e2c8qe1NpUbgNTAN5ZS9OQUZSllAs82baLNikPg&oe=695F3D1E",
   gallery: [
-    { src: "https://images.unsplash.com/photo-1542718610-500e36b387e6?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Snowy Desert", ar: "صحراء ثلجية" } },
-    { src: "https://images.unsplash.com/photo-1610052832434-c27de2a9b529?auto=format&fit=crop&q=80&w=800", type: 'image', title: { en: "Winter Fun", ar: "متعة الشتاء" } }
+    { src: "https://www.facebook.com/photo/?fbid=763886293389819&set=a.113633121748476&__cft__[0]=AZYVDrQDceWBH4CrLnvIp7QH-D76WwAlaGE0Vgf44ZmWoKp8l_m7dSfbYY5LH6qH5P6wKOKOAiH-VCIqtkyo591MzAmtUWp_G0Olrr9-PN74A-HomJI9xX_2jSz0LPdYOkVBYGSHD5__4zcPUnNlJK32j9VYQZ8WU5ALr8B5DU3PucICFeO45iTs9pIU9qOY6oM&__tn__=EH-R", type: 'image', title: { en: "Visa Documents", ar: "مستندات التأشيرة" } },
+    { src: "https://scontent.fkwi6-2.fna.fbcdn.net/v/t51.82787-15/591171331_18025921847788899_5733794063145263469_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=104&_nc_cb=99be929b-f3b7c874&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Gnt32Fi37usQ7kNvwHypBKZ&_nc_oc=Adn7MBLjnbNlhqNcmA4vdV8FzHupM-tqH0a073C3yYJ2m_PjA8jr6bmicrBd8-xK0jAaaM8BjvbJbtz5lgH_w7Gq&_nc_zt=23&_nc_ht=scontent.fkwi6-2.fna&_nc_gid=onVobsCguRpVuiBJTaBcyA&oh=00_Afqi6x3jc0fe54F6nZUcseyH9CDgANCiYwN7eDTLkz37MQ&oe=69605ECB", type: 'image', title: { en: "Dubai Arrival", ar: "الوصول إلى دبي" } }
   ],
-  pickupCoordinates: { latitude: 25.2048, longitude: 55.2708 },
-  locationCoordinates: { latitude: 24.8607, longitude: 55.1310 },
   includes: {
-    en: ["Special Winter Activities", "Hot Beverages", "Festive BBQ Dinner"],
-    ar: ["أنشطة شتوية خاصة", "مشروبات ساخنة", "عشاء شواء احتفالي"]
+    en: ["Fast-track Application", "24/7 WhatsApp Support", "Document Pre-check", "No Hidden Fees"],
+    ar: ["طلب سريع", "دعم واتساب 24/7", "فحص مسبق للمستندات", "بدون رسوم خفية"]
   },
-  description: { en: "Don't miss out on our exclusive winter deals. Limited time only!", ar: "لا تفوت عروض الشتاء الحصرية. لفترة محدودة فقط!" },
-  longDescription: { en: "Experience the magic of winter in the desert with our special offer. Enjoy unique activities, cozy campfires, and a festive atmosphere. This package combines the thrill of a desert safari with the charm of a winter wonderland.", ar: "جرب سحر الشتاء في الصحراء مع عرضنا الخاص. استمتع بأنشطة فريدة ونيران المخيم المريحة وأجواء احتفالية. تجمع هذه الباقة بين إثارة رحلات السفاري الصحراوية وسحر أرض العجائب الشتوية." },
+  description: { en: "Get your UAE visa hassle-free with our special winter promotion. Fast, reliable, and affordable.", ar: "احصل على تأشيرة الإمارات بدون متاعب مع عرض الشتاء الخاص. سريع وموثوق وبأسعار معقولة." },
+  longDescription: { en: "Planning a trip to the UAE this winter? Take advantage of our exclusive visa promotion. We offer a streamlined, digital-first application process to get your visa approved in record time. Our experts will pre-check your documents to minimize rejections and our support team is available around the clock to answer your questions. This offer is for a limited time only, so secure your visa today and get ready to explore the wonders of the UAE.", ar: "هل تخطط لرحلة إلى الإمارات هذا الشتاء؟ استفد من عرض التأشيرة الحصري. نحن نقدم عملية تقديم طلبات مبسطة ورقمية للحصول على الموافقة على تأشيرتك في وقت قياسي. سيقوم خبراؤنا بفحص مستنداتك مسبقًا لتقليل حالات الرفض وفريق الدعم لدينا متاح على مدار الساعة للإجابة على أسئلتك. هذا العرض لفترة محدودة فقط، لذا أمّن تأشيرتك اليوم واستعد لاستكشاف عجائب الإمارات." },
   itinerary: [
-    { time: "02:00 PM", title: { en: "Pickup", ar: "الاستقبال" }, desc: { en: "Pickup from your location.", ar: "الاستقبال من موقعك." } },
-    { time: "03:30 PM", title: { en: "Winter Games", ar: "ألعاب شتوية" }, desc: { en: "Fun activities in the desert.", ar: "أنشطة ممتعة في الصحراء." } },
-    { time: "07:00 PM", title: { en: "Festive Dinner", ar: "عشاء احتفالي" }, desc: { en: "BBQ dinner with winter treats.", ar: "عشاء شواء مع حلويات شتوية." } }
+    { time: "Step 1", title: { en: "Submit Documents", ar: "الخطوة 1: تقديم المستندات" }, desc: { en: "Upload your passport copy and photo through our secure portal.", ar: "قم بتحميل نسخة من جواز سفرك وصورتك عبر بوابتنا الآمنة." } },
+    { time: "Step 2", title: { en: "Application Review", ar: "الخطوة 2: مراجعة الطلب" }, desc: { en: "Our experts review your application to ensure it meets all requirements.", ar: "يقوم خبراؤنا بمراجعة طلبك للتأكد من أنه يفي بجميع المتطلبات." } },
+    { time: "Step 3", title: { en: "Receive Visa", ar: "الخطوة 3: استلام التأشيرة" }, desc: { en: "Receive your e-visa via email within 24-48 hours.", ar: "استلم تأشيرتك الإلكترونية عبر البريد الإلكتروني في غضون 24-48 ساعة." } }
   ]
 };
 
@@ -2619,8 +2617,8 @@ const MapComponent = ({ latitude, longitude }) => {
               <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-8 md:p-12">
                  <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                    <div>
-                     <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-2 drop-shadow-lg">Winter Offer</h2>
-                     <p className="text-white/90 text-lg mb-6 max-w-2xl">Don't miss out on our exclusive winter deals. Limited time only!</p>
+                     <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-2 drop-shadow-lg">{lang === 'en' ? 'Winter Visa Promotion' : 'عرض تأشيرة الشتاء'}</h2>
+                     <p className="text-white/90 text-lg mb-6 max-w-2xl">{lang === 'en' ? 'Get your UAE visa hassle-free with our special winter promotion.' : 'احصل على تأشيرة الإمارات بدون متاعب مع عرض الشتاء الخاص.'}</p>
                      <button 
                        onClick={(e) => {
                           e.stopPropagation();
@@ -3773,7 +3771,7 @@ const MapComponent = ({ latitude, longitude }) => {
 
                 {selectedSafari.itinerary && (
                   <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-100 dark:border-slate-700">
-                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">{lang === 'en' ? 'Itinerary' : 'برنامج الرحلة'}</h2>
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">{selectedSafari.id === 'winter-offer' ? (lang === 'en' ? 'Application Process' : 'خطوات التقديم') : (lang === 'en' ? 'Itinerary' : 'برنامج الرحلة')}</h2>
                     <div className="space-y-8 relative before:absolute before:left-[19px] rtl:before:right-[19px] rtl:before:left-auto before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-200 dark:before:bg-slate-700">
                       {selectedSafari.itinerary.map((item, index) => (
                         <div key={index} className="relative pl-12 rtl:pr-12 rtl:pl-0">
@@ -3781,7 +3779,7 @@ const MapComponent = ({ latitude, longitude }) => {
                             {index + 1}
                           </div>
                           {/* Conditionally render the map for the first two itinerary items */}
-                          {index < 2 && (
+                          {index < 2 && selectedSafari.id !== 'winter-offer' && (
                             <MapComponent 
                               latitude={index === 0 ? selectedSafari.pickupCoordinates?.latitude : selectedSafari.locationCoordinates?.latitude} 
                               longitude={index === 0 ? selectedSafari.pickupCoordinates?.longitude : selectedSafari.locationCoordinates?.longitude} 
@@ -3868,11 +3866,13 @@ const MapComponent = ({ latitude, longitude }) => {
 
               {/* Sidebar */}
               <div className="lg:col-span-1 space-y-6">
-                <SafariWeatherWidget 
-                  latitude={selectedSafari.locationCoordinates?.latitude} 
-                  longitude={selectedSafari.locationCoordinates?.longitude} 
-                  lang={lang} 
-                />
+                {selectedSafari.id !== 'winter-offer' && (
+                  <SafariWeatherWidget 
+                    latitude={selectedSafari.locationCoordinates?.latitude} 
+                    longitude={selectedSafari.locationCoordinates?.longitude} 
+                    lang={lang} 
+                  />
+                )}
                 <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-xl border border-slate-100 dark:border-slate-700 sticky top-24">
                   <div className="mb-6">
                     <span className="text-sm text-slate-500 dark:text-slate-400 block mb-1">{lang === 'en' ? 'Starting from' : 'يبدأ من'}</span>

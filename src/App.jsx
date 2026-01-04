@@ -706,7 +706,7 @@ const winterOfferPackage = {
     ar: ["طلب سريع", "دعم واتساب 24/7", "فحص مسبق للمستندات", "بدون رسوم خفية"]
   },
   requiredDocuments: {
-    en: ["Clear Passport Copy (6 months validity)", "Passport-size Photo (white background)", "National ID (for some nationalities)"],
+    en: ["Clear Passport Copy (12 months validity)", "Passport-size Photo (white background)", "National ID (for some nationalities)"],
     ar: ["نسخة واضحة من جواز السفر (صلاحية 6 أشهر)", "صورة شخصية بحجم جواز السفر (خلفية بيضاء)", "الهوية الوطنية (لبعض الجنسيات)"]
   },
   description: { en: "Get your UAE visa hassle-free with our special winter promotion. Fast, reliable, and affordable.", ar: "احصل على تأشيرة الإمارات بدون متاعب مع عرض الشتاء الخاص. سريع وموثوق وبأسعار معقولة." },
